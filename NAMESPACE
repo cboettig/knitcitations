@@ -1,6 +1,7 @@
 export(bibliography)
 export(citep)
 export(citet)
+export(cleanbib)
 export(ref)
 import(RCurl)
 import(XML)
