@@ -1,0 +1,7 @@
+export(bibliography)
+export(citep)
+export(citet)
+export(ref)
+import(RCurl)
+import(XML)
+import(knitr)
