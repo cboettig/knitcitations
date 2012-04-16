@@ -82,23 +82,37 @@ check_missing <- function(x){
 citep <- function(x){
 
   ## initialize the works cited list if not avaialble
-  if(is.null(getOption("works_cited"))){
-    empty <- list()
-    class(empty) <- "bibentry"
-    options(works_cited = empty)
-    knitr::knit_hooks$set(inline = identity)
-  }
+  if(is.null(getOption("works_cited")))
+    cleanbib()
 
+
+  if(is(x, "character")){
+    named_dois <- getOption("named_dois")
+    if(!is.null(names(x))){ # if x is named, add it to the keylist
+      # avoid repeat entries?
+      options(named_dois = c(named_dois, x) )
+    } else {
+      # See if x is a bibkey name for the doi, rather than the doi
+      y <- named_dois[match(x, names(named_dois))]
+      if(!is.na(y)) # match found, swap doi for the key
+        x <- y
+    }
+  }
   out <- sapply(x,function(x){
-    if(is(x, "character"))
+    if(is(x, "character")){
       entry <- ref(x)
-    else # assume it's a bibentry object already
+    } else # assume it's a bibentry object already
       entry <- x
-    ## keep track of what we've cited so far
-    options(works_cited = c(getOption("works_cited"), entry))
-    authoryear_p(entry)
+    if(!is(entry, "bibentry")) # if it's not a bibentry, print "?"
+      out <- I("?")
+    else {
+      ## keep track of what we've cited so far
+      options(works_cited = c(getOption("works_cited"), entry))
+      out <-  authoryear_p(entry)
+    }
+    out
   })
-  paste("(", paste(out, collapse="; "), ")", sep="")
+  I(paste("(", paste(out, collapse="; "), ")", sep=""))
 }
 #' Add a textual citation
 #'
@@ -114,26 +128,29 @@ citep <- function(x){
 #' @export
 #' @import knitr
 citet <- function(x){
-  if(is.null(getOption("works_cited"))){
-    empty <- list()
-    class(empty) <- "bibentry"
-    options(works_cited = empty)
-    knitr::knit_hooks$set(inline = identity)
-  }
-    if(is(x, "character"))
-      entry <- ref(x)
-    else # assume it's a bibentry object already
-      entry <- x
+  if(is.null(getOption("works_cited")))
+    cleanbib()
+  if(is(x, "character"))
+    entry <- ref(x)
+  else # assume it's a bibentry object already
+    entry <- x
+  if(!is(entry, "bibentry"))
+    out <- I("?")
+  else {
     ## keep track of what we've cited so far
     options(works_cited = c(getOption("works_cited"), entry))
-    authoryear_t(entry)
+   out <- I(authoryear_t(entry))
+  }
+  out
 }
 
 #' Generate the bibliography
 #' @return the markdown formatted bibliography of what's been cited
 #' @export
 bibliography <- function(){
-  getOption("works_cited")
+  out <- getOption("works_cited")
+  cleanbib()
+  out
 }
 
 #' read in bibtex and use key as list names
@@ -191,5 +208,5 @@ cleanbib <- function(){
   empty <- list()
   class(empty) <- "bibentry"
   options(works_cited = empty)
-  knitr::knit_hooks$set(inline = identity)
+  options(named_dois = c(blank=""))
 }
