@@ -10,7 +10,14 @@ Description: While traditional Sweave documents can take advantage of LaTeX
     markdown with R code.  This package tries offers citation tools to make up
     for this.  This package will also take advantage of the web-based nature of
     markdown documents
+Depends:
+    knitr
+Imports:
+    xtable,
+    RCurl,
+    XML
 Recommends: bibtex
 License: CC0
 Collate:
     'citations.R'
+    'functiontable.R'
