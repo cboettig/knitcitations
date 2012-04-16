@@ -80,12 +80,15 @@ check_missing <- function(x){
 #'   out <- sapply(names(sessionInfo()$otherPkgs), function(x) citation(x))
 #'   citep(out)
 citep <- function(x){
+
+  ## initialize the works cited list if not avaialble
   if(is.null(getOption("works_cited"))){
     empty <- list()
     class(empty) <- "bibentry"
     options(works_cited = empty)
     knitr::knit_hooks$set(inline = identity)
   }
+
   out <- sapply(x,function(x){
     if(is(x, "character"))
       entry <- ref(x)
@@ -133,6 +136,21 @@ bibliography <- function(){
   getOption("works_cited")
 }
 
+#' read in bibtex and use key as list names
+#'
+#' @param bibfile a bibtex .bib file
+#' @return a list of citation information
+#' @details this differs from read.bib in that the list is named.
+#' this allows one to use citep(bib[c("key1", "key2")]
+#' @import bibtex
+#' @export
+#' @seealso read.bib citep citet
+read.bibtex <- function(bibfile){
+  bibs <- read.bib(bibfile)
+  keys <- lapply(bibs, function(entry) entry$key)
+  names(bibs) <- keys
+  bibs
+}
 
 
 
