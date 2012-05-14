@@ -11,12 +11,12 @@ Description: While traditional Sweave documents can take advantage of LaTeX
     for this.  This package will also take advantage of the web-based nature of
     markdown documents
 Depends:
-    knitr
+    knitr,
+    bibtex
 Imports:
     xtable,
     RCurl,
     XML
-Recommends: bibtex
 License: CC0
 Collate:
     'citations.R'

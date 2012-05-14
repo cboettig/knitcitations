@@ -18,11 +18,11 @@
 #' @examples functiontable("xtable") 
 functiontable <- function(pkg, ...){
   tst<-library(help=pkg, character.only=TRUE)$"info"[[2]]
-  tdf <- data.frame(namefn = unlist(lapply(
+  tdf <- data.frame("function name" = unlist(lapply(
                                strsplit(sub("\\s+", "\t", tst), "\t"), 
                                "[", 1)),
-                    descrb = unlist(lapply(
+                    description = unlist(lapply(
                                strsplit(sub("\\s+", "\t", tst), "\t"), 
                                "[", 2)) )
-  xdf <- xtable(tdf, ...)
+  xtable(tdf, ...)
 }
