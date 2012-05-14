@@ -18,9 +18,8 @@
   can be printed with \code{\link{bibliography}}
 }
 \examples{
-\dontrun{
+library(knitcitations)
 citet("10.3998/3336451.0009.101")
 bibliography()
-}
 }
 

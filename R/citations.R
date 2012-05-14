@@ -9,11 +9,12 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Metadata from DOI in R's bibentry format.
 #' @export
-#' @examples \dontrun{
+#' @examples 
+#' library(knitcitations)
 #' ref("10.3998/3336451.0009.101")
 #' print(ref("10.3998/3336451.0009.101"), style="Bibtex")
 #' print(ref("10.3998/3336451.0009.101"), style="text")
-#' }
+#' 
 ref <- 
 function(doi, title = FALSE,
   url = "http://www.crossref.org/openurl/", 
@@ -79,6 +80,7 @@ check_missing <- function(x){
 #' @export
 #' @import knitr
 #' @examples
+#' library(knitcitations)
 #'  citep("10.3998/3336451.0009.101")
 #'  ## Read in the bibtex information for some packages:
 #'  knitr <- citation("knitr") 
@@ -129,10 +131,10 @@ citep <- function(x){
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
 #' @examples
-#' \dontrun{
+#' library(knitcitations) 
 #' citet("10.3998/3336451.0009.101")
 #' bibliography()
-#' }
+#'
 #' @export
 #' @import knitr
 citet <- function(x){

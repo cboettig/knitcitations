@@ -75,17 +75,29 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'><span class="functioncall"><a href='citep.html.html'>citep</a></span><span class="keyword">(</span><span class="string">"10.3998/3336451.0009.101"</span><span class="keyword">)</span></div>
-<strong class='error'>Error in eval(expr, envir, enclos): could not find function "citep"</strong>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">knitcitations</span><span class="keyword">)</span>
+ <span class="functioncall"><a href='citep.html.html'>citep</a></span><span class="keyword">(</span><span class="string">"10.3998/3336451.0009.101"</span><span class="keyword">)</span></div>
+<div class='output'>[1] "(Bilder, 2006)"
+</div>
 <div class='input'> <span class="comment">## Read in the bibtex information for some packages:</span>
  <span class="symbol">knitr</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/citation'>citation</a></span><span class="keyword">(</span><span class="string">"knitr"</span><span class="keyword">)</span>
  <span class="symbol">devtools</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/citation'>citation</a></span><span class="keyword">(</span><span class="string">"devtools"</span><span class="keyword">)</span>
  <span class="comment"># generate the parentetical citation for these:</span>
  <span class="functioncall"><a href='citep.html.html'>citep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="symbol">knitr</span><span class="keyword">,</span><span class="symbol">devtools</span><span class="keyword">)</span><span class="keyword">)</span></div>
-<strong class='error'>Error in eval(expr, envir, enclos): could not find function "citep"</strong>
+<div class='output'>[1] "(Xie, 2012; Wickham, 2012)"
+</div>
 <div class='input'> <span class="comment"># generate the full bibliography:</span>
  <span class="functioncall"><a href='bibliography.html.html'>bibliography</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
-<strong class='error'>Error in eval(expr, envir, enclos): could not find function "bibliography"</strong></pre>
+<div class='output'>Bilder G (2006). "In Google We Trust?" _Journal of Electronic
+Publishing_, *9*. <URL: http://dx.doi.org/10.3998/3336451.0009.101>.
+
+Xie Y (2012). _knitr: A general-purpose package for dynamic report
+generation in R_. R package version 0.5.3, <URL:
+http://yihui.name/knitr/>.
+
+Wickham H (2012). _devtools: Tools to make developing R code easier_. R
+package version 0.6, <URL: http://CRAN.R-project.org/package=devtools>.
+</div></pre>
         </div>
         <div class="span4">
           <!-- <ul>

@@ -19,7 +19,8 @@
   can be printed with \code{\link{bibliography}}
 }
 \examples{
-citep("10.3998/3336451.0009.101")
+library(knitcitations)
+ citep("10.3998/3336451.0009.101")
  ## Read in the bibtex information for some packages:
  knitr <- citation("knitr")
  devtools <- citation("devtools")
