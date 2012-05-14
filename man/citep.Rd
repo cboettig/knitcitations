@@ -19,7 +19,13 @@
   can be printed with \code{\link{bibliography}}
 }
 \examples{
-out <- sapply(names(sessionInfo()$otherPkgs), function(x) citation(x))
-  citep(out)
+citep("10.3998/3336451.0009.101")
+ ## Read in the bibtex information for some packages:
+ knitr <- citation("knitr")
+ devtools <- citation("devtools")
+ # generate the parentetical citation for these:
+ citep(list(knitr,devtools))
+ # generate the full bibliography:
+ bibliography()
 }
 

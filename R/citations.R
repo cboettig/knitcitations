@@ -40,6 +40,7 @@ function(doi, title = FALSE,
 formatref <- function(a){
  authors <- person(family=as.list(xpathSApply(a, "//surname", xmlValue)),
                   given=as.list(xpathSApply(a, "//given_name", xmlValue)))
+  suppressWarnings(
   rref <- bibentry(
         bibtype = "Article",
         title = check_missing(xpathSApply(a, "//titles/title", xmlValue)),
@@ -54,6 +55,7 @@ formatref <- function(a){
         issn = xpathSApply(a, "//issn[@media_type='print']", xmlValue),
 #        url = xpathSApply(a, "//journal_article/doi_data/resource", xmlValue)
         )
+  )
 }
 
 # Title, author, journal, & year cannot be missing, so return "NA" if they are
@@ -76,9 +78,15 @@ check_missing <- function(x){
 #' which can be printed with \code{\link{bibliography}}
 #' @export
 #' @import knitr
-#' @examples 
-#'   out <- sapply(names(sessionInfo()$otherPkgs), function(x) citation(x))
-#'   citep(out)
+#' @examples
+#'  citep("10.3998/3336451.0009.101")
+#'  ## Read in the bibtex information for some packages:
+#'  knitr <- citation("knitr") 
+#'  devtools <- citation("devtools")
+#'  # generate the parentetical citation for these:
+#'  citep(list(knitr,devtools))
+#'  # generate the full bibliography:
+#'  bibliography()
 citep <- function(x){
 
   ## initialize the works cited list if not avaialble
