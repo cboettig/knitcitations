@@ -49,6 +49,7 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
 
+%\VignetteIndexEntry{Using knitcitations}
 
 \begin{document}
 

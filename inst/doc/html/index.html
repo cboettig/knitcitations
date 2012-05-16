@@ -37,9 +37,9 @@
         <h1>knitcitations 0.0-1</h1>
         <p>While traditional Sweave documents can take advantage of LaTeX
 citation tools, knitr also allows users to combine the much simpler
-markdown with R code.  This package tries offers citation tools to make up
+markdown with R code.  This package offers citation tools to make up
 for this.  This package will also take advantage of the web-based nature of
-markdown documents</p>
+markdown documents to allow dynamic citations pulled from the web.</p>
       </div>
       
       <div class="row">
@@ -53,9 +53,15 @@ markdown documents</p>
 
 <p><code>knitcitations</code> is an R package designed to add dynamic citations to dynamic documents created with <a href="https://github.com/yihui/knitr">Yihui&#39;s knitr package</a>.</p>
 
+<h2>Use </h2>
+
 <p><code>knitcitations</code> allows dynamic citations by passing in the DOI of a paper, such as <code>citep(&quot;10.1111/j.1461-0248.2005.00827.x&quot;)</code>  It uses crossref to look up the citation information, and can insert a parenthetical or in-text citation.  A bibliography is then generated from citations and can be inserted using the command <code>bibliography()</code>.  Citations can also be included by bibtex shortcode.  A more detailed tutorial (using <code>knitr</code>) <a href="https://github.com/cboettig/knitcitations/blob/master/inst/examples/citations.md">can be found in inst/examples</a>. </p>
 
-<p>This package is in early development. Please file bugs or requested features on the <a href="https://github.com/cboettig/knitcitations/issues">Issues page</a>. </p>
+<ul>
+<li>This package is in early development. Please file bugs or requested features on the <a href="https://github.com/cboettig/knitcitations/issues">Issues page</a>. </li>
+<li><a href="https://github.com/cboettig/knitcitations">Package source code on Github</a></li>
+<li><a href="http://cboettig.github.com/knitcitations/index.html">Online package documentation</a></li>
+</ul>
 
 <h2>Installation </h2>
 
@@ -70,21 +76,22 @@ install_github(&quot;knitcitations&quot;, &quot;cboettig&quot;)
 
           <h2>Help topics</h2>
           <ul class="index">
-            <li class="NA"><code><a href="authoryear_p.html">authoryear_p</a></code>: format the author and year parenthetically</li>
-            <li class="NA"><code><a href="authoryear_t.html">authoryear_t</a></code>: format the author and year</li>
-            <li class="NA"><code><a href="bibliography.html">bibliography</a></code>: Generate the bibliography</li>
-            <li class="NA"><code><a href="citep.html">citep</a></code>: Add a paranthetical citation</li>
-            <li class="NA"><code><a href="citet.html">citet</a></code>: Add a textual citation</li>
-            <li class="NA"><code><a href="cleanbib.html">cleanbib</a></code>: clean the bib list</li>
-            <li class="NA"><code><a href="formatref.html">formatref</a></code>: Convert crossref XML into a bibentry object</li>
-            <li class="NA"><code><a href="functiontable.html">functiontable</a></code>: a table of functions in a package</li>
-            <li class="NA"><code><a href="read.bibtex.html">read.bibtex</a></code>: read in bibtex and use key as list names</li>
-            <li class="NA"><code><a href="ref.html">ref</a></code>: Lookup article info via CrossRef with DOI.</li>
+            <li><code><a href="authoryear_p.html">authoryear_p</a></code>: format the author and year parenthetically</li>
+            <li><code><a href="authoryear_t.html">authoryear_t</a></code>: format the author and year</li>
+            <li><code><a href="bibliography.html">bibliography</a></code>: Generate the bibliography</li>
+            <li><code><a href="citep.html">citep</a></code>: Add a paranthetical citation</li>
+            <li><code><a href="citet.html">citet</a></code>: Add a textual citation</li>
+            <li><code><a href="cleanbib.html">cleanbib</a></code>: clean the bib list</li>
+            <li><code><a href="formatref.html">formatref</a></code>: Convert crossref XML into a bibentry object</li>
+            <li><code><a href="functiontable.html">functiontable</a></code>: a table of functions in a package</li>
+            <li><code><a href="read.bibtex.html">read.bibtex</a></code>: read in bibtex and use key as list names</li>
+            <li><code><a href="ref.html">ref</a></code>: Lookup article info via CrossRef with DOI.</li>
           </ul>
         </div>
         <div class="span4">
           <h2>Vignettes</h2>
           <ul>
+            <li><a href="vignettes/citations.pdf">Using knitcitations</a></li>
           </ul>
 
           <h2>Demos</h2>
@@ -101,7 +108,7 @@ install_github(&quot;knitcitations&quot;, &quot;cboettig&quot;)
             
            
           <h2>Authors</h2>
-          
+          Carl Boettiger &lt;cboettig@gmail.com&gt; [aut, cre]
           
         </div>
       </div>
