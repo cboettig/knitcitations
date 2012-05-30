@@ -3,7 +3,7 @@
 \title{Generate the bibliography}
 \usage{
   bibliography(erase = FALSE, sort = FALSE,
-    addkeys = FALSE)
+    addkeys = FALSE, debug = FALSE)
 }
 \arguments{
   \item{erase}{logical indicating that bibliographic list

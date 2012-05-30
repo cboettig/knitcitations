@@ -5,10 +5,11 @@
   citet(x)
 }
 \arguments{
-  \item{x}{a doi or a bibentry}
+  \item{x}{a doi or list of dois, or a bibentry (or list of
+  bibentries)}
 }
 \value{
-  a textual inline citation
+  a text inline citation
 }
 \description{
   Add a textual citation
@@ -19,7 +20,14 @@
 }
 \examples{
 library(knitcitations)
-citet("10.3998/3336451.0009.101")
-bibliography()
+ citet("10.3998/3336451.0009.101")
+ ## Read in the bibtex information for some packages:
+ knitr <- citation("knitr")
+ citet(knitr)
+ # generate the full bibliography:
+ bibliography()
+## Assign a citation key to a doi and then use it later:
+citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
+citet("Halpern2006")
 }
 

@@ -5,9 +5,10 @@
 #' @details reads in the values from the option "works_cited",
 #' possibly applying tidying up and formatting as well. 
 #' @export
-bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE){
+bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
   out <- getOption("works_cited")
-  out <- unique.bibentry(out)
+  if(!debug)
+    out <- unique.bibentry(out)
   if(addkeys) 
     out <- create_bibkeys(out) 
   if(sort){   # Not yet supported
@@ -27,6 +28,14 @@ bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE){
 #' unique.bibentry(bib)
 #' 
 unique.bibentry <- function(bibentry){
+  # Determine unique entries by unique bibkeys
+  bibentry[unique(sapply(bibentry, function(x) x$key))]
+}
+  
+
+## Needs debugging for this method to work
+uniquebib <- function(bibentry){
+  
   hits <- TRUE
   i <- 1
   while(any(hits) & length(bibentry) > i){
@@ -46,7 +55,7 @@ unique.bibentry <- function(bibentry){
 
 #' Helper function to make a list of bibentry objects into a single bibentry object containing multiple entries
 #' @param bib a list of bibentry objects.  If already a bibentry class with multiple entries, function returns the input.  
-#' @returns a bibentry object with multiple entries
+#' @return a bibentry object with multiple entries
 #' @examples
 #' bib <- c(citation("knitr"), citation("bibtex"), citation("knitcitations"))
 #'  a <- lapply(bib, knitcitations:::create_bibkey)

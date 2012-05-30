@@ -53,13 +53,23 @@ citet <- function(x){
 
 
 
-
+#' Add a citation (internal for citet and citep) 
+#'
+#' @param x a doi or list of dois, or a bibentry (or list of bibentries)
+#' @return a parenthetical inline citation
+#' @details Stores the full citation in a "works_cited" list,
+#' which can be printed with \code{\link{bibliography}}
+#' @import knitr
+#' @keywords internal
 cite <- function(x, inline_format){
   ## initialize the works cited list if not avaialble
   if(is.null(getOption("works_cited")))
     cleanbib()
- current <- bibliography()
+
+  ## Identify what references we already know about
+  current <- bibliography(debug=TRUE)
   existing <- sapply(current, function(x) x$key)
+
   out <- sapply(x,function(x){
     m <- match(x, existing)
     if(!is.na(m))
@@ -67,7 +77,7 @@ cite <- function(x, inline_format){
     else if(is(x, "character")){
       key = names(x)
       entry <- ref(x)
-      entry <- create_bibkey(entry, key=key, existing=existing)
+      entry <- create_bibkey(entry, key=key, current=current)
     } else {# assume it's a bibentry object already
       key = names(x)
       entry <- x
