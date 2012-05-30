@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 knitcitations
 =============
 
@@ -6,14 +13,19 @@ An automated way to generate citations by dynamic lookup using Crossref DOIs or 
 
 Markdown is becoming an increasingly popular platform for lightweight and online publishing.  While traditional publishing tools like LaTeX and word processors have long had intergated biobliographic management, few tools handle citations for lightweight publishing. I am finding myself more and more drawn to markdown rather then tex/Rnw as my standard format (not least of which is the ease of displaying the files on github, particularly now that we have automatic image uploading.   I've taken a little whack at generating in-text citations using knitr and other R tools. 
 
+
+
 ### DOI Approach
-I've put some simple functions in a `knitcitations` package.  The functions use the crossref API to grab citation information given a doi, so I don't have to generate a bibtex file for papers I'm reading.  This functionality is inspired by the [kcite](http://wordpress.org/extend/plugins/kcite/) package for Wordpress.  The `knitcitations` package can be installed from Github
+
+I've put some simple functions in a `knitcitations` package.  The functions use the crossref API to grab citation information given a doi, so I don't have to generate a bibtex file for papers I'm reading, (inspired by the [kcite](http://wordpress.org/extend/plugins/kcite/) package for Wordpress).  One can grab my package from github
 
 
 ```r
 library(devtools)
 install_github("knitcitations", "cboettig")
 ```
+
+
 
 
 and load the package
@@ -26,75 +38,212 @@ require(knitcitations)
 
 
 
-Then we can generate a citation given a doi with the `ref` function:
+Then we can generate a citation given a DOI with the `ref` function:
 
 
+
+```r
+r <- ref("10.1111/j.1461-0248.2005.00827.x")
+print(r)
+```
+
+
+
+```
+Halpern B, Regan H, Possingham H and McCarthy M (2006).
+"Accounting for uncertainty in marine reserve design." _Ecology
+Letters_, *9*. ISSN 1461-023X, <URL:
+http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
+```
+
+
+
+
+We can generate inline citations in the short name/date format with the `citet` function:
+
+
+
+```r
+citet("10.1111/j.1461-0248.2005.00827.x")
+```
+
+
+
+```
+[1] "Halpern _et. al._ (2006)"
+```
+
+
+
+
+Similarly we can generate parenthetical citations with the `citep` function, 
+
+
+
+```r
+citep(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"))
+```
+
+
+
+```
+[1] "(Halpern _et. al._ 2006; Abrams _et. al._ 2012)"
+```
+
+
+
+
+Which can take a list of DOIs to cite parenthetically.  The `citet` and `citep` functions are automatically retrieving the available metadata via the Crossref API, and R is storing the information to generate the final bibliography.  
 
 
 ### Bibtex Approach
 
-If we have a bibtex file, we can use this for the citations as well.  Let's start off by getting ourselves a bibtex file from some of R's packages: 
+If we have a bibtex file, we can use this for the citations as well.  If you don't have a bibtex file handy, you can make one containing the citation information for some of R's packages: 
+
 
 
 ```r
-library(bibtex)
-write.bib(c('bibtex', 'knitr', 'knitcitations'), file="example.bib")
+write.bibtex(c("bibtex", "knitr", "knitcitations"), file = "example.bib")
 ```
 
 
 
 
-Now we can simply read in the bibtex files: 
+We could also have used the `ref` function write a bibtex file for our list of DOIs
+
 
 
 ```r
-biblio <- read.bib("example.bib")
-biblio[[1]]
+refs <- lapply(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"), 
+    ref)
+write.bibtex(refs, file = "refs.bib")
 ```
 
 
 
 ```
-Francois R (2011). _bibtex: bibtex parser_. R package version
-0.3-1/r332, <URL: http://R-Forge.R-project.org/projects/highlight/>.
+Error: Invalid argument `entry`: expected a bibentry object or a character vector of package names.
 ```
 
 
 
-(This would be much more awesome if we could generate keys on write.bib and use those bibtex keys, instead of the index value, `[[1]]`, to generate the citation.)
+
+
+Once we have a bibtex file available, we must read it into R.   
+
+
+
+```r
+bib <- read.bibtex("example.bib")
+```
+
+
+
+
+We can now create citations from `bib` using the bibtex key,
+
+
+
+```r
+bib[["knitr"]]
+```
+
+Xie Y (2012). _knitr: A general-purpose package for dynamic report
+generation in R_. R package version 0.5.4, <URL:
+http://yihui.name/knitr/>.
+
+
+
+The inline citation tools can also now use this `bib` instead of a DOI to generate a citation,
+
+
+
+```r
+citet(bib[["knitr"]])
+```
+
+
+
+```
+[1] "Xie, (2012)"
+```
+
+
+
+```r
+citep(bib[c("knitr", "bibtex")])
+```
+
+
+
+```
+[1] "(Xie, 2012; Francois, 2011)"
+```
+
+
+
 
 
 ### Using the inline citations 
-Now that we can get citation information from bibtex files or dois, we need a way to insert these citations into the text.  I've written a simple `citep`  print inline citations that would just use a given shortened format (e.g. author-year) and add the citation to a `works_cited` object, which we could then use to generate the full citation information at the end.  We can generate inline citations by giving a doi, bibentry object, or a list thereof, into inline knitr code block. Thus we can use the line   `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, (Halpern _et. al._ 2006). We can also generate textual citations with `citet`, such as Francois, (2011).  Parenthetical citations can take more than one entry, (Xie, 2012; Boettiger, 2012). 
+
+The inline citation calls are designed to be used with knitr's inline code blocks.  In markdown, these are enclosed in \` r \`.  The output format will use the plain-text rendering rather than the code markup.  Thus we can use the line `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, (Halpern _et. al._ 2006). We can generate the in-text citations with `citet`, such as Xie, (2012).  
 
 ### Generating the final bibliography
 As we go along adding inline citations, R stores the list of citation info.  Then at the end of the document, use this command to print the bibliography generated by the use of our inline citations. 
+
 
 
 ```r
 bibliography()
 ```
 
-Halpern B, Regan H, Possingham H and McCarthy M (2006). "Accounting for
-uncertainty in marine reserve design." _Ecology Letters_, *9*. ISSN
-1461-023X, <URL: http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
+Halpern B, Regan H, Possingham H and McCarthy M (2006).
+"Accounting for uncertainty in marine reserve design." _Ecology
+Letters_, *9*. ISSN 1461-023X, <URL:
+http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
 
-Francois R (2011). _bibtex: bibtex parser_. R package version
-0.3-1/r332, <URL: http://R-Forge.R-project.org/projects/highlight/>.
+Halpern B, Regan H, Possingham H and McCarthy M (2006).
+"Accounting for uncertainty in marine reserve design." _Ecology
+Letters_, *9*. ISSN 1461-023X, <URL:
+http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
+
+Abrams P, Ruokolainen L, Shuter B and McCann K (2012). "Harvesting
+creates ecological traps: consequences of invisible mortality
+risks in predator–prey metacommunities." _Ecology_, *93*. ISSN
+0012-9658, <URL: http://dx.doi.org/10.1890/11-0011.1>.
 
 Xie Y (2012). _knitr: A general-purpose package for dynamic report
-generation in R_. R package version 0.4.1, <URL:
+generation in R_. R package version 0.5.4, <URL:
 http://yihui.name/knitr/>.
 
-Boettiger C (2012). _knitcitations: Citations for knitr markdown
-files_. R package version 0.0-1.
+Xie Y (2012). _knitr: A general-purpose package for dynamic report
+generation in R_. R package version 0.5.4, <URL:
+http://yihui.name/knitr/>.
+
+Francois R (2011). _bibtex: bibtex parser_. R package version
+0.3-0, <URL: http://CRAN.R-project.org/package=bibtex>.
+
+Halpern B, Regan H, Possingham H and McCarthy M (2006).
+"Accounting for uncertainty in marine reserve design." _Ecology
+Letters_, *9*. ISSN 1461-023X, <URL:
+http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
+
+Xie Y (2012). _knitr: A general-purpose package for dynamic report
+generation in R_. R package version 0.5.4, <URL:
+http://yihui.name/knitr/>.
 
 
 
-I hope to add markup to format this a bit more nicely later.  For instance, we want the links to appear as real links.  Additionally, we may want to add markup around the citations, such as the reason for the citation into the link using the [Citation Typing Ontology](http://speroni.web.cs.unibo.it/cgi-bin/lode/req.py?req=http:/purl.org/spar/cito). 
+I hope to add markup to format this a bit more nicely later. For instance, we want the links to appear as real links.  Additionally, we may want to add markup around the citations, such as the reason for the citation into the link using the [Citation Typing Ontology](http://speroni.web.cs.unibo.it/cgi-bin/lode/req.py?req=http:/purl.org/spar/cito). Ideally I need a method to support different citation styles, even though it is silly in today's world that the citation format is still a choice of the *publisher* and not a choice of the *reader*.  This will probably require citeproc intergration and a major upgrade.  Please report any bugs, feature requests or citations on the [Github issues tracker!](https://github.com/cboettig/knitcitations/issues)
 
 
 
+### Lightweight citation alternatives
 
+Several citation alternatives are available for lightweight publishing outside of this option, each with its own advantages and limitations.  John MacFarlane's [Pandoc](http://johnmacfarlane.net/pandoc/) is probably the most widely used citation manager for markdown files, working with a bibtex source file but formatting the citation lists using citeproc.  It has the advantage of a more consise citation sytnax, consistent with the source-readable goals of markdown and citation formating.  Of course it is a markdown extension and will not be read by other markdown intepreters.  This would be less of an issue of Pandoc could run markdown -> markdown without garbling syntax of some other markdown intepreter, like Github-flavored markdown. 
 
+The only other tool I know of that provides dynamic citations by DOI look-up is Phil Lord's excellent Wordpress plugin, [kcite](http://wordpress.org/extend/plugins/kcite/).  It now uses citeproc for formatting, automatically links the in-text citations to the bibliography, supports PubMed and ArXiv ids as well as DOIs and even web URLs (though not bibtex files).  The major limitation for me is that it is limited to Wordpress with Wordpress specific shortcode.  (Of course I introduce R-specific code here, but with the assumption of a knitr-based audience who probably uses github).  A variety of other platform-specific plugins are avialable to convert bibtex files into citations
+for different blogging platforms, including Wordpress and Jekyll.  
+
+So why knitcitations?   To bring this functionality to knitr users who rely on the markdown format rather than the latex format and are interested in dynamic citations and web-based publishing.  I hope it finds its niche.  
 
