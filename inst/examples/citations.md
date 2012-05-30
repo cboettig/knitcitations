@@ -1,18 +1,19 @@
+knitcitations
+=============
+
+An automated way to generate citations by dynamic lookup using Crossref DOIs or by bibtex files.
 
 
-
-I am finding myself more and more drawn to markdown rather then tex/Rnw as my standard format (not least of which is the ease of displaying the files on github, particularly now that we have automatic image uploading).  One thing I miss from latex is the citation commands. (I understand these can be provided to markdown via Pandoc, but I'd like to simply have to knit the document, and not then run it through pandoc, latex, or another interpreter).  I've taken a little whack at generating in-text citations using knitr and other R tools. 
+Markdown is becoming an increasingly popular platform for lightweight and online publishing.  While traditional publishing tools like LaTeX and word processors have long had intergated biobliographic management, few tools handle citations for lightweight publishing. I am finding myself more and more drawn to markdown rather then tex/Rnw as my standard format (not least of which is the ease of displaying the files on github, particularly now that we have automatic image uploading.   I've taken a little whack at generating in-text citations using knitr and other R tools. 
 
 ### DOI Approach
-I've put some simple functions in a `knitcitations` package.  The functions use the crossref API to grab citation information given a doi, so I don't have to generate a bibtex file for papers I'm reading, (inspired by the [kcite](http://wordpress.org/extend/plugins/kcite/) package for Wordpress).  One can grab my package from github
+I've put some simple functions in a `knitcitations` package.  The functions use the crossref API to grab citation information given a doi, so I don't have to generate a bibtex file for papers I'm reading.  This functionality is inspired by the [kcite](http://wordpress.org/extend/plugins/kcite/) package for Wordpress.  The `knitcitations` package can be installed from Github
 
 
 ```r
 library(devtools)
 install_github("knitcitations", "cboettig")
 ```
-
-
 
 
 and load the package
