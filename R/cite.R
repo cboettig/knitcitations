@@ -70,18 +70,23 @@ cite <- function(x, inline_format){
   current <- bibliography(debug=TRUE)
   existing <- sapply(current, function(x) x$key)
 
-  out <- sapply(x,function(x){
-    m <- match(x, existing)
+  preset_keys <- names(x)
+
+  out <- sapply(1:length(x),function(i){
+    key = preset_keys[i]
+    m <- match(x[[i]], existing)
     if(!is.na(m))
       entry <- current[[m]] 
-    else if(is(x, "character")){
-      key = names(x)
-      entry <- ref(x)
+    else if(is(x[[i]], "character")){
+      message("Hello!")
+      entry <- ref(x[[i]])
       entry <- create_bibkey(entry, key=key, current=current)
-    } else {# assume it's a bibentry object already
-      key = names(x)
-      entry <- x
+    } else if(is(x[[i]], "bibentry")) {# it's a bibentry object already
+      entry <- x[[i]]
       entry <- create_bibkey(entry, key=key)
+    } else {
+      warning("citation not found")
+      entry <- I("?")
     }
 
     if(!is(entry, "bibentry")) # if it's not a bibentry, print "?"

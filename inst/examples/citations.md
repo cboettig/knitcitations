@@ -101,15 +101,10 @@ and then later use
 
 
 ```r
-citep("Schreiber2012")
+citep("Michaels")
 ```
 
-
-
-```
-Error: A bibentry of bibtype 'Article' has to correctly specify the field(s): author
-```
-
+[1] "(Michaels & Tyre, 2012)"
 
 
 
