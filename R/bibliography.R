@@ -8,7 +8,7 @@
 bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE){
   out <- getOption("works_cited")
   out <- unique.bibentry(out)
-  if(addkeys) # Not yet supported
+  if(addkeys) 
     out <- create_bibkeys(out) 
   if(sort){   # Not yet supported
     ordering <- sort(names(out))
@@ -42,4 +42,25 @@ unique.bibentry <- function(bibentry){
   bibentry
 }
 
+
+
+#' Helper function to make a list of bibentry objects into a single bibentry object containing multiple entries
+#' @param bib a list of bibentry objects.  If already a bibentry class with multiple entries, function returns the input.  
+#' @returns a bibentry object with multiple entries
+#' @examples
+#' bib <- c(citation("knitr"), citation("bibtex"), citation("knitcitations"))
+#'  a <- lapply(bib, knitcitations:::create_bibkey)
+#' list_to_bibentry(a)
+#' @keywords internal 
+list_to_bibentry <- function(bib){
+  if(is(bib, "bibentry"))
+    out <- bib
+  else if(is(bib, "list")){
+    l <- length(bib)
+    out <- bib[[1]]
+    for(i in 2:l)
+      out <- c(out, bib[[i]])
+  }
+  out 
+}
 

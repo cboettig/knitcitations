@@ -43,8 +43,10 @@ cleanbib <- function(){
 
 #' generate bibkeys for unamed bibentry objects
 #' 
-#' create_bibkey generates a key using a LastNameYear format.
+#' create_bibkey generates a key using a LastNameYear format or given key.
 #' @param bibentry a bibentry object without a bibkey
+#' @param key the key to use as the bibkey. Defaults to NULL, in which case
+#' the function constructs its own key using LastNameYear format (from first author).  
 #' @param existing a list of existing keys, which will force 'create_bibkey'
 #'  to generate a unique pattern.  
 #' @return an updated bibentry that now has a key value and is named using its key
@@ -54,13 +56,22 @@ cleanbib <- function(){
 #'  r <- create_bibkey(r)
 #' ## Notice it now has a key entry
 #'  print(r, "Bibtex")
-#' 
-create_bibkey <- function(bibentry, existing=NULL){
-    entry <- bibentry
-    entry <- unlist(entry)
-    key <- paste(entry["author.family"], entry[["year"]], sep="")
-    if(!is.na(match(key, existing)))
-      key <- paste(key, "_", sep="")
+#'   
+create_bibkey <- function(bibentry, key=NULL, existing=NULL){
+
+    # If the citation has a key already, please just use it.
+    if(!(is.null(bibentry$key)))
+       key <- bibentry$key
+
+
+    # If a key is not found and not specified in the fn call, please generated it
+    if(is.null(key)){
+      entry <- bibentry
+      entry <- unlist(entry)
+      key <- paste(entry["author.family"], entry[["year"]], sep="")
+      if(!is.na(match(key, existing)))
+        key <- paste(key, "_", sep="")
+    }
     names(bibentry) <- key
     bibentry$key <- key
   bibentry
@@ -69,14 +80,8 @@ create_bibkey <- function(bibentry, existing=NULL){
 
 
 
-# Doesn't work yet
 create_bibkeys <- function(bibentries){
-  who <- sapply(bibentry, names)
-  need_names <- which(sapply(who, is.null))
-  existing = getOption("named_dois")
-  existing <- existing[names(existing) != "blank"]
-  for(i in need_names)
-    bibentries[[i]] <- create_bibkey(bibentries[[i]], existing)
-  bibentries
+  out <- lapply(bibentries, create_bibkey)
+  list_to_bibentry(out)
 }
 

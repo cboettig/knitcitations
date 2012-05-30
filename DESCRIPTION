@@ -22,3 +22,9 @@ License: CC0
 Collate:
     'citations.R'
     'functiontable.R'
+    'bibliography.R'
+    'bibtex_io.R'
+    'citep.R'
+    'citet.R'
+    'formatref.R'
+    'ref.R'

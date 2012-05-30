@@ -28,5 +28,8 @@ library(knitcitations)
  citep(list(knitr,devtools))
  # generate the full bibliography:
  bibliography()
+## Assign a citation key to a doi and then use it later:
+citep(Halpern2006=("10.1111/j.1461-0248.2005.00827.x"))
+citep("Halpern2006")
 }
 
