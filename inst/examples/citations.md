@@ -44,20 +44,17 @@ Then we can generate a citation given a DOI with the `ref` function:
 
 ```r
 r <- ref("10.1111/j.1461-0248.2005.00827.x")
-print(r)
+print(r, "html")
 ```
 
-
-
-```
-Halpern B, Regan H, Possingham H and McCarthy M (2006).
-"Accounting for uncertainty in marine reserve design." _Ecology
-Letters_, *9*. ISSN 1461-023X, <URL:
-http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
-```
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 
 
 
+Note that R allows bibitems to print in a variety of formats, including html.  
 
 We can generate inline citations in the short name/date format with the `citet` function:
 
@@ -67,12 +64,7 @@ We can generate inline citations in the short name/date format with the `citet` 
 citet("10.1111/j.1461-0248.2005.00827.x")
 ```
 
-
-
-```
 [1] "Halpern _et. al._ (2006)"
-```
-
 
 
 
@@ -84,16 +76,99 @@ Similarly we can generate parenthetical citations with the `citep` function,
 citep(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"))
 ```
 
-
-
-```
 [1] "(Halpern _et. al._ 2006; Abrams _et. al._ 2012)"
-```
-
 
 
 
 Which can take a list of DOIs to cite parenthetically.  The `citet` and `citep` functions are automatically retrieving the available metadata via the Crossref API, and R is storing the information to generate the final bibliography.  
+
+### Using and creating citation keys 
+
+When specifying a DOI for a citation, we can also give the citation a simple key name so we can use it later without having to remember the DOI, for instance, we can make the first citation of a particular example as
+
+
+
+```r
+citep(c(Michaels = "10.1111/j.1755-263X.2012.00241.x"))
+```
+
+[1] "(Michaels & Tyre, 2012)"
+
+
+
+and then later use 
+
+
+
+```r
+citep("Schreiber2012")
+```
+
+
+
+```
+Error: A bibentry of bibtype 'Article' has to correctly specify the field(s): author
+```
+
+
+
+
+
+If we do not pass a key for the DOI we create, knitcitations will automatically generate a key of it's own using the last name of the first author and the year.  For instance, based on one of the DOI-citations we have already created, we can do
+
+
+
+```r
+citet("Halpern2006")
+```
+
+[1] "Halpern _et. al._ (2006)"
+
+
+
+and knitcitations recognizes the key. The function will try to avoid collisions in the key: if it is given or creates a key matching one that is already in use, it will see if the titles of the articles match.  If the are the same, the same key is used to avoid a duplicate entry. This makes it safe to call
+
+
+
+```r
+citet(c(Halpern2006 = "10.1111/j.1461-0248.2005.00827.x"))
+```
+
+[1] "Halpern _et. al._ (2006)"
+
+
+
+even if we have earlier or later cited by the doi alone.  Collsion checking also avoids duplicating keys that correspond to different papers.  If the titles are unique, knitcitations appends an underscore at the end of the automatically generated key.  For instance, here we call a DOI that corresponds to a different citation with the same first author and year:
+
+
+
+```r
+citet("10.1111/j.1523-1739.2005.00258.x")
+```
+
+
+
+```
+Warning message: Automatic key generation found a copy of this key, using Halpern2006_ instead
+```
+
+[1] "Halpern _et. al._ (2006)"
+
+
+
+ A warning (not printed by knitr when this is used inline, but included in the log file) alerts us to the fact that this citation has been given an alternate key,
+
+
+
+```r
+citet("Halpern2006_")
+```
+
+[1] "Halpern _et. al._ (2006)"
+
+
+
+Of course if managing different keys sounds annoying, we can just call the DOI directly each time.  
 
 
 ### Bibtex Approach
@@ -156,24 +231,26 @@ The inline citation tools can also now use this `bib` instead of a DOI to genera
 citet(bib[["knitr"]])
 ```
 
-
-
-```
 [1] "Xie, (2012)"
-```
-
 
 
 ```r
 citep(bib[c("knitr", "bibtex")])
 ```
 
-
-
-```
 [1] "(Xie, 2012; Francois, 2011)"
+
+
+
+Like the case of the DOI, after we have used a citation once, we can cite by the bibkey name directly, rather than having to reference the bibentry object (_e.g._ from the `bib` list):
+
+
+
+```r
+citet("knitr")
 ```
 
+[1] "Xie, (2012)"
 
 
 
@@ -190,26 +267,40 @@ As we go along adding inline citations, R stores the list of citation info.  The
 
 
 ```r
-bibliography()
+print(bibliography(), "html")
 ```
 
-Halpern B, Regan H, Possingham H and McCarthy M (2006).
-"Accounting for uncertainty in marine reserve design." _Ecology
-Letters_, *9*. ISSN 1461-023X, <URL:
-http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x>.
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 
-Abrams P, Ruokolainen L, Shuter B and McCann K (2012). "Harvesting
-creates ecological traps: consequences of invisible mortality
-risks in predator–prey metacommunities." _Ecology_, *93*. ISSN
-0012-9658, <URL: http://dx.doi.org/10.1890/11-0011.1>.
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
 
-Xie Y (2012). _knitr: A general-purpose package for dynamic report
-generation in R_. R package version 0.5.4, <URL:
-http://yihui.name/knitr/>.
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists’ Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
 
-Francois R (2011). _bibtex: bibtex parser_. R package version
-0.3-0, <URL: http://CRAN.R-project.org/package=bibtex>.
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
 
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.5.4, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+
+<p>Francois R (2011).
+<EM>bibtex: bibtex parser</EM>.
+R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
+
+
+
+Or we could have justed printed bibliography in plain text format using with `bibliography()`.  Note that it contains only the citations created with the inline citation commands `citet` and `citep`, in the order cited.  All of these citations are stored in a hidden options variable in R when the inline functions are called.  To reset the citation list (_i.e._ empty the contents of "bibliography()") we can use the `cleanbib()` command, or set the option `bibliography(erase=TRUE)`.  Typically we could hide the bibliography chunk using a inline knitr call or the chunk option "echo=FALSE".   
 
 
 I hope to add markup to format this a bit more nicely later. For instance, we want the links to appear as real links.  Additionally, we may want to add markup around the citations, such as the reason for the citation into the link using the [Citation Typing Ontology](http://speroni.web.cs.unibo.it/cgi-bin/lode/req.py?req=http:/purl.org/spar/cito). Ideally I need a method to support different citation styles, even though it is silly in today's world that the citation format is still a choice of the *publisher* and not a choice of the *reader*.  This will probably require citeproc intergration and a major upgrade.  Please report any bugs, feature requests or citations on the [Github issues tracker!](https://github.com/cboettig/knitcitations/issues)

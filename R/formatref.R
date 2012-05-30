@@ -9,11 +9,11 @@ formatref <- function(a){
   suppressWarnings(
   rref <- bibentry(
         bibtype = "Article",
-        title = check_missing(xpathSApply(a, "//titles/title", xmlValue)),
-        author = check_missing(authors),
-        journal = check_missing(xpathSApply(a, "//full_title", xmlValue)),
+        title = check_missing(xpathSApply(a, "//titles/title", xmlValue), sentencecase=TRUE, firsthit=TRUE),
+        author = check_missing(authors, sentencecase=TRUE),
+        journal = check_missing(xpathSApply(a, "//full_title", xmlValue), sentencecase=TRUE,firsthit=TRUE),
         year = check_missing(xpathSApply(a, 
-          "//journal_article/publication_date/year", xmlValue)),
+          "//journal_article/publication_date/year", xmlValue), firsthit=TRUE),
         month =xpathSApply(a, 
           "//journal_article/publication_date/month", xmlValue),
         volume = xpathSApply(a, "//journal_volume/volume", xmlValue),
@@ -26,12 +26,18 @@ formatref <- function(a){
 
 # Title, author, journal, & year cannot be missing, so return "NA" if they are
 # Avoid errors in bibentry calls when a required field is not specified.   
-check_missing <- function(x){
+check_missing <- function(x, sentencecase=FALSE, firsthit=FALSE){
  if(length(x)==0)
   out <- "NA"
  else 
   out <- x
-  out
+ if(firsthit & length(out) > 1) # handle multiple matches (i.e. submission date vs publication date?)
+   out <- out[1] 
+ if(sentencecase){
+   out <- gsub("\\b(\\w)(\\w*)", "\\U\\1\\L\\2", out, perl=TRUE)
+   out <- gsub("\\b(\\w{2})\\b", "\\L\\1", out, perl=TRUE)
+ }
+ out
 }
 
 
