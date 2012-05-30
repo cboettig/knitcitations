@@ -4,7 +4,7 @@ Title: Citations for knitr markdown files
 Authors: Carl Boettiger <cboettig@gmail.com>
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.0-1
+Version: 0.0-2
 Date: 2012-03-24
 Description: While traditional Sweave documents can take advantage of LaTeX
     citation tools, knitr also allows users to combine the much simpler
@@ -17,7 +17,8 @@ Depends:
 Imports:
     xtable,
     RCurl,
-    XML
+    XML,
+    doRNG
 License: CC0
 Collate:
     'citations.R'
