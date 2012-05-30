@@ -78,7 +78,6 @@ cite <- function(x, inline_format){
     if(!is.na(m))
       entry <- current[[m]] 
     else if(is(x[[i]], "character")){
-      message("Hello!")
       entry <- ref(x[[i]])
       entry <- create_bibkey(entry, key=key, current=current)
     } else if(is(x[[i]], "bibentry")) {# it's a bibentry object already
