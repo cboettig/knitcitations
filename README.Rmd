@@ -28,50 +28,30 @@ You can also clone or download the repository and install with `R CMD INSTALL`. 
 Quick start
 -----------
 
-
-
+```{r echo=FALSE, message=FALSE}
+library(knitcitations)
+````
 
 Cite an article by DOI.  The full citation information is gathered automatically.
 
-
-
-```r
+```{r results="asis", comment=NA}
 citep("10.1890/11-0011.1")
 ```
 
- "(Abrams _et. al._ 2012)"
-
-
-
 A key in the format `LastNameYear` is automatically created for this citation, so we can use it again without remembering the DOI.   
 
-
-
-```r
+```{r results="asis"}
 citep("Abrams2012")
 ```
-
- "(Abrams _et. al._ 2012)"
-
-
 
 (A custom key can also be given by naming the DOI, such as `citep(c(AbramsEtAl="10.1890/11-0011.1"))`).
 
 
 Generate the final bibliography
 
-
-
-```r
+```{r results="asis"}
 print(bibliography(), "html")
 ```
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-
 
 
 Generate and use Bibtex files and more.  [See the full tutorial](https://github.com/cboettig/knitcitations/blob/master/inst/examples/citations.md).  
