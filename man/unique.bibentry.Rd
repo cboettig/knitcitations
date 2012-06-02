@@ -1,6 +1,6 @@
 \name{unique.bibentry}
 \alias{unique.bibentry}
-\title{Return only unique entries in a list of bibentries}
+\title{A simple method to determine unique bibentries by bibkey}
 \usage{
   unique.bibentry(bibentry)
 }
@@ -11,11 +11,9 @@
   the list with duplicates removed
 }
 \description{
-  Return only unique entries in a list of bibentries
-}
-\examples{
-bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
-knitcitations:::unique.bibentry(bib)
+  Uses the bibkey ids to identify unique entries.  see
+  uniquebib for a more detailed attempt at this, which
+  still needs a bit of debugging.
 }
 \keyword{internal}
 

@@ -40,7 +40,7 @@ unique.bibentry <- function(bibentry){
 #' @return the list with duplicates removed
 #' @examples
 #' bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
-#' knitcitations:::unique.bibentry(bib)
+#' knitcitations:::uniquebib(bib)
 #' @keywords internal
 # Needs debugging for this method to work
 uniquebib <- function(bibentry){
