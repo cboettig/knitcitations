@@ -20,20 +20,29 @@ bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
 }
 
 
+
+#' A simple method to determine unique bibentries by bibkey
+#'
+#' Uses the bibkey ids to identify unique entries.  see uniquebib 
+#' for a more detailed attempt at this, which still needs a bit 
+#' of debugging.  
+#' @param a list of bibentries (class bibentry)
+#' @return the list with duplicates removed
+#' @keywords internal
+#' 
+unique.bibentry <- function(bibentry){
+  bibentry[unique(sapply(bibentry, function(x) x$key))]
+}
+  
+
 #' Return only unique entries in a list of bibentries
 #' @param a list of bibentries (class bibentry)
 #' @return the list with duplicates removed
 #' @examples
 #' bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
-#' unique.bibentry(bib)
-#' 
-unique.bibentry <- function(bibentry){
-  # Determine unique entries by unique bibkeys
-  bibentry[unique(sapply(bibentry, function(x) x$key))]
-}
-  
-
-## Needs debugging for this method to work
+#' knitcitations:::unique.bibentry(bib)
+#' @keywords internal
+# Needs debugging for this method to work
 uniquebib <- function(bibentry){
   
   hits <- TRUE
@@ -59,7 +68,7 @@ uniquebib <- function(bibentry){
 #' @examples
 #' bib <- c(citation("knitr"), citation("bibtex"), citation("knitcitations"))
 #'  a <- lapply(bib, knitcitations:::create_bibkey)
-#' list_to_bibentry(a)
+#' knitcitations:::list_to_bibentry(a)
 #' @keywords internal 
 list_to_bibentry <- function(bib){
   if(is(bib, "bibentry"))

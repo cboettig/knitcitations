@@ -26,7 +26,7 @@
 \examples{
 r <- ref("10.3998/3336451.0009.101")
  print(r, "Bibtex")
- r <- create_bibkey(r)
+ r <- knitcitations:::create_bibkey(r)
 ## Notice it now has a key entry
  print(r, "Bibtex")
 }

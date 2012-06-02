@@ -19,7 +19,7 @@
 \examples{
 bib <- c(citation("knitr"), citation("bibtex"), citation("knitcitations"))
  a <- lapply(bib, knitcitations:::create_bibkey)
-list_to_bibentry(a)
+knitcitations:::list_to_bibentry(a)
 }
 \keyword{internal}
 

@@ -15,6 +15,7 @@
 }
 \examples{
 bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
-unique.bibentry(bib)
+knitcitations:::unique.bibentry(bib)
 }
+\keyword{internal}
 

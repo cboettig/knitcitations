@@ -10,14 +10,13 @@
 #' @examples
 #'  r <- ref("10.3998/3336451.0009.101")
 #'  print(r, "Bibtex")
-#'  r <- create_bibkey(r)
+#'  r <- knitcitations:::create_bibkey(r)
 #' ## Notice it now has a key entry
 #'  print(r, "Bibtex")
 #'   
 create_bibkey <- function(bibentry, key=NULL, current=NULL){
 
 
-    entry <- unlist(bibentry)
     
     # If the citation has a key already, please just use it.
     if(!(is.null(bibentry$key)))
@@ -27,7 +26,8 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
 
     # If a key is not found and not specified in the fn call, please generated it
     if(is.null(key)){
-      key <- paste(entry[["author.family"]], entry[["year"]], sep="")
+      
+      key <- paste(bibentry$author$family[[1]], bibentry$year, sep="")
 
       # Checks if the the key is in use
       existing <- sapply(current, function(x) x$key)
