@@ -1,9 +1,25 @@
 #' Generate the bibliography
 #' @param erase logical indicating that bibliographic list generated
-#' during this session will be erased after the bibliography is printed
-#' @return the markdown formatted bibliography of what's been cited
+#' during this session will be erased after the bibliography is printed,
+#' defaults to FALSE
+#' @param sort logical indicating if bibliography should be sorted
+#' alphabetically, defaults to FALSE
+#' @param addkeys logical indicating if a list of keys should be added
+#' to the citation list, in case keys are not yet present.  Keys are 
+#' automatically (or manually) added by the inline citet/citep functions,
+#' so this defaults to false.
+#' @param debug logical to turn on debug mode, which doesn't strip 
+#' duplicates by key.  Defaults to FALSE.  
+#' @return a list of bibentries, providing a bibliography of what's been cited
+#' Note that the format can be controlled using "print" with different styles,
+#' see ?print.bibentry for details.  
 #' @details reads in the values from the option "works_cited",
-#' possibly applying tidying up and formatting as well. 
+#' possibly applying tidying up and formatting as well.
+#' @examples 
+#' bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
+#' citep(bib)
+#' bibliography()
+#' 
 #' @export
 bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
   out <- getOption("works_cited")
@@ -11,8 +27,9 @@ bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
     out <- unique.bibentry(out)
   if(addkeys) 
     out <- create_bibkeys(out) 
-  if(sort){   # Not yet supported
+  if(sort){   
     ordering <- sort(names(out))
+    out <- out[ordering]
   }
   if(erase)
     cleanbib()
@@ -29,7 +46,6 @@ bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
 #' @param a list of bibentries (class bibentry)
 #' @return the list with duplicates removed
 #' @keywords internal
-#' 
 unique.bibentry <- function(bibentry){
   bibentry[unique(sapply(bibentry, function(x) x$key))]
 }
