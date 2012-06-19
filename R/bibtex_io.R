@@ -24,8 +24,8 @@ read.bibtex <- function(bibfile){
 #' @param verbose a logical to toggle verbosity. If 'file=NULL', verbosity is
 #'  forced off.
 #' @return a list of citation information, invisibly
-#' @details This function is simply a wrapper to the function write.bib from doRNG
-#' package by Renaud Gaujoux.  Though that function has been added to the 'bibtex'
+#' @details This function is simply a wrapper to the function write.bib 
+#' by Renaud Gaujoux.  Though that function has been added to the 'bibtex'
 #' package by Romain Francois (a more sensible place to find it), that version
 #' was not avialble on CRAN at the time of writing.  
 #' 
@@ -33,7 +33,7 @@ read.bibtex <- function(bibfile){
 #' be able to write bibtex files from a string of DOIs, making it valuable for 
 #' purposes beyond the citation of packages.  
 #' 
-#' @import bibtex doRNG
+#' @import bibtex pkgmaker
 #' @examples
 #'  write.bibtex(c('bibtex', 'knitr', 'knitcitations'), file="example.bib")
 #'  refs <- lapply(c("10.1111/j.1461-0248.2005.00827.x","10.1890/11-0011.1"), ref)

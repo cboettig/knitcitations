@@ -1,6 +1,15 @@
 NEWS 
 ====
 
-  0.0-2
-  -----
-  * Initial Release
+
+v0.1-0
+------
+
+* `bibliography()` now takes style as an option (html, text, bibtex output)
+* imports write.bib from pkgmaker package instead of from doRNG
+* URL in description on CRAN
+
+v0.0-2
+------
+
+* Initial Release

@@ -23,9 +23,9 @@ library(knitcitations)
  citep("10.3998/3336451.0009.101")
  ## Read in the bibtex information for some packages:
  knitr <- citation("knitr")
- devtools <- citation("devtools")
+ knitcitations <- citation("knitcitations")
  # generate the parentetical citation for these:
- citep(list(knitr,devtools))
+ citep(list(knitr,knitcitations))
  # generate the full bibliography:
  bibliography()
 ## Assign a citation key to a doi and then use it later:

@@ -4,13 +4,14 @@ Title: Citations for knitr markdown files
 Authors: Carl Boettiger <cboettig@gmail.com>
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.0-2
+Version: 0.1-0
 Date: 2012-03-24
 Description: While traditional Sweave documents can take advantage of LaTeX
     citation tools, knitr also allows users to combine the much simpler
     markdown with R code.  This package offers citation tools to make up
     for this.  This package will also take advantage of the web-based nature of
     markdown documents to allow dynamic citations pulled from the web.
+URL: https://github.com/cboettig/knitcitations
 Depends:
     knitr,
     bibtex

@@ -10,9 +10,10 @@
 #' so this defaults to false.
 #' @param debug logical to turn on debug mode, which doesn't strip 
 #' duplicates by key.  Defaults to FALSE.  
-#' @return a list of bibentries, providing a bibliography of what's been cited
-#' Note that the format can be controlled using "print" with different styles,
+#' @param formatting style to print bibliography (default is HTML).  Can be 
+#' text, bibtex, html, or other formats defined forthe print bibentry class, 
 #' see ?print.bibentry for details.  
+#' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details reads in the values from the option "works_cited",
 #' possibly applying tidying up and formatting as well.
 #' @examples 
@@ -21,7 +22,7 @@
 #' bibliography()
 #' 
 #' @export
-bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
+bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE, style="html"){
   out <- getOption("works_cited")
   if(!debug)
     out <- unique.bibentry(out)
@@ -33,7 +34,7 @@ bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
   }
   if(erase)
     cleanbib()
-  out
+  I(print(out, style=style))
 }
 
 
