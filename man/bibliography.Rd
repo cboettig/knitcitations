@@ -2,10 +2,15 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-  bibliography(erase = FALSE, sort = FALSE,
+  bibliography(style = "html", erase = FALSE, sort = FALSE,
     addkeys = FALSE, debug = FALSE)
 }
 \arguments{
+  \item{style}{formatting style to print bibliography
+  (default is HTML).  Can be text, bibtex, html, or other
+  formats defined forthe print bibentry class, see
+  ?print.bibentry for details.}
+
   \item{erase}{logical indicating that bibliographic list
   generated during this session will be erased after the
   bibliography is printed, defaults to FALSE}
@@ -24,9 +29,7 @@
 }
 \value{
   a list of bibentries, providing a bibliography of what's
-  been cited Note that the format can be controlled using
-  "print" with different styles, see ?print.bibentry for
-  details.
+  been cited
 }
 \description{
   Generate the bibliography

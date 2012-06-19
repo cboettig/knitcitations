@@ -27,10 +27,10 @@
 }
 \details{
   This function is simply a wrapper to the function
-  write.bib from doRNG package by Renaud Gaujoux.  Though
-  that function has been added to the 'bibtex' package by
-  Romain Francois (a more sensible place to find it), that
-  version was not avialble on CRAN at the time of writing.
+  write.bib by Renaud Gaujoux.  Though that function has
+  been added to the 'bibtex' package by Romain Francois (a
+  more sensible place to find it), that version was not
+  avialble on CRAN at the time of writing.
 
   The 'knitcitations' package automatically extends the use
   of this function to be able to write bibtex files from a

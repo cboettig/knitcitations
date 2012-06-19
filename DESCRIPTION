@@ -19,7 +19,7 @@ Imports:
     xtable,
     RCurl,
     XML,
-    doRNG
+    pkgmaker
 License: CC0
 Collate:
     'citations.R'

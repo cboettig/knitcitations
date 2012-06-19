@@ -1,4 +1,7 @@
 #' Generate the bibliography
+#' @param style formatting style to print bibliography (default is HTML).  Can be 
+#' text, bibtex, html, or other formats defined forthe print bibentry class, 
+#' see ?print.bibentry for details.  
 #' @param erase logical indicating that bibliographic list generated
 #' during this session will be erased after the bibliography is printed,
 #' defaults to FALSE
@@ -10,9 +13,6 @@
 #' so this defaults to false.
 #' @param debug logical to turn on debug mode, which doesn't strip 
 #' duplicates by key.  Defaults to FALSE.  
-#' @param formatting style to print bibliography (default is HTML).  Can be 
-#' text, bibtex, html, or other formats defined forthe print bibentry class, 
-#' see ?print.bibentry for details.  
 #' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details reads in the values from the option "works_cited",
 #' possibly applying tidying up and formatting as well.
@@ -22,7 +22,7 @@
 #' bibliography()
 #' 
 #' @export
-bibliography <- function(erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE, style="html"){
+bibliography <- function(style="html", erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
   out <- getOption("works_cited")
   if(!debug)
     out <- unique.bibentry(out)
