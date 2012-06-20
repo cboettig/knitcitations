@@ -1,0 +1,444 @@
+\documentclass[author-year, review, 12pt]{elsarticle} %review=doublespace preprint=single 5p=2 column
+\usepackage{amsmath, amsfonts, amssymb}  % extended mathematics
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \setmainfont[Mapping=tex-text]{TeX Gyre Pagella}
+  \setsansfont[Mapping=tex-text]{DejaVu Sans}
+  \setmonofont{Bitstream Vera Sans Mono}
+\else
+  \usepackage[mathletters]{ucs}
+  \usepackage[utf8x]{inputenc}
+\fi
+
+%\VignetteIndexEntry{Using knitcitations}
+
+% My package additions
+\usepackage[hyphens]{url}
+\usepackage{lineno} % add 
+\linenumbers % turns line numbering on 
+\bibliographystyle{elsarticle-harv}
+\biboptions{sort&compress} % For natbib
+\usepackage{graphicx}
+\usepackage{booktabs} % book-quality tables
+
+%% Redefines the elsarticle footer
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{\it \hfill\today}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+
+% A modified page layout
+\textwidth 6.75in
+\oddsidemargin -0.15in
+\evensidemargin -0.15in
+\textheight 9in
+\topmargin -0.5in
+
+
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+\usepackage{listings}
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+
+%%% Syntax Highlighting for code  %%%
+%%% Adapted from knitr book %%% 
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{enumerate}
+\usepackage{ctable}
+\usepackage{float}
+
+% This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+\usepackage[normalem]{ulem}
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+
+% Configure hyperlinks package
+\usepackage[breaklinks=true,linktocpage,pdftitle={},pdfauthor={},colorlinks]{hyperref}
+\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+
+% Pandoc toggle for numbering sections (defaults to be off)
+\setcounter{secnumdepth}{0}
+
+
+\VerbatimFootnotes % allows verbatim text in footnotes
+
+% Pandoc header
+
+
+
+\begin{document}
+\begin{frontmatter}
+  \title{}
+  \author[cpb]{Carl Boettiger\corref{cor1}}
+  \author[stats]{Duncan Temple Lang}
+  \author[cpb]{Peter C. Wainwright}
+  \ead{cboettig@ucdavis.edu}
+  \cortext[cor1]{Corresponding author, cboettig@ucdavis.edu}
+  \address[cpb]{Center for Population Biology, University of California, Davis, California 95616}
+  \address[stats]{Department of Statistics, University of California, Davis, California 95616}
+ \end{frontmatter}
+
+
+\section{knitcitations}
+
+An automated way to generate citations by dynamic lookup using Crossref
+DOIs or by bibtex files.
+
+Markdown is becoming an increasingly popular platform for lightweight
+and online publishing. While traditional publishing tools like LaTeX and
+word processors have long had integrated bibliographic management, few
+tools handle citations for lightweight publishing. I am finding myself
+more and more drawn to markdown rather then tex/Rnw as my standard
+format (not least of which is the ease of displaying the files on
+github, particularly now that we have automatic image uploading. I've
+taken a little whack at generating in-text citations using knitr and
+other R tools.
+
+\subsection{Installation}
+
+I've put some simple functions in a \texttt{knitcitations} package. The
+functions use the crossref API to grab citation information given a doi,
+so I don't have to generate a bibtex file for papers I'm reading,
+(inspired by the
+\href{http://wordpress.org/extend/plugins/kcite/}{kcite} package for
+Wordpress). One can currently grab the package from Github
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(devtools)}
+\KeywordTok{install_github}\NormalTok{(}\StringTok{"knitcitations"}\NormalTok{, }\StringTok{"cboettig"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Let's load the package into R and go for a spin.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(knitcitations)}
+\end{Highlighting}
+\end{Shaded}
+\subsection{Generating citations}
+
+\subsubsection{DOI Approach}
+
+Then we can generate a citation given a DOI with the \texttt{ref}
+function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r <- }\KeywordTok{ref}\NormalTok{(}\StringTok{"10.1111/j.1461-0248.2005.00827.x"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(r, }\StringTok{"html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006). ``Accounting
+For Uncertainty in Marine Reserve Design.'' Ecology Letters, 9. ISSN
+1461-023X, http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x.
+
+Note that R allows bibitems to print in a variety of formats, including
+html.
+
+We can generate inline citations in the short name/date format with the
+\texttt{citet} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\StringTok{"10.1111/j.1461-0248.2005.00827.x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Halpern \emph{et. al.} (2006)''
+
+Similarly we can generate parenthetical citations with the
+\texttt{citep} function,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"10.1111/j.1461-0248.2005.00827.x"}\NormalTok{, }\StringTok{"10.1890/11-0011.1"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``(Halpern \emph{et. al.} 2006; Abrams \emph{et. al.} 2012)''
+
+Which can take a list of DOIs to cite parenthetically. The
+\texttt{citet} and \texttt{citep} functions are automatically retrieving
+the available metadata via the Crossref API, and R is storing the
+information to generate the final bibliography.
+
+\subsubsection{Using and creating citation keys}
+
+When specifying a DOI for a citation, we can also give the citation a
+simple key name so we can use it later without having to remember the
+DOI, for instance, we can make the first citation of a particular
+example as
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DataTypeTok{Michaels =} \StringTok{"10.1111/j.1755-263X.2012.00241.x"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``(Michaels \& Tyre, 2012)''
+
+and then later use
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citep}\NormalTok{(}\StringTok{"Michaels"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``(Michaels \& Tyre, 2012)''
+
+If we do not pass a key for the DOI we create, knitcitations will
+automatically generate a key of it's own using the last name of the
+first author and the year. For instance, based on one of the
+DOI-citations we have already created, we can do
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\StringTok{"Halpern2006"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Halpern \emph{et. al.} (2006)''
+
+and knitcitations recognizes the key. The function will try to avoid
+collisions in the key: if it is given or creates a key matching one that
+is already in use, it will see if the titles of the articles match. If
+the are the same, the same key is used to avoid a duplicate entry. This
+makes it safe to call
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DataTypeTok{Halpern2006 =} \StringTok{"10.1111/j.1461-0248.2005.00827.x"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Halpern \emph{et. al.} (2006)''
+
+even if we have earlier or later cited by the doi alone. Collision
+checking also avoids duplicating keys that correspond to different
+papers. If the titles are unique, knitcitations appends an underscore at
+the end of the automatically generated key. For instance, here we call a
+DOI that corresponds to a different citation with the same first author
+and year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\StringTok{"10.1111/j.1523-1739.2005.00258.x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+Warning message: Automatic key generation found a copy of this key, using Halpern2006_ instead
+\end{verbatim}
+{[}1{]} ``Halpern \emph{et. al.} (2006)''
+
+A warning (not printed by knitr when this is used inline, but included
+in the log file) alerts us to the fact that this citation has been given
+an alternate key,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\StringTok{"Halpern2006_"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Halpern \emph{et. al.} (2006)''
+
+Of course if managing different keys sounds annoying, we can just call
+the DOI directly each time.
+
+\subsubsection{Bibtex Approach}
+
+If we have a bibtex file, we can use this for the citations as well. If
+you don't have a bibtex file handy, you can make one containing the
+citation information for some of R's packages:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.bibtex}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"bibtex"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"knitcitations"}\NormalTok{), }\DataTypeTok{file =} \StringTok{"example.bib"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+We could also have used the \texttt{ref} function write a bibtex file
+for our list of DOIs
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{refs <- }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"10.1111/j.1461-0248.2005.00827.x"}\NormalTok{, }\StringTok{"10.1890/11-0011.1"}\NormalTok{), }
+    \NormalTok{ref)}
+\KeywordTok{write.bibtex}\NormalTok{(refs, }\DataTypeTok{file =} \StringTok{"refs.bib"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Once we have a bibtex file available, we must read it into R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bib <- }\KeywordTok{read.bibtex}\NormalTok{(}\StringTok{"example.bib"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+We can now create citations from \texttt{bib} using the bibtex key,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bib[[}\StringTok{"knitr"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+Xie Y (2012). \emph{knitr: A general-purpose package for dynamic report
+generation in R}. R package version 0.5.4, .
+
+The inline citation tools can also now use this \texttt{bib} instead of
+a DOI to generate a citation,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(bib[[}\StringTok{"knitr"}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Xie, (2012)''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citep}\NormalTok{(bib[}\KeywordTok{c}\NormalTok{(}\StringTok{"knitr"}\NormalTok{, }\StringTok{"bibtex"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``(Xie, 2012; Francois, 2011)''
+
+Like the case of the DOI, after we have used a citation once, we can
+cite by the bibkey name directly, rather than having to reference the
+bibentry object (\emph{e.g.} from the \texttt{bib} list):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citet}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+{[}1{]} ``Xie, (2012)''
+
+\subsubsection{Using the inline citations}
+
+The inline citation calls are designed to be used with knitr's inline
+code blocks. In markdown, these are enclosed in ` r `. The output format
+will use the plain-text rendering rather than the code markup. Thus we
+can use the line \texttt{citep("10.1111/j.1461-0248.2005.00827.x")} to
+generate a parenthetical citation, (Halpern \emph{et. al.} 2006). We can
+generate the in-text citations with \texttt{citet}, such as Xie, (2012).
+
+\subsection{Generating the final bibliography}
+
+As we go along adding inline citations, R stores the list of citation
+info. Then at the end of the document, use this command to print the
+bibliography generated by the use of our inline citations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{bibliography}\NormalTok{(), }\StringTok{"html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006). ``Accounting
+For Uncertainty in Marine Reserve Design.'' Ecology Letters, 9. ISSN
+1461-023X, http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x.
+
+Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012). ``Harvesting
+Creates Ecological Traps: Consequences of Invisible Mortality Risks in
+Predator--Prey Metacommunities.'' Ecology, 93. ISSN 0012-9658,
+http://dx.doi.org/10.1890/11-0011.1.
+
+Michaels S and Tyre AJ (2012). ``How Indeterminism Shapes Ecologists'
+Contributions to Managing Socio-Ecological Systems.'' Conservation
+Letters. http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x.
+
+Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P
+(2006). ``Gaps And Mismatches Between Global Conservation Priorities And
+Spending.'' Conservation Biology, 20.
+http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x.
+
+Xie Y (2012). knitr: A general-purpose package for dynamic report
+generation in R. R package version 0.5.4, http://yihui.name/knitr/.
+
+Francois R (2011). bibtex: bibtex parser. R package version 0.3-0,
+http://CRAN.R-project.org/package=bibtex.
+
+\subsection{Reflections}
+
+We could have justed printed bibliography in plain text format using
+with \texttt{bibliography()}. Note that it contains only the citations
+created with the inline citation commands \texttt{citet} and
+\texttt{citep}, in the order cited. All of these citations are stored in
+a hidden options variable in R when the inline functions are called. To
+reset the citation list (\emph{i.e.} empty the contents of
+``bibliography()'') we can use the \texttt{cleanbib()} command, or set
+the option \texttt{bibliography(erase=TRUE)}. Typically we could hide
+the bibliography chunk using a inline knitr call or the chunk option
+``echo=FALSE''.
+
+I hope to add markup to format this a bit more nicely later. For
+instance, we want the links to appear as real links. Additionally, we
+may want to add markup around the citations, such as the reason for the
+citation into the link using the
+\href{http://speroni.web.cs.unibo.it/cgi-bin/lode/req.py?req=http:/purl.org/spar/cito}{Citation
+Typing Ontology}. Ideally I need a method to support different citation
+styles, even though it is silly in today's world that the citation
+format is still a choice of the \emph{publisher} and not a choice of the
+\emph{reader}. This will probably require citeproc integration and a
+major upgrade. Please report any bugs, feature requests or citations on
+the \href{https://github.com/cboettig/knitcitations/issues}{Github
+issues tracker!}
+
+\subsubsection{Comparing lightweight citation alternatives}
+
+Several citation alternatives are available for lightweight publishing
+outside of this option, each with its own advantages and limitations.
+John MacFarlane's \href{http://johnmacfarlane.net/pandoc/}{Pandoc} is
+probably the most widely used citation manager for markdown files,
+working with a bibtex source file but formatting the citation lists
+using citeproc. It has the advantage of a more concise citation syntax,
+consistent with the source-readable goals of markdown and citation
+formating. Of course it is a markdown extension and will not be read by
+other markdown interpreters. This would be less of an issue of Pandoc
+could run markdown -\textgreater{} markdown without garbling syntax of
+some other markdown interpreter, like Github-flavored markdown.
+
+The only other tool I know of that provides dynamic citations by DOI
+look-up is Phil Lord's excellent Wordpress plugin,
+\href{http://wordpress.org/extend/plugins/kcite/}{kcite}. It now uses
+citeproc for formatting, automatically links the in-text citations to
+the bibliography, supports PubMed and ArXiv ids as well as DOIs and even
+web URLs (though not bibtex files). The major limitation for me is that
+it is limited to Wordpress with Wordpress specific shortcode. (Of course
+I introduce R-specific code here, but with the assumption of a
+knitr-based audience who probably uses github). A variety of other
+platform-specific plugins are available to convert bibtex files into
+citations for different blogging platforms, including Wordpress and
+Jekyll.
+
+So why knitcitations? My goal is primarily to bring this functionality
+to knitr users who rely on the markdown format rather than the latex
+format and are interested in dynamic citations and web-based publishing.
+I hope it finds its niche.
+
+
+
+\end{document}
