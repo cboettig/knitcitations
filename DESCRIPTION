@@ -1,7 +1,6 @@
 Package: knitcitations
 Type: Package
 Title: Citations for knitr markdown files
-Authors: Carl Boettiger <cboettig@gmail.com>
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
 Version: 0.1-0
