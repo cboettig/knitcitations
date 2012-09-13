@@ -21,8 +21,7 @@ I've put some simple functions in a `knitcitations` package.  The functions use 
 
 
 ```r
-library(devtools)
-install_github("knitcitations", "cboettig")
+library(devtools)install_github("knitcitations", "cboettig")
 ```
 
 
@@ -70,6 +69,7 @@ We can generate inline citations in the short name/date format with the `citet` 
 citet("10.1111/j.1461-0248.2005.00827.x")
 ```
 
+
 [1] "Halpern _et. al._ (2006)"
 
 
@@ -82,6 +82,10 @@ Similarly we can generate parenthetical citations with the `citep` function,
 citep(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"))
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 [1] "(Halpern _et. al._ 2006; Abrams _et. al._ 2012)"
 
 
@@ -98,6 +102,20 @@ When specifying a DOI for a citation, we can also give the citation a simple key
 citep(c(Michaels = "10.1111/j.1755-263X.2012.00241.x"))
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
 [1] "(Michaels & Tyre, 2012)"
 
 
@@ -110,6 +128,25 @@ and then later use
 citep("Michaels")
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
 [1] "(Michaels & Tyre, 2012)"
 
 
@@ -123,6 +160,30 @@ If we do not pass a key for the DOI we create, knitcitations will automatically 
 citet("Halpern2006")
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
 [1] "Halpern _et. al._ (2006)"
 
 
@@ -135,6 +196,35 @@ and knitcitations recognizes the key. The function will try to avoid collisions 
 citet(c(Halpern2006 = "10.1111/j.1461-0248.2005.00827.x"))
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 [1] "Halpern _et. al._ (2006)"
 
 
@@ -147,10 +237,45 @@ even if we have earlier or later cited by the doi alone.  Collision checking als
 citet("10.1111/j.1523-1739.2005.00258.x")
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 
 
 ```
-Warning message: Automatic key generation found a copy of this key, using Halpern2006_ instead
+Warning: Automatic key generation found a copy of this key, using
+Halpern2006_ instead
 ```
 
 [1] "Halpern _et. al._ (2006)"
@@ -165,6 +290,45 @@ Warning message: Automatic key generation found a copy of this key, using Halper
 citet("Halpern2006_")
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
 [1] "Halpern _et. al._ (2006)"
 
 
@@ -219,7 +383,7 @@ bib[["knitr"]]
 ```
 
 Xie Y (2012). _knitr: A general-purpose package for dynamic report
-generation in R_. R package version 0.5.4, <URL:
+generation in R_. R package version 0.6.5, <URL:
 http://yihui.name/knitr/>.
 
 
@@ -232,6 +396,50 @@ The inline citation tools can also now use this `bib` instead of a DOI to genera
 citet(bib[["knitr"]])
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
 [1] "Xie, (2012)"
 
 
@@ -239,6 +447,54 @@ citet(bib[["knitr"]])
 citep(bib[c("knitr", "bibtex")])
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
 [1] "(Xie, 2012; Francois, 2011)"
 
 
@@ -251,6 +507,62 @@ Like the case of the DOI, after we have used a citation once, we can cite by the
 citet("knitr")
 ```
 
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+
+<p>Francois R (2011).
+<EM>bibtex: bibtex parser</EM>.
+R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
 [1] "Xie, (2012)"
 
 
@@ -277,13 +589,13 @@ print(bibliography(), "html")
 ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
 
 <p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.&rdquo;
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
 <EM>Ecology</EM>, <B>93</B>.
 ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
 
 <p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists’ Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>.
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
 <a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
 
 <p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
@@ -293,7 +605,34 @@ ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/
 
 <p>Xie Y (2012).
 <EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.5.4, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+
+<p>Francois R (2011).
+<EM>bibtex: bibtex parser</EM>.
+R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
+<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
 
 <p>Francois R (2011).
 <EM>bibtex: bibtex parser</EM>.

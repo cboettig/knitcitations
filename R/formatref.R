@@ -4,13 +4,13 @@
 #' @return a bibentry format of the output
 #' @details internal helper function
 formatref <- function(a){
- authors <- person(family=as.list(xpathSApply(a, "//surname", xmlValue)),
-                  given=as.list(xpathSApply(a, "//given_name", xmlValue)))
+ authors <- person(family=check_missing(as.list(xpathSApply(a, "//surname", xmlValue))),
+                  given=check_missing(as.list(xpathSApply(a, "//given_name", xmlValue))))
   suppressWarnings(
   rref <- bibentry(
         bibtype = "Article",
         title = check_missing(xpathSApply(a, "//titles/title", xmlValue), sentencecase=TRUE, firsthit=TRUE),
-        author = check_missing(authors, sentencecase=TRUE),
+        author = authors,
         journal = check_missing(xpathSApply(a, "//full_title", xmlValue), sentencecase=TRUE,firsthit=TRUE),
         year = check_missing(xpathSApply(a, 
           "//journal_article/publication_date/year", xmlValue), firsthit=TRUE),
@@ -28,7 +28,7 @@ formatref <- function(a){
 # Avoid errors in bibentry calls when a required field is not specified.   
 check_missing <- function(x, sentencecase=FALSE, firsthit=FALSE){
  if(length(x)==0)
-  out <- "NA"
+  out <- "unknown"
  else 
   out <- x
  if(firsthit & length(out) > 1) # handle multiple matches (i.e. submission date vs publication date?)
