@@ -14,9 +14,9 @@
 #' ## Notice it now has a key entry
 #'  print(r, "Bibtex")
 #'   
+#' @keywords internal
+
 create_bibkey <- function(bibentry, key=NULL, current=NULL){
-
-
     
     # If the citation has a key already, please just use it.
     if(!(is.null(bibentry$key)))

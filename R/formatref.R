@@ -3,6 +3,7 @@
 #' @param a crossref XML output
 #' @return a bibentry format of the output
 #' @details internal helper function
+#' @keywords internal
 formatref <- function(a){
  authors <- person(family=check_missing(as.list(xpathSApply(a, "//surname", xmlValue))),
                   given=check_missing(as.list(xpathSApply(a, "//given_name", xmlValue))))
@@ -23,6 +24,8 @@ formatref <- function(a){
         )
   )
 }
+
+## Helper functions
 
 # Title, author, journal, & year cannot be missing, so return "NA" if they are
 # Avoid errors in bibentry calls when a required field is not specified.   
