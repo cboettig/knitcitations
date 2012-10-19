@@ -9,43 +9,52 @@
 cite <- function(x, inline_format){
 
   ## initialize the works cited list if not avaialble
-  if(is.null(getOption("works_cited")))
-    cleanbib()
+  #if(is.null(getOption("works_cited")))
+  #  cleanbib()
   ## Identify what references we already know about
-  current <- bibliography(debug=TRUE)
-  existing <- sapply(current, function(x) x$key)
-  preset_keys <- names(x)
+  current <- read.bibtex("knitcitations.bib")
+  existing <- names(current) 
+  given_keys <- names(x) # if any keys are specified in the citation call
 
 
 
 
   out <- sapply(1:length(x),function(i){
-
     
     key = preset_keys[i]  ## Get the bibkey name for the current citation
-    m <- match(x[[i]], existing)
-    if(!is.na(m))
-      entry <- current[[m]] 
-    else if(is(x[[i]], "character")){
-      entry <- ref(x[[i]])
-      entry <- create_bibkey(entry, key=key, current=current)
-    } else if(is(x[[i]], "bibentry")) {# it's a bibentry object already
-      entry <- x[[i]]
-      entry <- create_bibkey(entry, key=key)
-    } else {
-      warning("citation not found")
-      entry <- I("?")
-    }
+    m <- match(x[[i]], existing)  
 
-    if(!is(entry, "bibentry")) # if it's not a bibentry, print "?"
-      out <- I("?")
-    else {
-      ## keep track of what we've cited so far
-      write.bibtex(entry, "knitcitations.bib", append=TRUE, verbose=TRUE)
-      #options(works_cited = c(getOption("works_cited"), entry))
-      out <-  inline_format(entry)
+    ## Handle anything we've already cited so far.  
+    if(!is.na(m)){
+      entry <- current[[m]] 
+
+                ## Handle anything we haven't cited yet
+    } else {
+      ## Handle lookups by DOI or Bibtex Key using `ref()` function
+      else if(is(x[[i]], "character")){
+        entry <- ref(x[[i]])
+        entry <- create_bibkey(entry, key=key, current=current)
+
+      ## Handle bibentry types 
+      } else if(is(x[[i]], "bibentry")) {
+        entry <- x[[i]]
+        entry <- create_bibkey(entry, key=key)
+      ## Handle exceptions
+      } else {
+        warning("citation not found")
+        entry <- I("?")
+      }
+          ## Now enter the citation into the bibliographic list
+          
+      # Handle look-up failures, probably due to `ref()` call failing
+      if(!is(entry, "bibentry")){ 
+        entry <- I("?")
+      } else {
+        write.bibtex(entry, "knitcitations.bib", append=TRUE)
+        #options(works_cited = c(getOption("works_cited"), entry))
+      }
     }
-    out
+    inline_format(entry)
   })
 }
 
