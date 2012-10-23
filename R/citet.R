@@ -36,9 +36,9 @@ citet <- function(x, semantic=FALSE, cito_reason=c("cites", "confirms", "refutes
 authoryear_t <- function(entry){
     n <- length(entry$author)
     if(n==1)
-      sprintf("%s, (%s)", entry$author$family, entry$year)
+      sprintf("%s (%s)", entry$author$family, entry$year)
     else if(n==2)
-      sprintf("%s & %s, (%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year)
+      sprintf("%s & %s (%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year)
     else if(n>2)
       sprintf("%s _et. al._ (%s)", entry$author[[1]]$family, entry$year)
 }
