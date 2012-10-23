@@ -18,9 +18,13 @@
 #' citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citet("Halpern2006")
 #' 
-citet <- function(x){
+citet <- function(x, semantic=FALSE, cito_reason=c("cites", "confirms", "refutes")){
   out <- cite(x, inline_format=authoryear_t)
-  I(paste(paste(out, collapse="; "), sep=""))
+  if(semantic){
+    # Consider removing the format style from "cite" or making semantic an inline format.  
+  } else {
+    out <- I(paste(paste(out, collapse="; "), sep=""))
+  }
 }
 
 ## Helper function

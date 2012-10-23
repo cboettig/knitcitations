@@ -2,7 +2,8 @@
 \alias{citet}
 \title{Add a textual citation}
 \usage{
-  citet(x)
+  citet(x, semantic = FALSE,
+    cito_reason = c("cites", "confirms", "refutes"))
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

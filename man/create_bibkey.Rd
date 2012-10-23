@@ -30,4 +30,5 @@ r <- ref("10.3998/3336451.0009.101")
 ## Notice it now has a key entry
  print(r, "Bibtex")
 }
+\keyword{internal}
 

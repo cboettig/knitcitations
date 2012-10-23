@@ -16,4 +16,5 @@
 \details{
   internal helper function
 }
+\keyword{internal}
 

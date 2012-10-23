@@ -21,7 +21,7 @@ cite <- function(x, inline_format){
 
   out <- sapply(1:length(x),function(i){
     
-    key = preset_keys[i]  ## Get the bibkey name for the current citation
+    key = given_keys[i]  ## Get the bibkey name for the current citation
     m <- match(x[[i]], existing)  
 
     ## Handle anything we've already cited so far.  
@@ -31,7 +31,7 @@ cite <- function(x, inline_format){
                 ## Handle anything we haven't cited yet
     } else {
       ## Handle lookups by DOI or Bibtex Key using `ref()` function
-      else if(is(x[[i]], "character")){
+      if(is(x[[i]], "character")){
         entry <- ref(x[[i]])
         entry <- create_bibkey(entry, key=key, current=current)
 

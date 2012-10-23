@@ -23,7 +23,7 @@
 #' 
 #' @export
 bibliography <- function(style="html", erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
-  out <- getOption("works_cited")
+  out <- read.bibtex("knitcitations.bib")
   if(length(out)>0){
     if(!debug)
       out <- unique.bibentry(out)

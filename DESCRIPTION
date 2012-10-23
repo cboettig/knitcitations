@@ -21,11 +21,14 @@ Imports:
     pkgmaker
 License: CC0
 Collate:
-    'citations.R'
     'functiontable.R'
     'bibliography.R'
-    'bibtex_io.R'
     'formatref.R'
     'ref.R'
     'cite.R'
     'create_bibkey.R'
+    'citep.R'
+    'citet.R'
+    'cleanbib.R'
+    'read.bibtex.R'
+    'write.bibtex.R'

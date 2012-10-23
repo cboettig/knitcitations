@@ -19,24 +19,19 @@ Markdown is becoming an increasingly popular platform for lightweight and online
 I've put some simple functions in a `knitcitations` package.  The functions use the crossref API to grab citation information given a doi, so I don't have to generate a bibtex file for papers I'm reading, (inspired by the [kcite](http://wordpress.org/extend/plugins/kcite/) package for Wordpress).  One can currently grab the package from Github
 
 
-
 ```r
-library(devtools)install_github("knitcitations", "cboettig")
+library(devtools)
+install_github("knitcitations", "cboettig")
 ```
-
-
 
 
 
 Let's load the package into R and go for a spin.  
 
 
-
 ```r
 require(knitcitations)
 ```
-
-
 
 
 ## Generating citations
@@ -46,17 +41,15 @@ require(knitcitations)
 Then we can generate a citation given a DOI with the `ref` function:
 
 
-
 ```r
 r <- ref("10.1111/j.1461-0248.2005.00827.x")
 print(r, "html")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
+<p>Halpern B, Regan H, Possingham H and McCarthy M (2006).
 &ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
 <EM>Ecology Letters</EM>, <B>9</B>.
 ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
 
 
 Note that R allows bibitems to print in a variety of formats, including html.  
@@ -64,30 +57,25 @@ Note that R allows bibitems to print in a variety of formats, including html.
 We can generate inline citations in the short name/date format with the `citet` function:
 
 
-
 ```r
 citet("10.1111/j.1461-0248.2005.00827.x")
 ```
 
-
-[1] "Halpern _et. al._ (2006)"
-
+```
+Error: unable to open file to read
+```
 
 
 Similarly we can generate parenthetical citations with the `citep` function, 
-
 
 
 ```r
 citep(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"))
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-[1] "(Halpern _et. al._ 2006; Abrams _et. al._ 2012)"
-
+```
+Error: unable to open file to read
+```
 
 
 Which can take a list of DOIs to cite parenthetically.  The `citet` and `citep` functions are automatically retrieving the available metadata via the Crossref API, and R is storing the information to generate the final bibliography.  
@@ -97,240 +85,74 @@ Which can take a list of DOIs to cite parenthetically.  The `citet` and `citep` 
 When specifying a DOI for a citation, we can also give the citation a simple key name so we can use it later without having to remember the DOI, for instance, we can make the first citation of a particular example as
 
 
-
 ```r
 citep(c(Michaels = "10.1111/j.1755-263X.2012.00241.x"))
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-[1] "(Michaels & Tyre, 2012)"
-
+```
+Error: unable to open file to read
+```
 
 
 and then later use 
-
 
 
 ```r
 citep("Michaels")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-[1] "(Michaels & Tyre, 2012)"
-
+```
+Error: unable to open file to read
+```
 
 
 
 If we do not pass a key for the DOI we create, knitcitations will automatically generate a key of it's own using the last name of the first author and the year.  For instance, based on one of the DOI-citations we have already created, we can do
 
 
-
 ```r
 citet("Halpern2006")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-[1] "Halpern _et. al._ (2006)"
-
+```
+Error: unable to open file to read
+```
 
 
 and knitcitations recognizes the key. The function will try to avoid collisions in the key: if it is given or creates a key matching one that is already in use, it will see if the titles of the articles match.  If the are the same, the same key is used to avoid a duplicate entry. This makes it safe to call
-
 
 
 ```r
 citet(c(Halpern2006 = "10.1111/j.1461-0248.2005.00827.x"))
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-[1] "Halpern _et. al._ (2006)"
-
+```
+Error: unable to open file to read
+```
 
 
 even if we have earlier or later cited by the doi alone.  Collision checking also avoids duplicating keys that correspond to different papers.  If the titles are unique, knitcitations appends an underscore at the end of the automatically generated key.  For instance, here we call a DOI that corresponds to a different citation with the same first author and year:
-
 
 
 ```r
 citet("10.1111/j.1523-1739.2005.00258.x")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-
 ```
-Warning: Automatic key generation found a copy of this key, using
-Halpern2006_ instead
+Error: unable to open file to read
 ```
-
-[1] "Halpern _et. al._ (2006)"
-
 
 
  A warning (not printed by knitr when this is used inline, but included in the log file) alerts us to the fact that this citation has been given an alternate key,
-
 
 
 ```r
 citet("Halpern2006_")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-[1] "Halpern _et. al._ (2006)"
-
+```
+Error: unable to open file to read
+```
 
 
 Of course if managing different keys sounds annoying, we can just call the DOI directly each time.  
@@ -341,16 +163,12 @@ Of course if managing different keys sounds annoying, we can just call the DOI d
 If we have a bibtex file, we can use this for the citations as well.  If you don't have a bibtex file handy, you can make one containing the citation information for some of R's packages: 
 
 
-
 ```r
 write.bibtex(c("bibtex", "knitr", "knitcitations"), file = "example.bib")
 ```
 
 
-
-
 We could also have used the `ref` function write a bibtex file for our list of DOIs
-
 
 
 ```r
@@ -361,10 +179,7 @@ write.bibtex(refs, file = "refs.bib")
 
 
 
-
-
 Once we have a bibtex file available, we must read it into R.   
-
 
 
 ```r
@@ -372,10 +187,7 @@ bib <- read.bibtex("example.bib")
 ```
 
 
-
-
 We can now create citations from `bib` using the bibtex key,
-
 
 
 ```r
@@ -383,194 +195,62 @@ bib[["knitr"]]
 ```
 
 Xie Y (2012). _knitr: A general-purpose package for dynamic report
-generation in R_. R package version 0.6.5, <URL:
+generation in R_. R package version 0.8, <URL:
 http://yihui.name/knitr/>.
 
 
-
 The inline citation tools can also now use this `bib` instead of a DOI to generate a citation,
-
 
 
 ```r
 citet(bib[["knitr"]])
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-[1] "Xie, (2012)"
-
+```
+Error: unable to open file to read
+```
 
 ```r
 citep(bib[c("knitr", "bibtex")])
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Xie Y (2012).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-[1] "(Xie, 2012; Francois, 2011)"
-
+```
+Error: unable to open file to read
+```
 
 
 Like the case of the DOI, after we have used a citation once, we can cite by the bibkey name directly, rather than having to reference the bibentry object (_e.g._ from the `bib` list):
-
 
 
 ```r
 citet("knitr")
 ```
 
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Xie Y (2012).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-
-<p>Xie Y (2012).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-
-<p>Francois R (2011).
-<EM>bibtex: bibtex parser</EM>.
-R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
-[1] "Xie, (2012)"
-
+```
+Error: unable to open file to read
+```
 
 
 
 ### Using the inline citations 
 
-The inline citation calls are designed to be used with knitr's inline code blocks.  In markdown, these are enclosed in \` r \`.  The output format will use the plain-text rendering rather than the code markup.  Thus we can use the line `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, (Halpern _et. al._ 2006). We can generate the in-text citations with `citet`, such as Xie, (2012).  
+The inline citation calls are designed to be used with knitr's inline code blocks.  In markdown, these are enclosed in \` r \`.  The output format will use the plain-text rendering rather than the code markup.  Thus we can use the line `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, 
+
+```
+
+Error in read.bib(bibfile) : unable to open file to read
+
+```
+
+. We can generate the in-text citations with `citet`, such as 
+
+```
+
+Error in read.bib(bibfile) : unable to open file to read
+
+```
+
+.  
 
 
 
@@ -578,66 +258,9 @@ The inline citation calls are designed to be used with knitr's inline code block
 As we go along adding inline citations, R stores the list of citation info.  Then at the end of the document, use this command to print the bibliography generated by the use of our inline citations. 
 
 
-
 ```r
 print(bibliography(), "html")
 ```
-
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Xie Y (2012).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-
-<p>Francois R (2011).
-<EM>bibtex: bibtex parser</EM>.
-R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
-<p>Halpern BS, Regan HM, Possingham HP and Mccarthy MA (2006).
-&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
-<EM>Ecology Letters</EM>, <B>9</B>.
-ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
-
-<p>Abrams PA, Ruokolainen L, Shuter BJ and Mccann KS (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator&lt;U+2013&gt;Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Michaels S and Tyre AJ (2012).
-&ldquo;How Indeterminism Shapes Ecologists&lt;U+2019&gt; Contributions to Managing Socio-Ecological Systems.&rdquo;
-<EM>Conservation Letters</EM>, <B>5</B>.
-<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
-
-<p>Halpern BS, Pyke CR, Fox HE, Haney JC, Schlaepfer MA and Zaradic P (2006).
-&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
-<EM>Conservation Biology</EM>, <B>20</B>.
-<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
-
-<p>Xie Y (2012).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 0.6.5, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-
-<p>Francois R (2011).
-<EM>bibtex: bibtex parser</EM>.
-R package version 0.3-0, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
-
 
 
 
