@@ -32,3 +32,6 @@ Collate:
     'cleanbib.R'
     'read.bibtex.R'
     'write.bibtex.R'
+    'init_knitbib.R'
+    'print_rdfa.R'
+    'zzz.R'

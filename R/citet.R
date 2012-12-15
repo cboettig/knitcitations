@@ -17,8 +17,14 @@
 #' ## Assign a citation key to a doi and then use it later:
 #' citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citet("Halpern2006")
-#' 
-citet <- function(x, semantic=FALSE, cito_reason=c("cites", "confirms", "refutes")){
+#'
+citet <- function(x, semantic=FALSE, cito_reason=c("cites",
+  "citesAsAuthority", "citesAsMetadataDocument",
+  "citesAsSourceDocument","citesForInformation",
+  "isCitedBy","obtainsBackgroundFrom", "sharesAuthorsWith", "usesDataFrom",
+  "usesMethodIn", "confirms", "credits", "extends", "obtainsSupportFrom",
+  "supports", "updates", "corrects", "critiques", "disagreesWith",
+  "qualifies", "refutes", "discusses", "reviews")){
   out <- cite(x, inline_format=authoryear_t)
   if(semantic){
     # Consider removing the format style from "cite" or making semantic an inline format.  

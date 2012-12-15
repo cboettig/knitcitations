@@ -2,6 +2,12 @@
 
 
 
+```r
+opts_knit$set(warning = FALSE, message = FALSE, commment = NA)
+# start with clean bib
+require(knitcitations)
+cleanbib()
+```
 
 
 
@@ -61,10 +67,6 @@ We can generate inline citations in the short name/date format with the `citet` 
 citet("10.1111/j.1461-0248.2005.00827.x")
 ```
 
-```
-Error: unable to open file to read
-```
-
 
 Similarly we can generate parenthetical citations with the `citep` function, 
 
@@ -73,9 +75,7 @@ Similarly we can generate parenthetical citations with the `citep` function,
 citep(c("10.1111/j.1461-0248.2005.00827.x", "10.1890/11-0011.1"))
 ```
 
-```
-Error: unable to open file to read
-```
+[1] "(Halpern _et. al._ 2006; Abrams _et. al._ 2012)"
 
 
 Which can take a list of DOIs to cite parenthetically.  The `citet` and `citep` functions are automatically retrieving the available metadata via the Crossref API, and R is storing the information to generate the final bibliography.  
@@ -89,9 +89,7 @@ When specifying a DOI for a citation, we can also give the citation a simple key
 citep(c(Michaels = "10.1111/j.1755-263X.2012.00241.x"))
 ```
 
-```
-Error: unable to open file to read
-```
+[1] "(Michaels & Tyre, 2012)"
 
 
 and then later use 
@@ -101,9 +99,7 @@ and then later use
 citep("Michaels")
 ```
 
-```
-Error: unable to open file to read
-```
+[1] "(Michaels & Tyre, 2012)"
 
 
 
@@ -114,20 +110,12 @@ If we do not pass a key for the DOI we create, knitcitations will automatically 
 citet("Halpern2006")
 ```
 
-```
-Error: unable to open file to read
-```
-
 
 and knitcitations recognizes the key. The function will try to avoid collisions in the key: if it is given or creates a key matching one that is already in use, it will see if the titles of the articles match.  If the are the same, the same key is used to avoid a duplicate entry. This makes it safe to call
 
 
 ```r
 citet(c(Halpern2006 = "10.1111/j.1461-0248.2005.00827.x"))
-```
-
-```
-Error: unable to open file to read
 ```
 
 
@@ -138,20 +126,12 @@ even if we have earlier or later cited by the doi alone.  Collision checking als
 citet("10.1111/j.1523-1739.2005.00258.x")
 ```
 
-```
-Error: unable to open file to read
-```
-
 
  A warning (not printed by knitr when this is used inline, but included in the log file) alerts us to the fact that this citation has been given an alternate key,
 
 
 ```r
 citet("Halpern2006_")
-```
-
-```
-Error: unable to open file to read
 ```
 
 
@@ -204,19 +184,10 @@ The inline citation tools can also now use this `bib` instead of a DOI to genera
 
 ```r
 citet(bib[["knitr"]])
-```
-
-```
-Error: unable to open file to read
-```
-
-```r
 citep(bib[c("knitr", "bibtex")])
 ```
 
-```
-Error: unable to open file to read
-```
+[1] "(Xie, 2012; Francois, 2012)"
 
 
 Like the case of the DOI, after we have used a citation once, we can cite by the bibkey name directly, rather than having to reference the bibentry object (_e.g._ from the `bib` list):
@@ -226,31 +197,11 @@ Like the case of the DOI, after we have used a citation once, we can cite by the
 citet("knitr")
 ```
 
-```
-Error: unable to open file to read
-```
-
 
 
 ### Using the inline citations 
 
-The inline citation calls are designed to be used with knitr's inline code blocks.  In markdown, these are enclosed in \` r \`.  The output format will use the plain-text rendering rather than the code markup.  Thus we can use the line `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, 
-
-```
-
-Error in read.bib(bibfile) : unable to open file to read
-
-```
-
-. We can generate the in-text citations with `citet`, such as 
-
-```
-
-Error in read.bib(bibfile) : unable to open file to read
-
-```
-
-.  
+The inline citation calls are designed to be used with knitr's inline code blocks.  In markdown, these are enclosed in \` r \`.  The output format will use the plain-text rendering rather than the code markup.  Thus we can use the line `citep("10.1111/j.1461-0248.2005.00827.x")` to generate a parenthetical citation, (Halpern _et. al._ 2006). We can generate the in-text citations with `citet`, such as Xie (2012).  
 
 
 
@@ -259,8 +210,40 @@ As we go along adding inline citations, R stores the list of citation info.  The
 
 
 ```r
-print(bibliography(), "html")
+bibliography("html")
 ```
+
+<p>Halpern BS, Regan HM, Possingham HP and McCarthy MA (2006).
+&ldquo;Accounting For Uncertainty in Marine Reserve Design.&rdquo;
+<EM>Ecology Letters</EM>, <B>9</B>.
+ISSN 1461-023X, <a href="http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x">http://dx.doi.org/10.1111/j.1461-0248.2005.00827.x</a>.
+
+<p>Abrams PA, Ruokolainen L, Shuter BJ and McCann KS (2012).
+&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.&rdquo;
+<EM>Ecology</EM>, <B>93</B>.
+ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
+
+<p>Michaels S and Tyre AJ (2012).
+&ldquo;How Indeterminism Shapes Ecologists’ Contributions to Managing Socio-Ecological Systems.&rdquo;
+<EM>Conservation Letters</EM>, <B>5</B>.
+<a href="http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x">http://dx.doi.org/10.1111/j.1755-263X.2012.00241.x</a>.
+
+<p>HALPERN BS, PYKE CR, FOX HE, CHRIS HANEY J, SCHLAEPFER MA and ZARADIC P (2006).
+&ldquo;Gaps And Mismatches Between Global Conservation Priorities And Spending.&rdquo;
+<EM>Conservation Biology</EM>, <B>20</B>.
+<a href="http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x">http://dx.doi.org/10.1111/j.1523-1739.2005.00258.x</a>.
+
+<p>unknown u (unknown).
+&ldquo;Unknown.&rdquo;
+<EM>Unknown</EM>.
+
+<p>Xie Y (2012).
+<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
+R package version 0.8, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+
+<p>Francois R (2012).
+<EM>bibtex: bibtex parser</EM>.
+R package version 0.3-3, <a href="http://CRAN.R-project.org/package=bibtex">http://CRAN.R-project.org/package=bibtex</a>.
 
 
 

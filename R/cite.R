@@ -8,6 +8,7 @@
 #' @keywords internal
 cite <- function(x, inline_format){
 
+  knitcitations_data()
   ## initialize the works cited list if not avaialble
   #if(is.null(getOption("works_cited")))
   #  cleanbib()

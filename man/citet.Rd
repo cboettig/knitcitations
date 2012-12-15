@@ -3,7 +3,7 @@
 \title{Add a textual citation}
 \usage{
   citet(x, semantic = FALSE,
-    cito_reason = c("cites", "confirms", "refutes"))
+    cito_reason = c("cites", "citesAsAuthority", "citesAsMetadataDocument", "citesAsSourceDocument", "citesForInformation", "isCitedBy", "obtainsBackgroundFrom", "sharesAuthorsWith", "usesDataFrom", "usesMethodIn", "confirms", "credits", "extends", "obtainsSupportFrom", "supports", "updates", "corrects", "critiques", "disagreesWith", "qualifies", "refutes", "discusses", "reviews"))
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

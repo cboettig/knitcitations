@@ -36,7 +36,7 @@ bibliography <- function(style="html", erase=FALSE, sort=FALSE, addkeys=FALSE, d
   }
   if(erase)
     cleanbib()
-  invisible(print(out, style))
+  invisible(output <- print(out, style))
 }
 
 
