@@ -35,5 +35,5 @@ print_rdfa <- function(r){
                   ' <span property=bibo:startPage">', r$page[1], '</span>',
                   '-<span property=bibo:endPage">', r$page[2], '</span>',
                   ' <span property="bibo:doi">', r$doi, '</span>', sep="")
-  paste(block, title, authors, pdate, journal, volume, doi, '</div>')
+  paste(block, title, authors, pdate, journal, volume, '</div>')
 }

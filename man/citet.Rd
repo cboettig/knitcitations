@@ -8,6 +8,10 @@
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
   bibentries)}
+
+  \item{cito_reason}{Semantic reason for the citation}
+
+  \item{semantic}{logical, use semantic annotations?}
 }
 \value{
   a text inline citation

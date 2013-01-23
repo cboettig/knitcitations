@@ -2,6 +2,12 @@ NEWS
 ====
 
 
+v0.2-0
+
+* Fix vignette error that prevents knitr 1.0 submission
+* Fixed errors on installing package and lack of entries in bibliography
+* Semantic print option added but still in early testing 
+
 v0.1-0
 ------
 

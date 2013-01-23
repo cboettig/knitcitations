@@ -1,6 +1,8 @@
 #' Add a textual citation 
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
+#' @param cito_reason Semantic reason for the citation
+#' @param semantic logical, use semantic annotations?
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
