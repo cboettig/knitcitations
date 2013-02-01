@@ -7,6 +7,7 @@
 #'  If FALSE (default), the file is overwritten.  
 #' @param verbose a logical to toggle verbosity. If 'file=NULL', verbosity is
 #'  forced off.
+#' @param create_key logical indicating whether function should create a bibtex citation key if the object doesn't have one.  
 #' @return a list of citation information, invisibly 
 #' 
 #' The 'knitcitations' package automatically extends the use of this function to
@@ -15,10 +16,8 @@
 #' 
 #' @import bibtex 
 #' @examples
-#'  write.bibtex(c('bibtex', 'knitr', 'knitcitations'), file="example.bib")
-#'  refs <- lapply(c("10.1111/j.1461-0248.2005.00827.x","10.1890/11-0011.1"), ref)
-#'  write.bibtex(refs, file="refs.bib")
-#' 
+#'  write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations"), "TempleLang2012"=citation("RCurl")))
+#'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
 write.bibtex <- function(entry, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){

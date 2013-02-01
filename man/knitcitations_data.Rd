@@ -4,6 +4,11 @@
 \usage{
   knitcitations_data(bibtex = getOption("bibtex_data"))
 }
+\arguments{
+  \item{bibtex}{the option to use bibtex}
+
+  \item{the}{updated value of the option to use bibtex}
+}
 \description{
   Helper function to get knit data
 }

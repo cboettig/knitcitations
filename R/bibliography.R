@@ -2,18 +2,9 @@
 #' @param style formatting style to print bibliography (default is HTML).  Can be 
 #' text, bibtex, html, or other formats defined forthe print bibentry class, 
 #' see ?print.bibentry for details.  
-#' @param erase logical indicating that bibliographic list generated
-#' during this session will be erased after the bibliography is printed,
-#' defaults to FALSE
 #' @param sort logical indicating if bibliography should be sorted
 #' alphabetically, defaults to FALSE
-#' @param addkeys logical indicating if a list of keys should be added
-#' to the citation list, in case keys are not yet present.  Keys are 
-#' automatically (or manually) added by the inline citet/citep functions,
-#' so this defaults to false.
-#' @param debug logical to turn on debug mode, which doesn't strip 
-#' duplicates by key.  Defaults to FALSE. 
-#' @param use bibtex method (internal option only)
+#' @param bibtex logical, use bibtex data structure internally? (internal option only) 
 #' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details reads in the values from the option "works_cited",
 #' possibly applying tidying up and formatting as well.
@@ -35,6 +26,9 @@ bibliography <- function(style="html", sort=FALSE, bibtex=getOption("bibtex_data
 }
 
 
+
+
+####### Methods below are depricated ###########
 
 #' A simple method to determine unique bibentries by bibkey
 #'
