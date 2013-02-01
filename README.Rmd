@@ -16,11 +16,6 @@ Installation
 
 Install directly from Github using [Hadley's devtools package](https://github.com/hadley/devtools)
 
-```r
-library(devtools)
-install_github("knitcitations", "cboettig")
-library(knitcitations)
-````
 
 You can also clone or download the repository and install with `R CMD INSTALL`. Once I'm through the early development phase a copy will be available on CRAN.
 
@@ -28,9 +23,9 @@ You can also clone or download the repository and install with `R CMD INSTALL`. 
 Quick start
 -----------
 
-```{r echo=FALSE, message=FALSE}
+```{r load, echo=FALSE}
 library(knitcitations)
-````
+```
 
 Cite an article by DOI.  The full citation information is gathered automatically.
 
@@ -47,10 +42,24 @@ citep("Abrams2012")
 (A custom key can also be given by naming the DOI, such as `citep(c(AbramsEtAl="10.1890/11-0011.1"))`).
 
 
+If we have a bibtex file, we can cite such articles by those keys as well.  To demonstrate, let's first create a bibtex file with the citation information for some R packages, using the `bibtex` package utilities (a dependency of `knitcitations`):
+
+```{r}
+write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations"), "TempleLang2012"=citation("RCurl")))
+bib <- read.bibtex("knitcitations.bib")
+```
+
+Now we can generate citations from `bib`
+
+```{r}
+citep(bib[[2]])
+citep(bib["Yihui2013"])
+```
+
 Generate the final bibliography
 
 ```{r results="asis"}
-print(bibliography(), "html")
+bibliography("html")
 ```
 
 

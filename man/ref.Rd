@@ -34,7 +34,6 @@
   Lookup article info via CrossRef with DOI.
 }
 \examples{
-library(knitcitations)
 ref("10.3998/3336451.0009.101")
 print(ref("10.3998/3336451.0009.101"), style="Bibtex")
 print(ref("10.3998/3336451.0009.101"), style="text")

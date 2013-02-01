@@ -3,7 +3,7 @@ Type: Package
 Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.2-0
+Version: 0.3-0
 Date: 2012-03-24
 Description: While traditional Sweave documents can take advantage of LaTeX
     citation tools, knitr also allows users to combine the much simpler
@@ -17,8 +17,7 @@ Depends:
 Imports:
     xtable,
     RCurl,
-    XML,
-    pkgmaker
+    XML
 License: CC0
 Collate:
     'functiontable.R'
@@ -34,4 +33,6 @@ Collate:
     'write.bibtex.R'
     'init_knitbib.R'
     'print_rdfa.R'
+    'write_cache.R'
+    'newbib.R'
     'zzz.R'

@@ -12,7 +12,8 @@
 #' automatically (or manually) added by the inline citet/citep functions,
 #' so this defaults to false.
 #' @param debug logical to turn on debug mode, which doesn't strip 
-#' duplicates by key.  Defaults to FALSE.  
+#' duplicates by key.  Defaults to FALSE. 
+#' @param use bibtex method (internal option only)
 #' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details reads in the values from the option "works_cited",
 #' possibly applying tidying up and formatting as well.
@@ -22,20 +23,14 @@
 #' bibliography()
 #' 
 #' @export
-bibliography <- function(style="html", erase=FALSE, sort=FALSE, addkeys=FALSE, debug=FALSE){
-  out <- read.bibtex("knitcitations.bib")
+bibliography <- function(style="html", sort=FALSE, bibtex=getOption("bibtex_data")){
+  out <- read_cache(bibtex=bibtex)
   if(length(out)>0){
-    if(!debug)
-      out <- unique.bibentry(out)
-    if(addkeys) 
-      out <- create_bibkeys(out) 
     if(sort){   
       ordering <- sort(names(out))
       out <- out[ordering]
     }
   }
-  if(erase)
-    cleanbib()
   invisible(output <- print(out, style))
 }
 

@@ -3,7 +3,7 @@
 \title{write a bibtex file}
 \usage{
   write.bibtex(entry, file = "knitcitations.bib",
-    append = FALSE, verbose = TRUE)
+    append = FALSE, verbose = TRUE, create_key = TRUE)
 }
 \arguments{
   \item{entry}{a 'bibentry' object, list of bibentry
@@ -21,21 +21,14 @@
 }
 \value{
   a list of citation information, invisibly
-}
-\description{
-  write a bibtex file
-}
-\details{
-  This function is simply a wrapper to the function
-  write.bib by Renaud Gaujoux.  Though that function has
-  been added to the 'bibtex' package by Romain Francois (a
-  more sensible place to find it), that version was not
-  avialble on CRAN at the time of writing.
 
   The 'knitcitations' package automatically extends the use
   of this function to be able to write bibtex files from a
   string of DOIs, making it valuable for purposes beyond
   the citation of packages.
+}
+\description{
+  write a bibtex file
 }
 \examples{
 write.bibtex(c('bibtex', 'knitr', 'knitcitations'), file="example.bib")

@@ -2,8 +2,8 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-  bibliography(style = "html", erase = FALSE, sort = FALSE,
-    addkeys = FALSE, debug = FALSE)
+  bibliography(style = "html", sort = FALSE,
+    bibtex = getOption("bibtex_data"))
 }
 \arguments{
   \item{style}{formatting style to print bibliography
@@ -26,6 +26,8 @@
 
   \item{debug}{logical to turn on debug mode, which doesn't
   strip duplicates by key.  Defaults to FALSE.}
+
+  \item{use}{bibtex method (internal option only)}
 }
 \value{
   a list of bibentries, providing a bibliography of what's
