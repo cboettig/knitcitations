@@ -10,8 +10,8 @@
 
   \item{cito}{Semantic reason for the citation}
 
-  \item{inline_citation}{a function for formating the
-  inline citation, defaults to authoryear_t}
+  \item{inline_format}{a function for formating the inline
+  citation, defaults to authoryear_t}
 }
 \value{
   a text inline citation

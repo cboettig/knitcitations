@@ -4,8 +4,9 @@
 #' see ?print.bibentry for details.  
 #' @param sort logical indicating if bibliography should be sorted
 #' alphabetically, defaults to FALSE
-#' @param bibtex logical, use bibtex data structure internally? (internal option only) 
-#' @param additional arguments passed to print.bibentry, see \code{\link{bibentry}}
+#' @param bibtex logical, use bibtex data structure internally? (internal option only)
+#' @param .bibstyle the bibstyle function call or string. Defaults to journal of statistical software (JSS).  See \code{\link{bibstyle}}.
+#' @param ... additional arguments passed to print.bibentry, see \code{\link{bibentry}}
 #' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details Formating of the return data is handled by bibentry printing methods.  
 #' @examples 
@@ -34,7 +35,7 @@ bibliography <- function(style="textVersion", .bibstyle = "JSS", sort=FALSE, bib
     output <- print(out, "textVersion", .bibstyle=.bibstyle)
     print(output)
   } else {
-    error("Style not recognized")
+    stop("Style not recognized")
   }
   invisible(output)
 }

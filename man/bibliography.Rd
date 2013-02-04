@@ -17,8 +17,12 @@
   \item{bibtex}{logical, use bibtex data structure
   internally? (internal option only)}
 
-  \item{additional}{arguments passed to print.bibentry, see
-  \code{\link{bibentry}}}
+  \item{.bibstyle}{the bibstyle function call or string.
+  Defaults to journal of statistical software (JSS).  See
+  \code{\link{bibstyle}}.}
+
+  \item{...}{additional arguments passed to print.bibentry,
+  see \code{\link{bibentry}}}
 }
 \value{
   a list of bibentries, providing a bibliography of what's

@@ -8,8 +8,8 @@
   \item{x}{a doi or list of dois, or a bibentry (or list of
   bibentries)}
 
-  \item{inline_citation}{a function for formating the
-  inline citation, defaults to authoryear_t}
+  \item{inline_format}{a function for formating the inline
+  citation, defaults to authoryear_t}
 
   \item{...}{additional arguments that are bassed to
   \code{\link{citet}}.}

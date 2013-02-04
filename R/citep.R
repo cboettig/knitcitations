@@ -1,7 +1,7 @@
 #' Add a paranthetical citation
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
-#' @param inline_citation a function for formating the inline citation, defaults to authoryear_t
+#' @param inline_format a function for formating the inline citation, defaults to authoryear_t
 #' @param ... additional arguments that are bassed to \code{\link{citet}}.  
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
