@@ -34,7 +34,7 @@ bibliography <- function(style="textVersion", .bibstyle = "JSS", sort=FALSE, bib
     output <- print(out, "textVersion", .bibstyle=.bibstyle)
     print(output)
   } else {
-    error("Style not recognized")
+    stop("Style not recognized")
   }
   invisible(output)
 }

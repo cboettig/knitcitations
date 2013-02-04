@@ -2,7 +2,7 @@
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param cito Semantic reason for the citation
-#' @param inline_citation a function for formating the inline citation, defaults to authoryear_t
+#' @param inline_format a function for formating the inline citation, defaults to authoryear_t
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}.
