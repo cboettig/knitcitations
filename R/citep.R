@@ -1,6 +1,8 @@
 #' Add a paranthetical citation
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
+#' @param inline_citation a function for formating the inline citation, defaults to authoryear_t
+#' @param ... additional arguments that are bassed to \code{\link{citet}}.  
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
@@ -20,11 +22,8 @@
 #' citep(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citep("Halpern2006")
 #' 
-citep <- function(x){
-  out <- cite(x, inline_format=authoryear_p)
-  I(paste("(", paste(out, collapse="; "), ")", sep=""))
-}
-
+citep <- function(x, inline_format = authoryear_p, ...) 
+  citet(x, inline_format = inline_format, ...) 
 
 ## Helper function
 

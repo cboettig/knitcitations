@@ -23,33 +23,35 @@ You can also clone or download the repository and install with `R CMD INSTALL`. 
 Quick start
 -----------
 
-
-```
-## Loading required package: bibtex
-```
+It is usually good to clear the bibliographic environment after loading the library, in case any citations are already stored there.  
 
 
-Cite an article by DOI.  The full citation information is gathered automatically.
+
+
+
+Cite an article by DOI and the full citation information is gathered automatically.  
 
 
 ```r
 citep("10.1890/11-0011.1")
 ```
 
-[1] "(Abrams _et. al._ 2012)"
+[1] "Abrams _et. al._ 2012"
 
 
-A key in the format `LastNameYear` is automatically created for this citation, so we can use it again without remembering the DOI.   
+Typically this is done with knitr's inline code syntax, creating a parenthetical citation in the text like this Abrams _et. al._ 2012.  We display the command in code blocks only for documenting purposes here.  `citep` provides a parenthetical citation; a in-text citation is generated with `citet`, such as this sentence cites Abrams _et. al._ (2012).  
+
+When the citation is called, a key in the format `LastNameYear` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command:
 
 
 ```r
 citep("Abrams2012")
 ```
 
-[1] "(Abrams _et. al._ 2012)"
+[1] "Abrams _et. al._ 2012"
 
 
-(A custom key can also be given by naming the DOI, such as `citep(c(AbramsEtAl="10.1890/11-0011.1"))`).
+Note that a custom key can also be given by naming the DOI, such as `citep(c(AbramsEtAl="10.1890/11-0011.1"))`.
 
 
 If we have a bibtex file, we can cite such articles by those keys as well.  To demonstrate, let's first create a bibtex file with the citation information for some R packages, using the `bibtex` package utilities (a dependency of `knitcitations`):
@@ -58,33 +60,6 @@ If we have a bibtex file, we can cite such articles by those keys as well.  To d
 ```r
 write.bibtex(c(Yihui2013 = citation("knitr"), Boettiger2013 = citation("knitcitations"), 
     TempleLang2012 = citation("RCurl")))
-```
-
-```
-## Writing 1 Bibtex entries ...
-```
-
-```
-## OK Results written to file 'knitcitations.bib'
-```
-
-```
-## Writing 1 Bibtex entries ...
-```
-
-```
-## OK Results written to file 'knitcitations.bib'
-```
-
-```
-## Writing 1 Bibtex entries ...
-```
-
-```
-## OK Results written to file 'knitcitations.bib'
-```
-
-```r
 bib <- read.bibtex("knitcitations.bib")
 ```
 
@@ -97,7 +72,7 @@ citep(bib[[2]])
 ```
 
 ```
-## [1] "(Boettiger, 2012)"
+## [1] "Boettiger, 2012"
 ```
 
 ```r
@@ -105,30 +80,150 @@ citep(bib["Yihui2013"])
 ```
 
 ```
-## [1] "(Xie, 2013)"
+## [1] "Xie, 2013"
 ```
 
 
-Generate the final bibliography
+
+
+Generate the final bibliography in a knitr block using the chunk option `results='asis'` to display as text rather than code:  
 
 
 ```r
-bibliography("html")
+bibliography()
 ```
 
-<p>Abrams P, Ruokolainen L, Shuter B and McCann K (2012).
-&ldquo;Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.&rdquo;
-<EM>Ecology</EM>, <B>93</B>.
-ISSN 0012-9658, <a href="http://dx.doi.org/10.1890/11-0011.1">http://dx.doi.org/10.1890/11-0011.1</a>.
-
-<p>Boettiger C (2012).
-<EM>knitcitations: Citations for knitr markdown files</EM>.
-R package version 0.3-0, <a href="https://github.com/cboettig/knitcitations">https://github.com/cboettig/knitcitations</a>.
-
-<p>Xie Y (2013).
-<EM>knitr: A general-purpose package for dynamic report generation in R</EM>.
-R package version 1.0.7, <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
 
 
 
-Generate and use Bibtex files and more.  [See the full tutorial](https://github.com/cboettig/knitcitations/blob/master/inst/examples/citations.md).  
+
+
+Abrams P, Ruokolainen L, Shuter B and McCann K (2012). "Harvesting
+Creates Ecological Traps: Consequences of Invisible Mortality
+Risks in Predator–Prey Metacommunities." _Ecology_, *93*. ISSN
+0012-9658, <URL: http://dx.doi.org/10.1890/11-0011.1>.
+
+Boettiger C (2012). _knitcitations: Citations for knitr markdown
+files_. R package version 0.3-1, <URL:
+https://github.com/cboettig/knitcitations>.
+
+Xie Y (2013). _knitr: A general-purpose package for dynamic report
+generation in R_. R package version 1.0.7, <URL:
+http://yihui.name/knitr/>.
+
+
+
+Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.  [See the full tutorial](https://github.com/cboettig/knitcitations/blob/master/inst/examples/citations.md) for more about knitcitations.  
+
+## Semantic RDFa
+
+Knitcitations can also return semantic RDFa markup around your citations.  Simply select the "rdfa" in the bibliography option.  
+
+
+
+```r
+bibliography("rdfa")
+```
+
+<div prefix="dc: http://purl.org/dc/terms/,
+                      bibo: http://purl.org/ontology/bibo/,
+                      foaf: http://xmlns.com/foaf/spec/,
+                      biro: http://purl.org/spar/biro/"
+        property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+<li> <span property="dc:title">Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.</span> <span property="dc:creator"> <span property="foaf:givenName">Peter A.</span> <span property="foaf:familyName">Abrams</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Lasse</span> <span property="foaf:familyName">Ruokolainen</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Brian J.</span> <span property="foaf:familyName">Shuter</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Kevin S.</span> <span property="foaf:familyName">McCann</span>, </span>  (<span property="dc:date">2012</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+                            resource="[http://purl.org/dc/terms/journal]">
+                        <span property="http://purl.org/dc/terms/title"
+                                content=" Ecology ">
+                        </span>
+                          <span property="bibo:shortTitle"> Ecology </span>
+               </span>  <span property="bibo:volume">93</span>    <a property="bibo:doi" href="http://dx.doi.org/10.1890/11-0011.1">10.1890/11-0011.1</a> </li>
+ </ul>
+</div>
+<div prefix="dc: http://purl.org/dc/terms/,
+                      bibo: http://purl.org/ontology/bibo/,
+                      foaf: http://xmlns.com/foaf/spec/,
+                      biro: http://purl.org/spar/biro/"
+        property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+<li> <span property="dc:title">knitcitations: Citations for knitr markdown files.</span> <span property="dc:creator"> <span property="foaf:givenName">Carl</span> <span property="foaf:familyName">Boettiger</span>, </span>  (<span property="dc:date">2012</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+                            resource="[http://purl.org/dc/terms/journal]">
+                        <span property="http://purl.org/dc/terms/title"
+                                content="  ">
+                        </span>
+                          <span property="bibo:shortTitle">  </span>
+               </span>     <a property="bibo:doi" href="http://dx.doi.org/"></a> </li>
+ </ul>
+</div>
+<div prefix="dc: http://purl.org/dc/terms/,
+                      bibo: http://purl.org/ontology/bibo/,
+                      foaf: http://xmlns.com/foaf/spec/,
+                      biro: http://purl.org/spar/biro/"
+        property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+<li> <span property="dc:title">knitr: A general-purpose package for dynamic report generation in R.</span> <span property="dc:creator"> <span property="foaf:givenName">Yihui</span> <span property="foaf:familyName">Xie</span>, </span>  (<span property="dc:date">2013</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+                            resource="[http://purl.org/dc/terms/journal]">
+                        <span property="http://purl.org/dc/terms/title"
+                                content="  ">
+                        </span>
+                          <span property="bibo:shortTitle">  </span>
+               </span>     <a property="bibo:doi" href="http://dx.doi.org/"></a> </li>
+ </ul>
+</div>
+
+
+
+Here's what the source HTML looks like (generated as R output by not setting `results="asis"` in the knitr block):
+
+
+```r
+bibliography("rdfa")
+```
+
+```
+## <div prefix="dc: http://purl.org/dc/terms/,
+##                       bibo: http://purl.org/ontology/bibo/,
+##                       foaf: http://xmlns.com/foaf/spec/,
+##                       biro: http://purl.org/spar/biro/"
+##         property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+## <li> <span property="dc:title">Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.</span> <span property="dc:creator"> <span property="foaf:givenName">Peter A.</span> <span property="foaf:familyName">Abrams</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Lasse</span> <span property="foaf:familyName">Ruokolainen</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Brian J.</span> <span property="foaf:familyName">Shuter</span>, </span><span property="dc:creator"> <span property="foaf:givenName">Kevin S.</span> <span property="foaf:familyName">McCann</span>, </span>  (<span property="dc:date">2012</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+##                             resource="[http://purl.org/dc/terms/journal]">
+##                         <span property="http://purl.org/dc/terms/title"
+##                                 content=" Ecology ">
+##                         </span>
+##                           <span property="bibo:shortTitle"> Ecology </span>
+##                </span>  <span property="bibo:volume">93</span>    <a property="bibo:doi" href="http://dx.doi.org/10.1890/11-0011.1">10.1890/11-0011.1</a> </li>
+##  </ul>
+## </div>
+## <div prefix="dc: http://purl.org/dc/terms/,
+##                       bibo: http://purl.org/ontology/bibo/,
+##                       foaf: http://xmlns.com/foaf/spec/,
+##                       biro: http://purl.org/spar/biro/"
+##         property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+## <li> <span property="dc:title">knitcitations: Citations for knitr markdown files.</span> <span property="dc:creator"> <span property="foaf:givenName">Carl</span> <span property="foaf:familyName">Boettiger</span>, </span>  (<span property="dc:date">2012</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+##                             resource="[http://purl.org/dc/terms/journal]">
+##                         <span property="http://purl.org/dc/terms/title"
+##                                 content="  ">
+##                         </span>
+##                           <span property="bibo:shortTitle">  </span>
+##                </span>     <a property="bibo:doi" href="http://dx.doi.org/"></a> </li>
+##  </ul>
+## </div>
+## <div prefix="dc: http://purl.org/dc/terms/,
+##                       bibo: http://purl.org/ontology/bibo/,
+##                       foaf: http://xmlns.com/foaf/spec/,
+##                       biro: http://purl.org/spar/biro/"
+##         property="http://purl.org/spar/biro/ReferenceList"> <ul class='bibliography'> 
+## <li> <span property="dc:title">knitr: A general-purpose package for dynamic report generation in R.</span> <span property="dc:creator"> <span property="foaf:givenName">Yihui</span> <span property="foaf:familyName">Xie</span>, </span>  (<span property="dc:date">2013</span>)  <span rel="http://purl.org/dc/terms/isPartOf" 
+##                             resource="[http://purl.org/dc/terms/journal]">
+##                         <span property="http://purl.org/dc/terms/title"
+##                                 content="  ">
+##                         </span>
+##                           <span property="bibo:shortTitle">  </span>
+##                </span>     <a property="bibo:doi" href="http://dx.doi.org/"></a> </li>
+##  </ul>
+## </div>
+```
+
+
+### CiTO  
+
+Additional semantic markup can be added the the citations themselves, such as the reason for the citation.  For instance, we can identify that we have used the method from <a rel="http://purl.org/spar/cito/usesMethodIn", resource="http://dx.doi.org/10.1186/2041-1480-1-S1-S6 >Shotton (2010)</a> with the inline command `citet("10.1186/2041-1480-1-S1-S6", cito = "usesMethodIn")`.  
+

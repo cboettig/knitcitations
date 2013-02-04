@@ -2,8 +2,7 @@
 \alias{cite}
 \title{Add a citation (internal for citet and citep)}
 \usage{
-  cite(x, inline_format = authoryear_t,
-    bibtex = getOption("bibtex_data"))
+  cite(x, bibtex = getOption("bibtex_data"))
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

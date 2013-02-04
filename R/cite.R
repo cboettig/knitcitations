@@ -9,7 +9,7 @@
 #' @keywords internal
 #' @examples
 #' citep("10.3998/3336451.0009.101")
-cite <- function(x, inline_format = authoryear_t, bibtex = getOption("bibtex_data")){
+cite <- function(x, bibtex = getOption("bibtex_data")){
 
   # Initialize the works cited list (or verify that it is already initialized)
   bibtex = knitcitations_data(bibtex = bibtex) 
@@ -70,7 +70,7 @@ cite <- function(x, inline_format = authoryear_t, bibtex = getOption("bibtex_dat
       }
     }
     ## Format using entry using the specified function (e.g. authoryear_p) 
-    inline_format(entry)
+    entry
   })
 }
 

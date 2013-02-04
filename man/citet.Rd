@@ -2,16 +2,16 @@
 \alias{citet}
 \title{Add a textual citation}
 \usage{
-  citet(x, semantic = FALSE,
-    cito_reason = c("cites", "citesAsAuthority", "citesAsMetadataDocument", "citesAsSourceDocument", "citesForInformation", "isCitedBy", "obtainsBackgroundFrom", "sharesAuthorsWith", "usesDataFrom", "usesMethodIn", "confirms", "credits", "extends", "obtainsSupportFrom", "supports", "updates", "corrects", "critiques", "disagreesWith", "qualifies", "refutes", "discusses", "reviews"))
+  citet(x, cito = NULL, inline_format = authoryear_t)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
   bibentries)}
 
-  \item{cito_reason}{Semantic reason for the citation}
+  \item{cito}{Semantic reason for the citation}
 
-  \item{semantic}{logical, use semantic annotations?}
+  \item{inline_citation}{a function for formating the
+  inline citation, defaults to authoryear_t}
 }
 \value{
   a text inline citation
@@ -21,7 +21,16 @@
 }
 \details{
   Stores the full citation in a "works_cited" list, which
-  can be printed with \code{\link{bibliography}}
+  can be printed with \code{\link{bibliography}}. A variety
+  of reasons for the citation can be provided following the
+  CiTO ontology: c("cites","citesAsAuthority",
+  "citesAsMetadataDocument",
+  "citesAsSourceDocument","citesForInformation",
+  "isCitedBy","obtainsBackgroundFrom", "sharesAuthorsWith",
+  "usesDataFrom", "usesMethodIn", "confirms", "credits",
+  "extends", "obtainsSupportFrom", "supports", "updates",
+  "corrects", "critiques", "disagreesWith", "qualifies",
+  "refutes", "discusses", "reviews")
 }
 \examples{
 library(knitcitations)

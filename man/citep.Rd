@@ -2,11 +2,17 @@
 \alias{citep}
 \title{Add a paranthetical citation}
 \usage{
-  citep(x)
+  citep(x, inline_format = authoryear_p, ...)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
   bibentries)}
+
+  \item{inline_citation}{a function for formating the
+  inline citation, defaults to authoryear_t}
+
+  \item{...}{additional arguments that are bassed to
+  \code{\link{citet}}.}
 }
 \value{
   a parenthetical inline citation

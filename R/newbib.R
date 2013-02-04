@@ -7,8 +7,11 @@
 #' in the documentation).  
 #' @export
 newbib <- function(bibtex = getOption("bibtex_data")){
-  if(bibtex)
+  bibtex = knitcitations_data(bibtex = bibtex) 
+  if(bibtex){
     write("", file = "knitcitations.bib")
-  else
-    rm(list = ls(envir = knitcitationsCache), envir = knitcitationsCache)
+  } else {
+    if(exists("knitcitationsCache"))
+      rm(list = ls(envir = knitcitationsCache), envir = knitcitationsCache)
+  }
 }

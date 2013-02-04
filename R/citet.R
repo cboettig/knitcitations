@@ -1,11 +1,19 @@
 #' Add a textual citation 
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
-#' @param cito_reason Semantic reason for the citation
-#' @param semantic logical, use semantic annotations?
+#' @param cito Semantic reason for the citation
+#' @param inline_citation a function for formating the inline citation, defaults to authoryear_t
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
-#' which can be printed with \code{\link{bibliography}}
+#' which can be printed with \code{\link{bibliography}}.
+#' A variety of reasons for the citation can be provided following the
+#' CiTO ontology: 
+#' c("cites","citesAsAuthority", "citesAsMetadataDocument",
+#'   "citesAsSourceDocument","citesForInformation",
+#'   "isCitedBy","obtainsBackgroundFrom", "sharesAuthorsWith", "usesDataFrom",
+#'   "usesMethodIn", "confirms", "credits", "extends", "obtainsSupportFrom",
+#'   "supports", "updates", "corrects", "critiques", "disagreesWith",
+#'   "qualifies", "refutes", "discusses", "reviews")
 #' @export
 #' @import knitr
 #' @examples
@@ -20,19 +28,17 @@
 #' citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citet("Halpern2006")
 #'
-citet <- function(x, semantic=FALSE, cito_reason=c("cites",
-  "citesAsAuthority", "citesAsMetadataDocument",
-  "citesAsSourceDocument","citesForInformation",
-  "isCitedBy","obtainsBackgroundFrom", "sharesAuthorsWith", "usesDataFrom",
-  "usesMethodIn", "confirms", "credits", "extends", "obtainsSupportFrom",
-  "supports", "updates", "corrects", "critiques", "disagreesWith",
-  "qualifies", "refutes", "discusses", "reviews")){
-  out <- cite(x, inline_format=authoryear_t)
-  if(semantic){
+
+
+citet <- function(x, cito = NULL, inline_format = authoryear_t){
+  out <- cite(x)
+  if(!is.null(cito)){ # only works with one entry at a time...
+    output <- paste('<a rel="http://purl.org/spar/cito/', cito, '", resource="http://dx.doi.org/', out[[1]]$doi, ' >', I(inline_format(out[[1]])), '</a>', sep="")
     # Consider removing the format style from "cite" or making semantic an inline format.  
   } else {
-    out <- I(paste(paste(out, collapse="; "), sep=""))
+    output <- paste(sapply(out, inline_format), collapse = "; ", sep="")
   }
+  output
 }
 
 ## Helper function
