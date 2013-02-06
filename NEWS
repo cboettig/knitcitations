@@ -2,6 +2,12 @@ NEWS
 ====
 
 
+v0.3-3
+------
+
+* Added a new display option, `bibliography('markdown')`
+* fixed BUG in the printing of the text-based name in bibliography for bibstyle-based calls
+
 v0.3-2
 ------
 
