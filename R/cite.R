@@ -40,14 +40,14 @@ cite <- function(x, bibtex = getOption("bibtex_data")){
 
       ## Handle DOIs
       doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
-      if(is.character(x[[i]]) && grep(doi_pattern, x[[i]], perl=T)){
+      if(is.character(x[[i]]) && grep(doi_pattern, x[[i]], perl=TRUE)){
         entry <- ref(x[[i]]) # look-up by DOI
         entry <- create_bibkey(entry, key=key, current=current) # and create a bibkey for it
 
       ## Handle bibentry types 
       } else if(is(x[[i]], "bibentry")) {
         entry <- x[[i]] # Already a bibentry object?
-        entry <- create_bibkey(entry, key=key) # Create a bibkey for it
+        entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
 
       ## Handle exceptions
       } else {

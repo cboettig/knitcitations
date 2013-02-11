@@ -24,33 +24,35 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
     if(!is.null(names(bibentry)))
        key <- names(bibentry)
 
+
     # If a key is not found and not specified in the fn call, please generated it
     if(is.null(key)){
-      
       key <- paste(bibentry$author$family[[1]], bibentry$year, sep="")
-
       # Checks if the the key is in use
-      existing <- sapply(current, function(x) x$key)
-      m <- match(key, existing)
-
-      ## If the key is in use, check if it's the same document
-      if(!is.na(m)){
-        if(identical(bibentry$title, current[[m]]$title)) {
-          key <- existing[m] # same title? Use the same key, 
-          # biblio will drop the duplicate
-        } else { 
-          warning(paste("Automatic key generation found a copy of this key, using ", key, "_ instead", sep=""))
-          key <- paste(key, "_", sep="") ## New title, give it a new key.  
-        }
-      }
-
+      key <- check_existing(key, bibentry, current)
     }
     names(bibentry) <- key
     bibentry$key <- key
   bibentry
 }
 
-
+check_existing <- function(key, bibentry, current){
+     existing <- sapply(current, function(x) x$key)
+     m <- match(key, existing)
+        key_unique <- is.na(m)
+        ##  If key exists, check the title
+        if(!key_unique) {
+          if(identical(bibentry$title, current[[m]]$title)){
+            key <- existing[m] # same title? Use the same key, 
+            key_unique <- TRUE # And exit the loop 
+          } else {
+            key <- paste(key, "_", sep="") ## New title, give it a new key. 
+            warning(paste("Automatic key generation found a copy of this key, using ", key, " instead", sep=""))
+            key <- check_existing(key, bibentry, current)
+          }
+        } # if key is unique, we're done and can return a unique key
+        key
+}
 
 
 create_bibkeys <- function(bibentries){
