@@ -1,6 +1,13 @@
 NEWS 
 ====
 
+v0.3-4
+------
+
+* Avoid dropped citations caused by redundant key collisions, closes #21
+
+
+
 
 v0.3-3
 ------

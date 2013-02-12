@@ -25,23 +25,3 @@
 citep <- function(x, inline_format = authoryear_p, ...) 
   citet(x, inline_format = inline_format, ...) 
 
-## Helper function
-
-#' format the author and year parenthetically
-#' @param entry a bibentry
-#' @return the author-year citation
-authoryear_p <- function(entry){
-# FIXME Need to handle the case of Boettiger 2012a, Boettiger 2012b, etc
-    n <- length(entry$author)
-    if(n==1)
-      sprintf("(%s, %s)", entry$author$family, entry$year)
-    else if(n==2)
-      sprintf("(%s & %s, %s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year)
-    else if(n==3)
-      sprintf("(%s, %s & %s, %s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$author[[3]]$family,  entry$year)
-    else if(n>3)
-      sprintf("(%s _et. al._ %s)", entry$author[[1]]$family, entry$year)
-}
-
-az <- c('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z')
-
