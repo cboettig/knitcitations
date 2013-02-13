@@ -33,8 +33,18 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
     }
     names(bibentry) <- key
     bibentry$key <- key
+    bibentry$numeral <- get_numeral(bibentry, current)
+
   bibentry
 }
+
+
+get_numeral <- function(bibentry, current){
+  n <- length(current)
+  numeral <- n+1
+  numeral
+}
+
 
 check_existing <- function(key, bibentry, current){
      existing <- sapply(current, function(x) x$key)
