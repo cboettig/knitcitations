@@ -37,4 +37,3 @@ Collate:
     'write_cache.R'
     'newbib.R'
     'zzz.R'
-    'inline_formats.R'

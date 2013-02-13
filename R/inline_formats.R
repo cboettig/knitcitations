@@ -6,7 +6,6 @@
 #' @return the author-year citation
 authoryear_p <- function(entry){
 # FIXME Need to handle the case of Boettiger 2012a, Boettiger 2012b, etc
-
     n <- length(entry$author)
     if(n==1)
       sprintf("(%s, %s)", entry$author$family, entry$year)
@@ -27,7 +26,6 @@ a_to_z <- c('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
 #' @param entry a bibentry
 #' @return the author-year citation
 authoryear_t <- function(entry){
-    
     n <- length(entry$author)
     if(n==1)
       sprintf("%s (%s)", entry$author$family, entry$year)
@@ -38,7 +36,7 @@ authoryear_t <- function(entry){
 }
 
 numeral <- function(entry){
-entry$numeral
+
 }
 
 

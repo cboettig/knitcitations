@@ -24,8 +24,11 @@ cite <- function(x, bibtex = getOption("bibtex_data")){
 
   ## For each citation given, do the following:
   out <- sapply(1:length(x),function(i){
+   
     ## See if we have a key
     key = given_keys[i]  ## Get the bibkey name for the current citation
+
+    ## 
     m <- match(x[[i]], existing)  
 
     ## Handle anything we've already cited so far.  
@@ -39,17 +42,19 @@ cite <- function(x, bibtex = getOption("bibtex_data")){
       doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
       if(is.character(x[[i]]) && grep(doi_pattern, x[[i]], perl=TRUE)){
         entry <- ref(x[[i]]) # look-up by DOI
+        entry <- create_bibkey(entry, key=key, current=current) # and create a bibkey for it
+
       ## Handle bibentry types 
       } else if(is(x[[i]], "bibentry")) {
         entry <- x[[i]] # Already a bibentry object?
+        entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
+
       ## Handle exceptions
       } else {
         warning("citation not found")
         entry <- I("?")
       }
 
-      ## And create a bibkey for the new entry
-      entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
 
       ### Now enter the citation into the bibliographic list ###
       ## Handle look-up failures, probably due to `ref()` call failing
