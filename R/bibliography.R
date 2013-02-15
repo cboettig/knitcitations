@@ -30,10 +30,11 @@ bibliography <- function(style="textVersion", .bibstyle = "JSS", sort=FALSE, bib
     output <- sapply(out, print_rdfa)
     names(output) = ""
     output <- paste0(unlist(output), collapse="")
+    pretty_output <- print(cat(output))
   } else if(style == "markdown"){
     output <- sapply(out, print_markdown)
     names(output) = ""
-    output <- paste0(unlist(output), collapse="")
+    output <- print(paste0(unlist(output), collapse=""))
     print(output)
   } else {
     stop("Style not recognized")
