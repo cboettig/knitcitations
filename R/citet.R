@@ -30,13 +30,17 @@
 #'
 
 
-citet <- function(x, cito = NULL, inline_format = authoryear_t){
-  out <- cite(x)
-  if(!is.null(cito)){ # only works with one entry at a time...
+citet <- function(x, cito = NULL, format_inline_fn = format_authoryear_t,  inline_format = authoryear_t){
+  out <- cite(x, format_inline_fn = format_inline_fn)
+  if(length(out) == 1){
+    if(!is.null(cito)){ # only works with one entry at a time...
     output <- paste('<a rel="http://purl.org/spar/cito/', cito, '", resource="http://dx.doi.org/', out[[1]]$doi, '">', I(inline_format(out[[1]])), '</a>', sep="")
     # Consider removing the format style from "cite" or making semantic an inline format.  
+    } else {
+      output <- inline_format(out)
+    }
   } else {
-    output <- paste(sapply(out, inline_format), collapse = "; ", sep="")
+    output <- paste(sapply(out, inline_format), collapse="; ", sep="")
   }
   output
 }

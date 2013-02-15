@@ -2,7 +2,9 @@
 \alias{citet}
 \title{Add a textual citation}
 \usage{
-  citet(x, cito = NULL, inline_format = authoryear_t)
+  citet(x, cito = NULL,
+    format_inline_fn = format_authoryear_t,
+    inline_format = authoryear_t)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

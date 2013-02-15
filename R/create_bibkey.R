@@ -23,8 +23,6 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
        key <- bibentry$key
     if(!is.null(names(bibentry)))
        key <- names(bibentry)
-
-
     # If a key is not found and not specified in the fn call, please generated it
     if(is.null(key)){
       key <- paste(bibentry$author$family[[1]], bibentry$year, sep="")
@@ -33,8 +31,21 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
     }
     names(bibentry) <- key
     bibentry$key <- key
+    bibentry$numeral <- get_numeral(bibentry, current)
+
   bibentry
 }
+
+
+get_numeral <- function(bibentry, current){
+  n <- length(current)
+  numeral <- n+1
+  numeral
+}
+
+
+
+
 
 check_existing <- function(key, bibentry, current){
      existing <- sapply(current, function(x) x$key)
@@ -47,7 +58,7 @@ check_existing <- function(key, bibentry, current){
             key_unique <- TRUE # And exit the loop 
           } else {
             key <- paste(key, "_", sep="") ## New title, give it a new key. 
-            warning(paste("Automatic key generation found a copy of this key, using ", key, " instead", sep=""))
+            #warning(paste("Automatic key generation found a copy of this key, using ", key, " instead", sep=""))
             key <- check_existing(key, bibentry, current)
           }
         } # if key is unique, we're done and can return a unique key

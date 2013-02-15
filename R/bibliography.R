@@ -29,7 +29,7 @@ bibliography <- function(style="textVersion", .bibstyle = "JSS", sort=FALSE, bib
   } else if(style == "rdfa"){
     output <- sapply(out, print_rdfa)
     names(output) = ""
-    output <- cat(paste0(unlist(output), collapse=""))
+    output <- paste0(unlist(output), collapse="")
   } else if(style == "markdown"){
     output <- sapply(out, print_markdown)
     names(output) = ""

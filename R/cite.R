@@ -9,26 +9,24 @@
 #' @keywords internal
 #' @examples
 #' citep("10.3998/3336451.0009.101")
-cite <- function(x, bibtex = getOption("bibtex_data")){
+cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
 
   # Initialize the works cited list (or verify that it is already initialized)
   bibtex = knitcitations_data(bibtex = bibtex) 
-  
-  ## Identify what references we already know about (as a list of keys) 
-  current <- read_cache(bibtex = bibtex)
-  existing <- names(current) 
-  
-  ## See if the desired citations have any keys specified for them in the call 
-  given_keys <- names(x) 
-
 
   ## For each citation given, do the following:
-  out <- sapply(1:length(x),function(i){
-   
+  out <- lapply(1:length(x),function(i){
+
+    ## Identify what references we already know about (as a list of keys) 
+    ## Note that this is updated for each i.  
+    current <- read_cache(bibtex = bibtex)
+    existing <- names(current) 
+    
+    ## See if the desired citations have any keys specified for them in the call 
+    given_keys <- names(x) 
+
     ## See if we have a key
     key = given_keys[i]  ## Get the bibkey name for the current citation
-
-    ## 
     m <- match(x[[i]], existing)  
 
     ## Handle anything we've already cited so far.  
@@ -54,12 +52,17 @@ cite <- function(x, bibtex = getOption("bibtex_data")){
         warning("citation not found")
         entry <- I("?")
       }
+      ## Generate the inline citation  
+      if(is.null(entry$inline)){
+        entry$inline <- format_inline_fn(entry)
+        entry <- unique_inline(entry, format_inline_fn)
+      }
+
 
 
       ### Now enter the citation into the bibliographic list ###
-      ## Handle look-up failures, probably due to `ref()` call failing
       if(!is(entry, "bibentry")){ 
-        entry <- I("?")
+        entry <- I("?")  # make anything we cannot parse an unkown
       } else {
          ## Check if we already have this key entered
          m <- match(names(entry), existing)  
