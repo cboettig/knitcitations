@@ -35,29 +35,31 @@ cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
 
     ## Handle anything we haven't cited yet
     } else {
-
       ## Handle DOIs
       doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
-      if(is.character(x[[i]]) && grep(doi_pattern, x[[i]], perl=TRUE)){
+      if(is.character(x[[i]]) && length(grep(doi_pattern, x[[i]], perl=TRUE)) == 1){  
         entry <- ref(x[[i]]) # look-up by DOI
-        entry <- create_bibkey(entry, key=key, current=current) # and create a bibkey for it
+
+      ## Handle URLs
+      } else if(is.character(x[[i]]) && length(grep(url_regexp, x[[i]], perl=TRUE)) == 1){
+        entry <- greycite(x[[i]])
 
       ## Handle bibentry types 
       } else if(is(x[[i]], "bibentry")) {
         entry <- x[[i]] # Already a bibentry object?
-        entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
-
       ## Handle exceptions
       } else {
         warning("citation not found")
         entry <- I("?")
+        entry$key <- "not_found"
       }
+      entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
+
       ## Generate the inline citation  
       if(is.null(entry$inline)){
         entry$inline <- format_inline_fn(entry)
         entry <- unique_inline(entry, format_inline_fn)
       }
-
 
 
       ### Now enter the citation into the bibliographic list ###
@@ -76,4 +78,5 @@ cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
     entry
   })
 }
+
 

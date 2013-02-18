@@ -38,3 +38,5 @@ Collate:
     'newbib.R'
     'zzz.R'
     'inline_formats.R'
+    'greycite.R'
+    'url_regexpr.R'
