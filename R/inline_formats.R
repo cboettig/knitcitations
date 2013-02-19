@@ -7,6 +7,8 @@
 #' @param entry a bibentry
 #' @return the author-year citation
 authoryear_t <- function(entry, format_inline_fn = format_authoryear_t){
+## FIXME Now that these checks are redundant, this entire function
+##   could be collapsed with format_authoryear_t, etc.  
     ## Check if we already have an inline citation format
 #    if(is.null(entry$inline)){
 #      entry$inline <- format_inline_fn(entry)
@@ -18,7 +20,13 @@ authoryear_t <- function(entry, format_inline_fn = format_authoryear_t){
     entry$inline
 }
 ## helper functions
-#' format the author and year 
+#' format the author and year  
+#' 
+#' This is just a utility function that calls format_authoryear_p,
+#' which does the actual formating at the time the citation is added
+#' to the data.  This provides a separate API for the function that 
+#' simply returns the formatted text, from the function that does the
+#' formatting (which may change, or may have more flavors, etc).  
 #' @param entry a bibentry
 #' @return the author-year citation
 authoryear_p <- function(entry, format_inline_fn = format_authoryear_p){
@@ -27,21 +35,37 @@ authoryear_p <- function(entry, format_inline_fn = format_authoryear_p){
 
 
 #' format the author and year parenthetically
+#' 
+#' This formats a single entry, though adjusted by author.  
+#' This function is passed down to 'cite' by 'citep', wher
+#' it creates the actuall formatting on the first use.  
 #' @param entry a bibentry
+#' @param char a character to append to the citation (to disambiguate). 
+#' This is handled automatically by the cite function.  
 #' @return the author-year citation
 format_authoryear_p <- function(entry, char=""){
     n <- length(entry$author)
     if(n==1)
-      sprintf("(%s, %s%s)", entry$author$family, entry$year, char)
+      sprintf("%s, %s%s", entry$author$family, entry$year, char)
     else if(n==2)
-      sprintf("(%s & %s, %s%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year, char)
+      sprintf("%s & %s, %s%s", entry$author[[1]]$family, entry$author[[2]]$family, entry$year, char)
 #    else if(n==3)
-#      sprintf("(%s, %s & %s, %s%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$author[[3]]$family,  entry$year, char)
+#      sprintf("%s, %s & %s, %s%s", entry$author[[1]]$family, entry$author[[2]]$family, entry$author[[3]]$family,  entry$year, char)
     else if(n>2)
-      sprintf("(%s _et. al._ %s%s)", entry$author[[1]]$family, entry$year, char)
+      sprintf("%s _et. al._ %s%s", entry$author[[1]]$family, entry$year, char)
 }
 
 
+
+#' format the author and year 
+#' 
+#' This formats a single entry, though adjusted by author.  
+#' This function is passed down to 'cite' by 'citet', wher
+#' it creates the actuall formatting on the first use.  
+#' @param entry a bibentry
+#' @param char a character to append to the citation (to disambiguate). 
+#' This is handled automatically by the cite function.  
+#' @return the author-year citation
 format_authoryear_t <- function(entry, char=""){
     n <- length(entry$author)
     if(n==1)
@@ -54,6 +78,14 @@ format_authoryear_t <- function(entry, char=""){
 
 
 
+
+
+## Helper internal function.  
+#' Helper function to generate a unique inline citation format (called by cite)
+#' @param entry a bibentry type object
+#' @param format_inline_fn a function that can generate the desired inline citation format (e.g. format_authoryear_t function)
+#' @param i the index to start appending disambiguated values on.  Starts at 2 corresponding to the letter b.  
+#' @keywords internal
 unique_inline <- function(entry, format_inline_fn, i = 2){
       # check inline citation against existing bibliography
       lib <- read_cache()
@@ -81,10 +113,12 @@ unique_inline <- function(entry, format_inline_fn, i = 2){
 }
 
 
-## For disambuguation of names
+## For disambuguation of names in unique_inline()
 a_to_z <- c('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z')
 
 
+
+#' Formatting for numeric inline citations.  Needs testing.  
 numeral <- function(entry){
   paste("[", as.character(entry$numeral), "]", sep="")
 }

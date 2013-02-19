@@ -12,8 +12,12 @@
 
   \item{cito}{Semantic reason for the citation}
 
+  \item{format_inline_fn}{function to format a single
+  inline citation}
+
   \item{inline_format}{a function for formating the inline
-  citation, defaults to authoryear_t}
+  citation, defaults to authoryear_t (designed for internal
+  use only)}
 }
 \value{
   a text inline citation

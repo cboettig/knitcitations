@@ -14,7 +14,13 @@ knitcitations
 Installation 
 ------------
 
-Install directly from Github using [Hadley's devtools package](https://github.com/hadley/devtools)
+Install directly from Github using [Hadley's devtools package](https://github.com/hadley/devtools) as so:
+
+```r
+install.packages("devtools")
+library("devtools")
+install_github("knitcitations", "cboettig")
+```
 
 
 You can also clone or download the repository and install with `R CMD INSTALL`. Once I'm through the early development phase a copy will be available on CRAN.

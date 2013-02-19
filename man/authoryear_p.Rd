@@ -12,6 +12,12 @@
   the author-year citation
 }
 \description{
-  format the author and year
+  This is just a utility function that calls
+  format_authoryear_p, which does the actual formating at
+  the time the citation is added to the data.  This
+  provides a separate API for the function that simply
+  returns the formatted text, from the function that does
+  the formatting (which may change, or may have more
+  flavors, etc).
 }
 

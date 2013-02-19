@@ -1,8 +1,8 @@
-\name{format_authoryear_p}
-\alias{format_authoryear_p}
-\title{format the author and year parenthetically}
+\name{format_authoryear_t}
+\alias{format_authoryear_t}
+\title{format the author and year}
 \usage{
-  format_authoryear_p(entry, char = "")
+  format_authoryear_t(entry, char = "")
 }
 \arguments{
   \item{entry}{a bibentry}
@@ -16,7 +16,7 @@
 }
 \description{
   This formats a single entry, though adjusted by author.
-  This function is passed down to 'cite' by 'citep', wher
+  This function is passed down to 'cite' by 'citet', wher
   it creates the actuall formatting on the first use.
 }
 

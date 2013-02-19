@@ -2,7 +2,8 @@
 \alias{citep}
 \title{Add a paranthetical citation}
 \usage{
-  citep(x, inline_format = authoryear_p, ...)
+  citep(x, format_inline_fn = format_authoryear_p,
+    inline_format = authoryear_p, ...)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

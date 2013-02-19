@@ -1,6 +1,12 @@
 NEWS 
 ====
 
+
+v0.3-5
+------
+
+* Fix formatting of parenthetical citations (bug introduced previously converted these to citet format)
+
 v0.3-4
 ------
 

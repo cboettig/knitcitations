@@ -22,6 +22,9 @@
 #' citep(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citep("Halpern2006")
 #' 
-citep <- function(x, inline_format = authoryear_p, ...) 
-  citet(x, inline_format = inline_format, ...) 
-
+citep <- function(x, format_inline_fn = format_authoryear_p, 
+                  inline_format = authoryear_p, ...){
+  text <- citet(x, format_inline_fn = format_inline_fn,
+                inline_format = inline_format, ...) 
+  paste("(", text, ")", sep="", collapse=";")
+}

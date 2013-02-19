@@ -3,7 +3,7 @@ Type: Package
 Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.3-4
+Version: 0.3-5
 Date: 2012-03-24
 Description: While traditional Sweave documents can take advantage of LaTeX
     citation tools, knitr also allows users to combine the much simpler
