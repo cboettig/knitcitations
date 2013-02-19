@@ -12,8 +12,12 @@
   \item{inline_format}{a function for formating the inline
   citation, defaults to authoryear_t}
 
+  \item{format_inline_fn}{function to format a single
+  inline citation}
+
   \item{...}{additional arguments that are bassed to
-  \code{\link{citet}}.}
+  \code{\link{citet}}, in particular the optional `cito`
+  tag, see details}
 }
 \value{
   a parenthetical inline citation
@@ -23,7 +27,16 @@
 }
 \details{
   Stores the full citation in a "works_cited" list, which
-  can be printed with \code{\link{bibliography}}
+  can be printed with \code{\link{bibliography}} A variety
+  of reasons for the citation can be provided following the
+  CiTO ontology: c("cites","citesAsAuthority",
+  "citesAsMetadataDocument",
+  "citesAsSourceDocument","citesForInformation",
+  "isCitedBy","obtainsBackgroundFrom", "sharesAuthorsWith",
+  "usesDataFrom", "usesMethodIn", "confirms", "credits",
+  "extends", "obtainsSupportFrom", "supports", "updates",
+  "corrects", "critiques", "disagreesWith", "qualifies",
+  "refutes", "discusses", "reviews")
 }
 \examples{
 library(knitcitations)

@@ -7,6 +7,9 @@
 }
 \arguments{
   \item{entry}{a bibentry}
+
+  \item{format_inline_fn}{the function that actually
+  creates the inline format for a single entry}
 }
 \value{
   the author-year citation

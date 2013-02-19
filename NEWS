@@ -1,11 +1,26 @@
 NEWS 
 ====
 
+Highlights of changes to package by version.  
+
+For more fine-grained list of changes, consult 
+
+* [The issues log](https://github.com/cboettig/knitcitations/issues)
+* [The commit log](https://github.com/cboettig/knitcitations/commits/master)
+
+Version numbering follows the standard in which the trailing number
+(after the dash) corresponds to bug fixes, the number after the period
+corresponds to the addition of new features, and the primary number
+changes only to indicate a change in the API that may break backwards
+compatibility.
+
 
 v0.3-5
 ------
 
 * Fix formatting of parenthetical citations (bug introduced previously converted these to citet format)
+* Additional documentation
+* Install instructions for development version added to README
 
 v0.3-4
 ------

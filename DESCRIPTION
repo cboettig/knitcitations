@@ -17,7 +17,8 @@ Depends:
 Imports:
     xtable,
     RCurl,
-    XML
+    XML,
+    httr
 Suggests:
     testthat
 License: CC0

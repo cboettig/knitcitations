@@ -5,6 +5,7 @@
 ## helper functions
 #' format the author and year 
 #' @param entry a bibentry
+#' @param format_inline_fn the function that actually creates the inline format for a single entry
 #' @return the author-year citation
 authoryear_t <- function(entry, format_inline_fn = format_authoryear_t){
 ## FIXME Now that these checks are redundant, this entire function
@@ -28,6 +29,7 @@ authoryear_t <- function(entry, format_inline_fn = format_authoryear_t){
 #' simply returns the formatted text, from the function that does the
 #' formatting (which may change, or may have more flavors, etc).  
 #' @param entry a bibentry
+#' @param format_inline_fn the function that actually creates the inline format for a single entry
 #' @return the author-year citation
 authoryear_p <- function(entry, format_inline_fn = format_authoryear_p){
   authoryear_t(entry, format_inline_fn)
@@ -119,6 +121,7 @@ a_to_z <- c('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
 
 
 #' Formatting for numeric inline citations.  Needs testing.  
+#' @param entry a bibentry object, e.g. from cite
 numeral <- function(entry){
   paste("[", as.character(entry$numeral), "]", sep="")
 }
