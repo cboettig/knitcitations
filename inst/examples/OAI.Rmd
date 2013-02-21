@@ -1,0 +1,45 @@
+
+Thinking about how we might encorporate OAIharvester metadata / Dublin Core metadata into bibentry citation objects for use in knitcitations.  
+
+
+
+
+```{r}
+# @imports OAIharvester
+oai_entry <- function(query){
+  baseurl <- "http://epub.wu.ac.at/cgi/oai2"
+  sets <- oaih_list_sets(baseurl)
+  spec <- unlist(sets[sets[, "setName"] == "Type = Thesis", "setSpec"])
+  x <- oaih_list_records(baseurl, set = spec)
+  m <- x[, "metadata"]
+  m <- oaih_transform(m[sapply(m, length) > 0L])
+}
+```
+
+
+
+Thinking how the mapping would go between dc and bibentry:
+
+DC                bibentry
+-------           -------
+"title"           "title" 
+"creator"         "author"
+"subject" 
+"description"     "abstract"
+"publisher"       "publisher"
+"contributor"     (additional authors)
+"date"            "date"
+"type"            "bibtype"
+"format"          "note"
+"identifier"      "url"
+"source" 
+"language" 
+"relation" 
+"coverage" 
+"rights"
+
+
+
+Kurt recommends looking at http://dublincore.org/documents/dc-citation-guidelines/
+discussion to be continued.  
+
