@@ -47,15 +47,17 @@ citet <- function(x, cito = NULL,
     if(linked){
       citoproperty <- ""
       if(!is.null(cito))
-        citoproperty <- paste(" property='http://purl.org/spar/cito/", cito, "' ", sep="")
+        citoproperty <- paste(' property="http://purl.org/spar/cito/', cito, '" ', sep='')
       if(!is.null(out$doi)) # Link by DOI if a DOI is available
-        link <- paste("href='http://dx.doi.org/", out[[1]]$doi, "'", sep="")
+        link <- paste('href="http://dx.doi.org/', out[[1]]$doi, '"', sep='')
       else ## Attempt to link by bibtex URL field.  
         link <- out$url
-      output <- paste("<a ", link, citoproperty, ">", I(inline_format(out[[1]])), "</a>", sep="")
+      output <- paste('<a ', link, citoproperty, '>', I(inline_format(out[[1]])), '</a>', sep='')
       if(tooltip){
-        bibinfo <- format(out) # format(out, "text")
-        output <- paste("<span rel='tooltip' title='", bibinfo, "'>", output, "</span>", sep="")
+        bibinfo <- gsub('"', '', format(out)) # no quotes in text formatting please
+        bibinfo <- gsub('<URL:', '', bibinfo) # kill other stupid characters too
+        bibinfo <- gsub('>', '', bibinfo) 
+        output <- paste('<span rel="tooltip" title="', bibinfo, '">', output, '</span>', sep='')
       }
     } else { # not linked 
       output <- inline_format(out)
