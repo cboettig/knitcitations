@@ -4,7 +4,7 @@ knitcitations
 - **Author**: [Carl Boettiger](http://www.carlboettiger.info/)
 - **License**: [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
 - [Package source code on Github](https://github.com/cboettig/knitcitations)
-- [Online package documentation](http://cboettig.github.com/knitcitations/index.html)
+- [**Submit Bugs and feature requests**](https://github.com/cboettig/knitcitations/issues)
 
 
 `knitcitations` is an R package designed to add dynamic citations to dynamic documents created with [Yihui's knitr package](https://github.com/yihui/knitr).
