@@ -2,8 +2,8 @@
 \alias{citep}
 \title{Add a paranthetical citation}
 \usage{
-  citep(x, format_inline_fn = format_authoryear_p,
-    inline_format = authoryear_p, ...)
+  citep(x, ..., format_inline_fn = format_authoryear_p,
+    inline_format = authoryear_p)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
@@ -15,9 +15,8 @@
   \item{format_inline_fn}{function to format a single
   inline citation}
 
-  \item{...}{additional arguments that are bassed to
-  \code{\link{citet}}, in particular the optional `cito`
-  tag, see details}
+  \item{...}{additional arguments passed to citet, see
+  \code{\link{citet}} for details}
 }
 \value{
   a parenthetical inline citation

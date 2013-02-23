@@ -6,7 +6,7 @@
 #' from bibtex. Input data can come from any source, bibtex or DOI, as shown
 #' in the documentation).  
 #' @export
-newbib <- function(bibtex = getOption("bibtex_data")){
+newbib <- function(bibtex = get("bibtex_data", envir=knitcitations_options)){
   bibtex = knitcitations_data(bibtex = bibtex) 
   if(bibtex){
     write("", file = "knitcitations.bib")

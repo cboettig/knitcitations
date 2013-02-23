@@ -3,7 +3,9 @@
 \title{Generate the bibliography}
 \usage{
   bibliography(style = "textVersion", .bibstyle = "JSS",
-    sort = FALSE, bibtex = getOption("bibtex_data"), ...)
+    sort = FALSE,
+    bibtex = get("bibtex_data", envir = knitcitations_options),
+    ...)
 }
 \arguments{
   \item{style}{formatting style to print bibliography

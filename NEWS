@@ -1,18 +1,48 @@
 NEWS 
 ====
 
-Highlights of changes to package by version.  
-
-For more fine-grained list of changes, consult 
+For more fine-grained list of changes or to report a bug, consult 
 
 * [The issues log](https://github.com/cboettig/knitcitations/issues)
 * [The commit log](https://github.com/cboettig/knitcitations/commits/master)
 
-Version numbering follows the standard in which the trailing number
-(after the dash) corresponds to bug fixes, the number after the period
-corresponds to the addition of new features, and the primary number
-changes only to indicate a change in the API that may break backwards
-compatibility.
+Versioning
+----------
+
+Releases will be numbered with the following semantic versioning format:
+
+<major>.<minor>.<patch>
+
+And constructed with the following guidelines:
+
+* Breaking backward compatibility bumps the major (and resets the minor and patch)
+* New additions without breaking backward compatibility bumps the minor (and resets the patch)
+* Bug fixes and misc changes bumps the patch
+
+For more information on SemVer, please visit http://semver.org/.
+
+
+
+v0.4-0
+------
+
+### Major changes
+
+* Support for citations by URL.  Paste the full URL of any academic
+  journal or other webpage.  Uses the Greycite API 
+* Introduces linked inline citations as an option (previously active
+  only for CITO links).  Inline citation text will be linked directly
+  to the article by DOI or URL.  Toggle on or off using cite_options
+  globally, or passing `linked=FALSE` to the calls to `citet` or `citep`
+* Introduces tooltips option. Mouse over an inline citation and see
+  the full citation information.  * Introduces `cite_options`, to toggle
+  certain settings such as tooltips, linked inline text,
+
+
+### Minor changes
+
+* in-line link will use URL if a DOI is not found
+* `cite` is now exported to the namespace.  Useful to return a bibentry object given a DOI or URL.  
 
 
 v0.3-5

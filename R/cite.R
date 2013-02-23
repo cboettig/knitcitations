@@ -2,14 +2,17 @@
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param bibtex internal logical indicating if we use a cache or external bibtex file
+#' @param format_inline_fn a function which will create the inline citation format (stored with the entry to avoid non-unique citation styles, e.g. Boettiger 2012a, Boettiger 2012b.)
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
 #' @import knitr
-#' @keywords internal
+#' @export
 #' @examples
 #' citep("10.3998/3336451.0009.101")
-cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
+cite <- function(x, 
+                 bibtex = get("bibtex_data", envir=knitcitations_options), 
+                 format_inline_fn = format_authoryear_p){
 
   # Initialize the works cited list (or verify that it is already initialized)
   bibtex = knitcitations_data(bibtex = bibtex) 
@@ -35,7 +38,7 @@ cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
 
     ## Handle anything we haven't cited yet
     } else {
-      ## Handle DOIs
+      ## Handle DOIs, http://stackoverflow.com/questions/27910/finding-a-doi-in-a-document-or-page
       doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
       if(is.character(x[[i]]) && length(grep(doi_pattern, x[[i]], perl=TRUE)) == 1){  
         entry <- ref(x[[i]]) # look-up by DOI
@@ -77,6 +80,9 @@ cite <- function(x, bibtex = getOption("bibtex_data"), format_inline_fn){
     ## Format using entry using the specified function (e.g. authoryear_p) 
     entry
   })
+  if(length(out) == 1)
+    out <- out[[1]]
+  out
 }
 
 

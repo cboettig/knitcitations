@@ -3,7 +3,7 @@
 #' @param a_bibentry a bibentry object, possibly already named with a key
 #' @param bibtex logical, use a bibtex file for the cache of cited works rather than an environment?
 #' @return writes the bibentry to the environment 'knitcitationsCache', created by 
-write_cache <- function(a_bibentry, bibtex = getOption("bibtex_data")){
+write_cache <- function(a_bibentry, bibtex = get("bibtex_data", envir=knitcitations_options)){
   ## Create a bibkey for the entry if it doesn't have one.  
   if(is.null(names(a_bibentry))){
     a_bibentry <- create_bibkey(a_bibentry)
@@ -17,7 +17,7 @@ write_cache <- function(a_bibentry, bibtex = getOption("bibtex_data")){
 
 
 
-read_cache <- function(bibtex=getOption("bibtex_data")){
+read_cache <- function(bibtex=get("bibtex_data", envir=knitcitations_options)){
   if(bibtex)
     read.bibtex("knitcitations.bib")
   else {

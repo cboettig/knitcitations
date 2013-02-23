@@ -3,7 +3,7 @@
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param inline_format a function for formating the inline citation, defaults to authoryear_t
 #' @param format_inline_fn function to format a single inline citation
-#' @param ... additional arguments that are bassed to \code{\link{citet}}, in particular the optional `cito` tag, see details
+#' @param ... additional arguments passed to citet, see \code{\link{citet}} for details
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
@@ -31,9 +31,11 @@
 #' citep(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citep("Halpern2006")
 #' 
-citep <- function(x, format_inline_fn = format_authoryear_p, 
-                  inline_format = authoryear_p, ...){
-  text <- citet(x, format_inline_fn = format_inline_fn,
-                inline_format = inline_format, ...) 
+citep <- function(x, ..., 
+                  format_inline_fn = format_authoryear_p, 
+                  inline_format = authoryear_p){
+  text <- citet(x, ..., 
+                format_inline_fn = format_inline_fn,
+                inline_format = inline_format) 
   paste("(", text, ")", sep="", collapse=";")
 }

@@ -66,8 +66,4 @@ check_existing <- function(key, bibentry, current){
 }
 
 
-create_bibkeys <- function(bibentries){
-  out <- lapply(bibentries, create_bibkey)
-  list_to_bibentry(out)
-}
 

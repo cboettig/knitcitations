@@ -1,7 +1,11 @@
 #' Add a textual citation 
 #'
+#' Parameters listed here are the same for parenthetical citation, \code{\link{citep}}.  
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
-#' @param cito Semantic reason for the citation
+#' @param cito Semantic reason for the citation. Only active if linked=TRUE
+#' @param tooltip Show a citation information on mouseover. Requires the tooltip javascript from http://twitter.github.com/bootstrap Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
+#' @param linked link the inline citation text to the resource by doi (if available) or url? Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
+#' @param numerical use citation instead of author-year format? (Not functional yet!) Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
 #' @param format_inline_fn function to format a single inline citation
 #' @param inline_format a function for formating the inline citation, defaults to authoryear_t (designed for internal use only)
 #' @return a text inline citation
@@ -29,22 +33,34 @@
 #' citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citet("Halpern2006")
 #'
-
-
-citet <- function(x, cito = NULL, format_inline_fn = format_authoryear_t,  inline_format = authoryear_t){
+citet <- function(x, cito = NULL, 
+                  tooltip = get("tooltip", envir=knitcitations_options), 
+                  linked = get("linked", envir=knitcitations_options), 
+                  numerical = get("numerical", envir=knitcitations_options), 
+                  format_inline_fn = format_authoryear_t,  
+                  inline_format = authoryear_t){
+# FIXME 
   out <- cite(x, format_inline_fn = format_inline_fn)
-  if(length(out) == 1){
-    if(!is.null(cito)){ # only works with one entry at a time...
-    output <- paste('<a rel="http://purl.org/spar/cito/', cito, '", href="http://dx.doi.org/', out[[1]]$doi, '">', I(inline_format(out[[1]])), '</a>', sep="")
-    # Consider removing the format style from "cite" or making semantic an inline format.  
-    } else {
+  if(length(out) > 1) {
+    output <- paste(sapply(out, citet, cito, tooltip, linked, format_inline_fn, inline_format), collapse="; ", sep="")
+  } else {
+    if(linked){
+      citoproperty <- ""
+      if(!is.null(cito))
+        citoproperty <- paste(" property='http://purl.org/spar/cito/", cito, "' ", sep="")
+      if(!is.null(out$doi)) # Link by DOI if a DOI is available
+        link <- paste("href='http://dx.doi.org/", out[[1]]$doi, "'", sep="")
+      else ## Attempt to link by bibtex URL field.  
+        link <- out$url
+      output <- paste("<a ", link, citoproperty, ">", I(inline_format(out[[1]])), "</a>", sep="")
+      if(tooltip){
+        bibinfo <- format(out) # format(out, "text")
+        output <- paste("<span rel='tooltip' title='", bibinfo, "'>", output, "</span>", sep="")
+      }
+    } else { # not linked 
       output <- inline_format(out)
     }
-  } else {
-    output <- paste(sapply(out, inline_format), collapse="; ", sep="")
-  }
+  }  
   output
 }
-
-## Helper function
 

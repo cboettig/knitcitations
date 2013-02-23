@@ -3,6 +3,9 @@
 \title{Add a textual citation}
 \usage{
   citet(x, cito = NULL,
+    tooltip = get("tooltip", envir = knitcitations_options),
+    linked = get("linked", envir = knitcitations_options),
+    numerical = get("numerical", envir = knitcitations_options),
     format_inline_fn = format_authoryear_t,
     inline_format = authoryear_t)
 }
@@ -10,7 +13,23 @@
   \item{x}{a doi or list of dois, or a bibentry (or list of
   bibentries)}
 
-  \item{cito}{Semantic reason for the citation}
+  \item{cito}{Semantic reason for the citation. Only active
+  if linked=TRUE}
+
+  \item{tooltip}{Show a citation information on mouseover.
+  Requires the tooltip javascript from
+  http://twitter.github.com/bootstrap Pass logical
+  TRUE/FALSE or set default behavior with
+  \code{\link{cite_options}}}
+
+  \item{linked}{link the inline citation text to the
+  resource by doi (if available) or url? Pass logical
+  TRUE/FALSE or set default behavior with
+  \code{\link{cite_options}}}
+
+  \item{numerical}{use citation instead of author-year
+  format? (Not functional yet!) Pass logical TRUE/FALSE or
+  set default behavior with \code{\link{cite_options}}}
 
   \item{format_inline_fn}{function to format a single
   inline citation}
@@ -23,7 +42,8 @@
   a text inline citation
 }
 \description{
-  Add a textual citation
+  Parameters listed here are the same for parenthetical
+  citation, \code{\link{citep}}.
 }
 \details{
   Stores the full citation in a "works_cited" list, which

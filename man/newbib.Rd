@@ -2,7 +2,7 @@
 \alias{newbib}
 \title{Erase existing list of works cited}
 \usage{
-  newbib(bibtex = getOption("bibtex_data"))
+  newbib(bibtex = get("bibtex_data", envir = knitcitations_options))
 }
 \arguments{
   \item{bibtex}{logical, internal use parameter only.}

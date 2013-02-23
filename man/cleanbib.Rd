@@ -2,7 +2,7 @@
 \alias{cleanbib}
 \title{Erase existing list of works cited}
 \usage{
-  cleanbib(bibtex = getOption("bibtex_data"))
+  cleanbib(bibtex = get("bibtex_data", envir = knitcitations_options))
 }
 \arguments{
   \item{bibtex}{logical, internal use parameter only.}
