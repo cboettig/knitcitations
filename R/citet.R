@@ -51,7 +51,7 @@ citet <- function(x, cito = NULL,
       if(!is.null(out$doi)) # Link by DOI if a DOI is available
         link <- paste('href="http://dx.doi.org/', out[[1]]$doi, '"', sep='')
       else ## Attempt to link by bibtex URL field.  
-        link <- out$url
+        link <- paste('href="', out$url, '"', sep='')
       output <- paste('<a ', link, citoproperty, '>', I(inline_format(out[[1]])), '</a>', sep='')
       if(tooltip){
         bibinfo <- gsub('"', '', format(out)) # no quotes in text formatting please
