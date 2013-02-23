@@ -27,6 +27,8 @@ Or install the current release from your CRAN mirror with `install.packages("kni
 Quick start
 -----------
 
+`r cite_options(linked=FALSE)`
+
 It is usually good to clear the bibliographic environment after loading the library, in case any citations are already stored there.  
 
 
@@ -67,7 +69,7 @@ bib <- read.bibtex("knitcitations.bib")
 
 Now we can generate citations from `bib`
 
-```{r message=FALSE}
+```{r message=FALSE, results="asis"}
 citep(bib[[2]])
 citep(bib["Yihui2013"])
 ```
@@ -94,9 +96,12 @@ bibliography()
 Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.   
 
 
-## Links and tooltips
+### Links and tooltips
 
-In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=FALSE)`, or toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see `r citet("http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html", cito="discusses")`. This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
+In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=TRUE)`, creating the citation `r citep("Abrams2012", linked=TRUE)`.  We can toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  
+
+
+Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see `r citet("http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html", cito="discusses")`. This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
 
 ![Screenshot of citation produced with a tooltip.](http://farm9.staticflickr.com/8233/8499745634_04a13fe93e_o.png)
 

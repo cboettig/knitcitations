@@ -27,13 +27,12 @@ Or install the current release from your CRAN mirror with `install.packages("kni
 Quick start
 -----------
 
+
+
 It is usually good to clear the bibliographic environment after loading the library, in case any citations are already stored there.  
 
 
 
-```
-## Loading required package: bibtex
-```
 
 
 ### Cite by DOI
@@ -45,10 +44,10 @@ Cite an article by DOI and the full citation information is gathered automatical
 citep("10.1890/11-0011.1")
 ```
 
-[1] "(<a href=\"http://dx.doi.org/10.1890/11-0011.1\">Abrams _et. al._ 2012</a>)"
+[1] "(Abrams _et. al._ 2012)"
 
 
-Typically this is done with knitr's inline code syntax, creating a parenthetical citation in the text like this (<a href="http://dx.doi.org/10.1890/11-0011.1">Abrams _et. al._ 2012</a>).  We display the command in code blocks only for documenting purposes here.  `citep` provides a parenthetical citation; a in-text citation is generated with `citet`, such as this sentence cites <a href="http://dx.doi.org/10.1890/11-0011.1">Abrams _et. al._ (2012)</a>.  
+Typically this is done with knitr's inline code syntax, creating a parenthetical citation in the text like this (Abrams _et. al._ 2012).  We display the command in code blocks only for documenting purposes here.  `citep` provides a parenthetical citation; a in-text citation is generated with `citet`, such as this sentence cites Abrams _et. al._ (2012).  
 
 
 ### Cite by URL
@@ -60,7 +59,7 @@ Not all the literature we may wish to cite includes DOIs, such as [arXiv](http:/
 citep("http://knowledgeblog.org/greycite")
 ```
 
-[1] "(<a href=\"http://knowledgeblog.org/greycite\">Lord, 2012</a>)"
+[1] "(Lord, 2012)"
 
 
 to generate the citation to the Greycite tool.  
@@ -84,17 +83,13 @@ Now we can generate citations from `bib`
 citep(bib[[2]])
 ```
 
-```
-## [1] "(<a href=\"https://github.com/cboettig/knitcitations\">Boettiger, 2012</a>)"
-```
+[1] "(Boettiger, 2012)"
 
 ```r
 citep(bib["Yihui2013"])
 ```
 
-```
-## [1] "(<a href=\"http://yihui.name/knitr/\">Xie, 2013</a>)"
-```
+[1] "(Xie, 2013)"
 
 
 
@@ -107,7 +102,7 @@ When the citation is called, a key in the format `LastNameYear` is automatically
 citep("Abrams2012")
 ```
 
-[1] "(<a href=\"http://dx.doi.org/10.1890/11-0011.1\">Abrams _et. al._ 2012</a>)"
+[1] "(Abrams _et. al._ 2012)"
 
 
 Note that a custom key can also be given by naming the DOI, such as `citep(c(AbramsEtAl="10.1890/11-0011.1"))`.
@@ -125,9 +120,12 @@ bibliography()
 Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.   
 
 
-## Links and tooltips
+### Links and tooltips
 
-In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=FALSE)`, or toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see <a href="http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html" property="http://purl.org/spar/cito/discusses" >Boettiger (2013)</a>. This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
+In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=TRUE)`, creating the citation (<a href="http://dx.doi.org/10.1890/11-0011.1">Abrams _et. al._ 2012</a>).  We can toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  
+
+
+Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see Boettiger (2013). This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
 
 ![Screenshot of citation produced with a tooltip.](http://farm9.staticflickr.com/8233/8499745634_04a13fe93e_o.png)
 
@@ -135,9 +133,9 @@ In-text citations are now linked by default to the article.  We can turn this on
 
 ### CiTO  
 
-Additional semantic markup can be added the the citations themselves, such as the reason for the citation.  For instance, we can identify that we have used the method from <a href="http://dx.doi.org/10.1186/2041-1480-1-S1-S6" property="http://purl.org/spar/cito/usesMethodIn" >Shotton (2010)</a> with the inline command `citet("10.1186/2041-1480-1-S1-S6", cito = "usesMethodIn")`.  
+Additional semantic markup can be added the the citations themselves, such as the reason for the citation.  For instance, we can identify that we have used the method from Shotton (2010) with the inline command `citet("10.1186/2041-1480-1-S1-S6", cito = "usesMethodIn")`.  
 
-More discussion on using `knitcitations` for CITO and semantic markup can be found in <a href="http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html" property="http://purl.org/spar/cito/usesMethodIn" >Boettiger (2013)</a>.  
+More discussion on using `knitcitations` for CITO and semantic markup can be found in Boettiger (2013).  
 
 
 
