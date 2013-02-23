@@ -31,6 +31,9 @@ It is usually good to clear the bibliographic environment after loading the libr
 
 
 
+```
+## Loading required package: bibtex
+```
 
 
 ### Cite by DOI
@@ -57,7 +60,7 @@ Not all the literature we may wish to cite includes DOIs, such as [arXiv](http:/
 citep("http://knowledgeblog.org/greycite")
 ```
 
-[1] "(<a http://knowledgeblog.org/greycite>Lord, 2012</a>)"
+[1] "(<a href=\"http://knowledgeblog.org/greycite\">Lord, 2012</a>)"
 
 
 to generate the citation to the Greycite tool.  
@@ -82,7 +85,7 @@ citep(bib[[2]])
 ```
 
 ```
-## [1] "(<a https://github.com/cboettig/knitcitations>Boettiger, 2012</a>)"
+## [1] "(<a href=\"https://github.com/cboettig/knitcitations\">Boettiger, 2012</a>)"
 ```
 
 ```r
@@ -90,7 +93,7 @@ citep(bib["Yihui2013"])
 ```
 
 ```
-## [1] "(<a http://yihui.name/knitr/>Xie, 2013</a>)"
+## [1] "(<a href=\"http://yihui.name/knitr/\">Xie, 2013</a>)"
 ```
 
 
@@ -124,7 +127,7 @@ Other formats can be given as options to `bibliography`, as described in the hel
 
 ## Links and tooltips
 
-In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=FALSE)`, or toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see <a http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html property="http://purl.org/spar/cito/discusses" >Boettiger (2013)</a>. This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
+In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=FALSE)`, or toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see <a href="http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html" property="http://purl.org/spar/cito/discusses" >Boettiger (2013)</a>. This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
 
 ![Screenshot of citation produced with a tooltip.](http://farm9.staticflickr.com/8233/8499745634_04a13fe93e_o.png)
 
@@ -134,7 +137,7 @@ In-text citations are now linked by default to the article.  We can turn this on
 
 Additional semantic markup can be added the the citations themselves, such as the reason for the citation.  For instance, we can identify that we have used the method from <a href="http://dx.doi.org/10.1186/2041-1480-1-S1-S6" property="http://purl.org/spar/cito/usesMethodIn" >Shotton (2010)</a> with the inline command `citet("10.1186/2041-1480-1-S1-S6", cito = "usesMethodIn")`.  
 
-More discussion on using `knitcitations` for CITO and semantic markup can be found in <a http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html property="http://purl.org/spar/cito/usesMethodIn" >Boettiger (2013)</a>.  
+More discussion on using `knitcitations` for CITO and semantic markup can be found in <a href="http://carlboettiger.info/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html" property="http://purl.org/spar/cito/usesMethodIn" >Boettiger (2013)</a>.  
 
 
 
