@@ -1,10 +1,13 @@
 #' format for rdfa markup of references
 #' 
 #' An internal method used by the \code{\link{bibliography}} function
-#' @param bib a bibentry object
+#' @param bib a bibentry object containing one or more citations
+#' @param ordering a character list of the order in which information should be printed 
 #' 
 #' @keywords internal 
-print_rdfa <- function(bib){
+print_rdfa <- function(bib, ordering =  
+                       c("authors", "year", "title", "journal",
+                         "volume", "number", "pages", "doi", "uri")){
   block <- paste('<div prefix="dc: http://purl.org/dc/terms/,
                       bibo: http://purl.org/ontology/bibo/,
                       foaf: http://xmlns.com/foaf/spec/,
@@ -25,10 +28,10 @@ print_rdfa <- function(bib){
                      '</span>,', collapse="", sep="")
                ), '</span>', collapse = ""
       )
-
-    pdate <- paste(' (<span property="dc:date">', r$year, '</span>) ', sep="")
-
-    journal <- paste('<span rel="http://purl.org/dc/terms/isPartOf" 
+    authors <- paste(' ', authors, sep="") # prepend with space
+    year <- paste(' (<span property="dc:date">', r$year, '</span>) ', sep="")
+    
+    journal <- paste(' <span rel="http://purl.org/dc/terms/isPartOf" 
                             resource="[http://purl.org/dc/terms/journal]">
                         <span property="http://purl.org/dc/terms/title"
                                 content="', r$journal,  '">
@@ -39,18 +42,25 @@ print_rdfa <- function(bib){
 
 
     volume <- check(' <span property="bibo:volume">', r$volume)
-    issue <- check(' (<span property=bibo:issue">', r$number)
+    number <- check(' (<span property=bibo:issue">', r$number)
     spage <- check(' <span property=bibo:startPage">', r$page[1])
     epage <- check('-<span property=bibo:endPage">', r$page[2])
+    pages <- paste(spage, epage, sep="")
     doi  <- 
       if(!is.null(r$doi))
-        paste('<a property="bibo:doi" href="http://dx.doi.org/', r$doi, '">', r$doi, '</a>', sep="")
+        paste(' <a property="bibo:doi" href="http://dx.doi.org/', r$doi, '">', r$doi, '</a>', sep="")
     uri <- 
       if(is.null(r$doi) && !is.null(r$url))
-        paste('<a property="http://purl.org/dc/terms/URI" href="', r$url, '">', r$url, "</a>")
+        paste(' <a property="http://purl.org/dc/terms/URI" href="', r$url, '">', r$url, "</a>")
 
-    paste("\n<li>", title, authors, pdate, journal, volume, issue, spage, epage, doi, uri, "</li>\n" )
-    })
+
+    bibline <- bib_format(ordering, authors, year, 
+                          title, journal, volume, 
+                          number, pages, doi, uri, collapse=" ")
+
+
+    paste("\n<li>", bibline, "</li>\n", sep="")
+  })
 
   paste(block, "<ul class='bibliography'>", paste0(references, collapse=""), '</ul>\n</div>\n')
 }

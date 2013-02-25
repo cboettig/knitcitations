@@ -3,6 +3,7 @@
 \title{Generate the bibliography}
 \usage{
   bibliography(style = "textVersion", .bibstyle = "JSS",
+    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"),
     sort = FALSE,
     bibtex = get("bibtex_data", envir = knitcitations_options),
     ...)
@@ -12,6 +13,14 @@
   (default is plain text).  Can be text, bibtex, html,
   textVersion, R, citation, or other formats defined forthe
   print bibentry class, see ?print.bibentry for details.}
+
+  \item{ordering}{a character list of the order in which
+  information should be printed (e.g. c("author", "year",
+  "title", "journal", "volume", "number", "pages", "doi",
+  "uri")) see details.  Works only for rdfa and markdown
+  formats at the moment. Other styles are formatted
+  according to the \code{\link{bibstyle}} method, see for
+  more information.}
 
   \item{sort}{logical indicating if bibliography should be
   sorted alphabetically, defaults to FALSE}
@@ -34,10 +43,20 @@
   Generate the bibliography
 }
 \details{
-  Formating of the return data is handled by bibentry
-  printing methods.
+  The markdown and rdfa print formats can take the argument
+  `ordering`. A character string provides the order in
+  which elements should be returned.  Elements not
+  specified are omitted from the return entirely.  Even if
+  both DOI or URI (usually the URL) are given, method will
+  return the URL only if the DOI is absent/unavailable.
 }
 \examples{
+citet(citation("knitr"))
+bibliography()
+## use markdown formatting, show only author, year, and url
+bibliography("markdown", ordering = c("author", "year", "url"))
+
+## Repeat citations do not create duplicates:
 bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
 citep(bib)
 bibliography()

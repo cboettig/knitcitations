@@ -45,3 +45,4 @@ Collate:
     'url_regexpr.R'
     'cite_options.R'
     'print_markdown.R'
+    'bib_format.R'
