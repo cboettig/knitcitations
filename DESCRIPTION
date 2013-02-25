@@ -3,13 +3,15 @@ Type: Package
 Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.4-0
+Version: 0.4-1
 Date: 2012-03-24
-Description: While traditional Sweave documents can take advantage of LaTeX
-    citation tools, knitr also allows users to combine the much simpler
-    markdown with R code.  This package offers citation tools to make up
-    for this.  This package will also take advantage of the web-based nature of
-    markdown documents to allow dynamic citations pulled from the web.
+Description: knitcitations provides the ability to create dynamic citations
+    in which the bibliographic information is pulled from the web rather
+    than having to be entered into a local database such as bibtex ahead of
+    time. Knitcitations is primarily aimed at authoring in the R markdown
+    format, and can provide outputs for web-based authoring such as linked
+    text and tooltips over inline citations.  Cite using a DOI, URL, or
+    bibtex file key.  See the package URL for details.
 URL: https://github.com/cboettig/knitcitations
 Depends:
     knitr,
@@ -42,3 +44,4 @@ Collate:
     'greycite.R'
     'url_regexpr.R'
     'cite_options.R'
+    'print_markdown.R'

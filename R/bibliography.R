@@ -23,52 +23,22 @@ bibliography <- function(style="textVersion", .bibstyle = "JSS", sort=FALSE, bib
       out <- out[ordering]
     }
   }
-  if(style %in% c("html", "R", "text", "bibtex", "textVersion", "citation")){
+  if(style %in% c("html", "R", "text", "bibtex", "textVersion", "citation", "LaTeX")){
     output <- print(out, style, .bibstyle=.bibstyle, ...)
     # print(output)
   } else if(style == "rdfa"){
-    output <- sapply(out, print_rdfa)
+    output <- print_rdfa(out)
     names(output) = ""
     output <- paste0(unlist(output), collapse="")
-    pretty_output <- print(cat(output))
+    pretty_output <- cat(output)
   } else if(style == "markdown"){
-    output <- sapply(out, print_markdown)
+    output <- print_markdown(out)
     names(output) = ""
-    output <- print(paste0(unlist(output), collapse=""))
-    print(output)
+    # output <- print(paste0(unlist(output), collapse=""))
+    pretty_output <- cat(output)
   } else {
     stop("Style not recognized")
   }
   invisible(output)
 }
-
-#' print method for markdown format
-#' @keywords internal
-print_markdown <- function(bib){
-  ## create individual citations
-  references <- sapply(bib, function(r){ 
-    title <- paste(r$title, ",", sep="")
-    authors <-      
-        paste(sapply(r$author, function(x) 
-               paste(x$given[1], " ", x$family, ", ", collapse="", sep=""))
-              , sep="", collapse="")
-    pdate <- if(!is.null(r$year))
-               paste("(", r$year, ")", sep="")
-    journal <- paste("*", r$journal, "*,", sep="")
-    volume <- paste('**', r$volume, '**', sep="")
-    issue <- r$number
-    spage <- r$page[1]
-    epage <- if(!is.null(r$page[2])) 
-                paste('-', r$page[2], sep="")
-             
-    doi  <- paste('[',  r$doi, '](http://dx.doi.org/', r$doi, ')', sep="")
-    paste("\n- ", title, authors, pdate, journal, volume, issue, spage, epage, doi)
-    })
-
-  paste(paste0(references, collapse=""))
-}
-
-
-
-
 

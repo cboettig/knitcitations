@@ -1,5 +1,6 @@
 #' format for rdfa markup of references
 #' 
+#' An internal method used by the \code{\link{bibliography}} function
 #' @param bib a bibentry object
 #' 
 #' @keywords internal 
@@ -41,9 +42,14 @@ print_rdfa <- function(bib){
     issue <- check(' (<span property=bibo:issue">', r$number)
     spage <- check(' <span property=bibo:startPage">', r$page[1])
     epage <- check('-<span property=bibo:endPage">', r$page[2])
-    doi  <- paste('<a property="bibo:doi" href="http://dx.doi.org/', r$doi, '">', r$doi, '</a>', sep="")
+    doi  <- 
+      if(!is.null(r$doi))
+        paste('<a property="bibo:doi" href="http://dx.doi.org/', r$doi, '">', r$doi, '</a>', sep="")
+    uri <- 
+      if(is.null(r$doi) && !is.null(r$url))
+        paste('<a property="http://purl.org/dc/terms/URI" href="', r$url, '">', r$url, "</a>")
 
-    paste("\n<li>", title, authors, pdate, journal, volume, issue, spage, epage, doi, "</li>\n" )
+    paste("\n<li>", title, authors, pdate, journal, volume, issue, spage, epage, doi, uri, "</li>\n" )
     })
 
   paste(block, "<ul class='bibliography'>", paste0(references, collapse=""), '</ul>\n</div>\n')

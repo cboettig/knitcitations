@@ -5,7 +5,8 @@
   print_markdown(bib)
 }
 \description{
-  print method for markdown format
+  An internal method used by the \code{\link{bibliography}}
+  function
 }
 \keyword{internal}
 

@@ -8,7 +8,8 @@
   \item{bib}{a bibentry object}
 }
 \description{
-  format for rdfa markup of references
+  An internal method used by the \code{\link{bibliography}}
+  function
 }
 \keyword{internal}
 
