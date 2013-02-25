@@ -21,7 +21,15 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+
+
+v0.4-2
+------
+* Testing out `bib_format` method to change order of citation elements in reference list
+
+
 v0.4-1
+------
 
 * Fixes Issue [#27](https://github.com/cboettig/knitcitations/issues/27) in rdfa printing
 * Nicer markdown printing

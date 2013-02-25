@@ -18,7 +18,7 @@ print_markdown <- function(bib, ordering =
                paste(" (", r$year, ")", sep="")
 
     journal <- if(!is.null(r$journal))
-      paste(" *", r$journal, "*,", sep="")
+      paste(" *", r$journal, "*", sep="")
     volume <- if(!is.null(r$volume))
       paste(' **', r$volume, '**', sep="")
     number <- if(!is.null(r$number))

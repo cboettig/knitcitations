@@ -3,9 +3,22 @@
 #' An internal function used by methods such as print_rdfa
 #' and print_markdown to specify a custom odering of the elements.
 #' 
+#' @param ordering a character string giving the ordering of elements
+#' @param authors the author element
+#' @param year the year element
+#' @param title element
+#' @param journal journal element
+#' @param volume volume element
+#' @param number isue number element
+#' @param pages the pages element
+#' @param doi the doi element
+#' @param uri the URL element
+#' @param collapse the collapse value passed to paste (e.g. separate with spaces only)
 #' @details currently not possible to specify custom markup 
 #' (quotations, bold, italics, etc) though this could be added
-#' more or less without changing the API.  
+#' more or less without changing the API. 
+#' @keywords internal
+#' 
 bib_format <- function(ordering = 
                        c("authors", "year", "title", "journal",
                          "volume", "number", "pages", "doi", "url"),

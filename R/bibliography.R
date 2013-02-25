@@ -22,7 +22,7 @@
 #' bibliography()
 #' 
 #' @export
-bibliography <- function(style="textVersion", .bibstyle = "JSS", 
+bibliography <- function(style="markdown", .bibstyle = "JSS", 
                          ordering =  c("authors", "year", "title", 
                                        "journal", "volume", "number",
                                        "pages", "doi", "url"), 

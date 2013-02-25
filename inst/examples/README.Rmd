@@ -27,8 +27,6 @@ Or install the current release from your CRAN mirror with `install.packages("kni
 Quick start
 -----------
 
-`r cite_options(linked=FALSE)`
-
 It is usually good to clear the bibliographic environment after loading the library, in case any citations are already stored there.  
 
 
@@ -36,6 +34,8 @@ It is usually good to clear the bibliographic environment after loading the libr
 library(knitcitations)
 newbib()
 ```
+
+`r cite_options(linked=FALSE)`
 
 ### Cite by DOI
 
@@ -93,8 +93,13 @@ At the end of our document we can generate the traditional "References" or "Work
 bibliography()
 ```
 
-Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.   
+Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.  For instance, we can specify the format as "markdown".  The custom formats "markdown" and "rdfa" take an additional argument, "ordering", which can specify what elements we want to print and what order they should be given in.  For instance, we can omit everything but the authors, year, and journal, given in that order:
 
+```{r results="asis"}
+bibliography("markdown", ordering=c("authors", "year", "journal"))
+```
+
+(Note that since version 0.5, "markdown" is the default and can be omitted)
 
 ### Links and tooltips
 

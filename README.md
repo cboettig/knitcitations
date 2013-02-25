@@ -27,9 +27,9 @@ Or install the current release from your CRAN mirror with `install.packages("kni
 Quick start
 -----------
 
-
-
 It is usually good to clear the bibliographic environment after loading the library, in case any citations are already stored there.  
+
+
 
 
 
@@ -117,8 +117,27 @@ bibliography()
 ```
 
 
-Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.   
+- Peter A. Abrams, Lasse Ruokolainen, Brian J. Shuter, Kevin S. McCann,   (2012) Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator–Prey Metacommunities.  *Ecology*  **93**  [10.1890/11-0011.1](http://dx.doi.org/10.1890/11-0011.1)
+- Carl Boettiger,   (2012) knitcitations: Citations for knitr markdown files.  [https://github.com/cboettig/knitcitations](https://github.com/cboettig/knitcitations)
+- Yihui Xie,   (2013) knitr: A general-purpose package for dynamic report generation in R.  [http://yihui.name/knitr/](http://yihui.name/knitr/)
+- Phillip Lord,   (2012) Greycite.  *Knowledge Blog*  [http://knowledgeblog.org/greycite](http://knowledgeblog.org/greycite)
 
+
+Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.  For instance, we can specify the format as "markdown".  The custom formats "markdown" and "rdfa" take an additional argument, "ordering", which can specify what elements we want to print and what order they should be given in.  For instance, we can omit everything but the authors, year, and journal, given in that order:
+
+
+```r
+bibliography("markdown", ordering = c("authors", "year", "journal"))
+```
+
+
+- Peter A. Abrams, Lasse Ruokolainen, Brian J. Shuter, Kevin S. McCann,   (2012)  *Ecology*
+- Carl Boettiger,   (2012)
+- Yihui Xie,   (2013)
+- Phillip Lord,   (2012)  *Knowledge Blog*
+
+
+(Note that since version 0.5, "markdown" is the default and can be omitted)
 
 ### Links and tooltips
 

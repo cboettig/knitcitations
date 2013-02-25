@@ -2,8 +2,8 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-  bibliography(style = "textVersion", .bibstyle = "JSS",
-    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"),
+  bibliography(style = "markdown", .bibstyle = "JSS",
+    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "url"),
     sort = FALSE,
     bibtex = get("bibtex_data", envir = knitcitations_options),
     ...)
@@ -54,7 +54,7 @@
 citet(citation("knitr"))
 bibliography()
 ## use markdown formatting, show only author, year, and url
-bibliography("markdown", ordering = c("author", "year", "url"))
+bibliography("markdown", ordering = c("authors", "year", "url"))
 
 ## Repeat citations do not create duplicates:
 bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"), citation("bibtex"), citation("knitr"), citation("knitcitations"), citation("bibtex"))
