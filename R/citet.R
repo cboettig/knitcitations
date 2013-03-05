@@ -57,7 +57,7 @@ citet <- function(x, cito = NULL,
         bibinfo <- gsub('"', '', format(out)) # no quotes in text formatting please
         bibinfo <- gsub('<URL:', '', bibinfo) # kill other stupid characters too
         bibinfo <- gsub('>', '', bibinfo) 
-        output <- paste('<span rel="tooltip" title="', bibinfo, '">', output, '</span>', sep='')
+        output <- paste('<span class="tooltip" title="', bibinfo, '">', output, '</span>', sep='')
       }
     } else { # not linked 
       output <- inline_format(out)
