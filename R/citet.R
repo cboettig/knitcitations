@@ -47,7 +47,7 @@ citet <- function(x, cito = NULL,
     if(linked){
       citoproperty <- ""
       if(!is.null(cito))
-        citoproperty <- paste(' property="http://purl.org/spar/cito/', cito, '" ', sep='')
+        citoproperty <- paste(' rel="http://purl.org/spar/cito/', cito, '" ', sep='')
       if(!is.null(out$doi)) # Link by DOI if a DOI is available
         link <- paste('href="http://dx.doi.org/', out[[1]]$doi, '"', sep='')
       else ## Attempt to link by bibtex URL field.  
