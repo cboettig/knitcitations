@@ -62,7 +62,7 @@ print_rdfa <- function(bib, ordering =
     paste("\n<li>", bibline, "</li>\n", sep="")
   })
 
-  paste(block, "<ul class='bibliography'>", paste0(references, collapse=""), '</ul>\n</div>\n')
+  paste(block, "<ul class='bibliography'>", paste(references, collapse="", sep=""), '</ul>\n</div>\n')
 }
 
 #' check if the element is present before creating a RDFa span tag for it.  

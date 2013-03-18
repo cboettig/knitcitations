@@ -40,7 +40,7 @@ print_markdown <- function(bib, ordering =
     paste("\n-", bibline, sep="")
     })
 
-  paste(paste0(references, collapse=""))
+  paste(paste(references, collapse="", sep=""))
 }
 
 

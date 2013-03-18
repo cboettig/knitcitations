@@ -22,11 +22,26 @@ And constructed with the following guidelines:
 For more information on SemVer, please visit http://semver.org/.
 
 
+v0.4-4
+------
+
+* Depends R (>= 2.15.0)
+* Released to CRAN
+* Minor changes: replace paste0 with paste, sep=""
+
+
+v0.4-3
+------
+
+* Some bugfixes to bib_format method
+* tooltip javascript uses class 'showtooltip' rather than rel='tooltip' to avoid conflicting semantic meaning and styling and to avoid clashes with existing 'tooltip' class in twitter bootstrap
+* cito links fix href and use rel instead of property
+
 
 v0.4-2
 ------
-* Testing out `bib_format` method to change order of citation elements in reference list
 
+* Testing out `bib_format` method to change order of citation elements in reference list
 
 v0.4-1
 ------

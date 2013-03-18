@@ -40,12 +40,12 @@ bibliography <- function(style="markdown", .bibstyle = "JSS",
   } else if(style == "rdfa"){
     output <- print_rdfa(out, ordering=ordering)
     names(output) = ""
-    output <- paste0(unlist(output), collapse="")
+    output <- paste(unlist(output), collapse="", sep="")
     pretty_output <- cat(output)
   } else if(style == "markdown"){
     output <- print_markdown(out, ordering=ordering)
     names(output) = ""
-    # output <- print(paste0(unlist(output), collapse=""))
+    # output <- print(paste(unlist(output), collapse="", sep=""))
     pretty_output <- cat(output)
   } else {
     stop("Style not recognized")
