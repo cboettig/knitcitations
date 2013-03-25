@@ -4,6 +4,7 @@
 #' @param inline_format a function for formating the inline citation, defaults to authoryear_t
 #' @param format_inline_fn function to format a single inline citation
 #' @param ... additional arguments passed to citet, see \code{\link{citet}} for details
+#' @param page optional page or page range that can be given as extra text. Page ranges should be separated by hyphen, giving "pp.", while single page returns as "p." followed by page number.  
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
@@ -33,9 +34,14 @@
 #' 
 citep <- function(x, ..., 
                   format_inline_fn = format_authoryear_p, 
-                  inline_format = authoryear_p){
+                  inline_format = authoryear_p,
+                  page = NULL){
   text <- citet(x, ..., 
                 format_inline_fn = format_inline_fn,
                 inline_format = inline_format) 
-  paste("(", text, ")", sep="", collapse=";")
+  if(!is.null(page)){
+    pgs <- ifelse(grepl("-", page), "pp.", "p.")
+    pgs <- paste(",", pgs, page)
+  }
+  paste("(", text, pgs, ")", sep="", collapse=";")
 }

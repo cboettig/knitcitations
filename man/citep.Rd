@@ -3,7 +3,7 @@
 \title{Add a paranthetical citation}
 \usage{
   citep(x, ..., format_inline_fn = format_authoryear_p,
-    inline_format = authoryear_p)
+    inline_format = authoryear_p, page = NULL)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
@@ -17,6 +17,11 @@
 
   \item{...}{additional arguments passed to citet, see
   \code{\link{citet}} for details}
+
+  \item{page}{optional page or page range that can be given
+  as extra text. Page ranges should be separated by hyphen,
+  giving "pp.", while single page returns as "p." followed
+  by page number.}
 }
 \value{
   a parenthetical inline citation
