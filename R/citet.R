@@ -8,6 +8,7 @@
 #' @param numerical use citation instead of author-year format? (Not functional yet!) Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
 #' @param format_inline_fn function to format a single inline citation
 #' @param inline_format a function for formating the inline citation, defaults to authoryear_t (designed for internal use only)
+#' @param page optional page range added after citation
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}.
@@ -38,7 +39,7 @@ citet <- function(x, cito = NULL,
                   linked = get("linked", envir=knitcitations_options), 
                   numerical = get("numerical", envir=knitcitations_options), 
                   format_inline_fn = format_authoryear_t,  
-                  inline_format = authoryear_t){
+                  inline_format = authoryear_t, page = NULL){
 # FIXME 
   out <- cite(x, format_inline_fn = format_inline_fn)
   if(length(out) > 1) {
@@ -62,7 +63,12 @@ citet <- function(x, cito = NULL,
     } else { # not linked 
       output <- inline_format(out)
     }
-  }  
-  output
+  } 
+  if(!is.null(page)){
+    pgs <- ifelse(grepl("-", page), "pp.", "p.")
+    page <- paste(",", pgs, page)
+  }
+
+  paste(output, page)
 }
 

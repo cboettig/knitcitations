@@ -41,7 +41,7 @@ citep <- function(x, ...,
                 inline_format = inline_format) 
   if(!is.null(page)){
     pgs <- ifelse(grepl("-", page), "pp.", "p.")
-    pgs <- paste(",", pgs, page)
+    page <- paste(",", pgs, page)
   }
-  paste("(", text, pgs, ")", sep="", collapse=";")
+  paste("(", text, page, ")", sep="", collapse=";")
 }
