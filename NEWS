@@ -25,7 +25,7 @@ For more information on SemVer, please visit http://semver.org/.
 v0.4-5
 ------
 
-* Provide page range as option to `citep` (see issue [#32](https://github.com/cboettig/knitcitations/issues/32))
+* Provide page range as option to `citep` and `citet` (see issue [#32](https://github.com/cboettig/knitcitations/issues/32))
 
 
 v0.4-4
