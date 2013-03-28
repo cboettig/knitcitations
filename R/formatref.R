@@ -20,7 +20,9 @@ formatref <- function(a){
         volume = xpathSApply(a, "//journal_volume/volume", xmlValue),
         doi = xpathSApply(a, "//journal_article/doi_data/doi", xmlValue),
         issn = xpathSApply(a, "//issn[@media_type='print']", xmlValue),
-#        url = xpathSApply(a, "//journal_article/doi_data/resource", xmlValue)
+#        url = xpathSApply(a, "//journal_article/doi_data/resource", xmlValue),
+        pages = paste(xpathSApply(a, "//journal_article/pages/first_page", xmlValue),
+                 xpathSApply(a, "//journal_article/pages/last_page", xmlValue), sep="--")
         )
   )
 }

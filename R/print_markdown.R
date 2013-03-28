@@ -23,10 +23,13 @@ print_markdown <- function(bib, ordering =
       paste(' **', r$volume, '**', sep="")
     number <- if(!is.null(r$number))
       paste(" (", r$number, ") ", sep="")
-    spage <- if(!is.null(r$page[1]))
-      paste(" ", r$page[1], sep="")
-    epage <- if(!is.null(r$page[2])) 
-                paste('-', r$page[2], sep="")
+
+    pgs <- if(!is.null(r$pages))
+      strsplit(r$pages, "--")[[1]]
+    spage <- if(!is.null(pgs[1]))
+      paste(" ", pgs[1], sep="")
+    epage <- if(!is.null(pgs[2])) 
+                paste('-', pgs[2], sep="")
     pages <- paste(spage, epage, sep="")
     doi  <- if(!is.null(r$doi))
       paste(' [',  r$doi, '](http://dx.doi.org/', r$doi, ')', sep="")

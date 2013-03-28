@@ -43,8 +43,15 @@ print_rdfa <- function(bib, ordering =
 
     volume <- check(' <span property="bibo:volume">', r$volume)
     number <- check(' (<span property=bibo:issue">', r$number)
-    spage <- check(' <span property=bibo:startPage">', r$page[1])
-    epage <- check('-<span property=bibo:endPage">', r$page[2])
+    pgs <- if(!is.null(r$pages))
+      strsplit(r$pages, "--")[[1]]
+    spage <- if(!is.null(pgs[1]))
+      paste(" ", pgs[1], sep="")
+    epage <- if(!is.null(pgs[2])) 
+                paste('-', pgs[2], sep="")
+
+    spage <- check(' <span property=bibo:startPage">', spage)
+    epage <- check('-<span property=bibo:endPage">', epage)
     pages <- paste(spage, epage, sep="")
     doi  <- 
       if(!is.null(r$doi))
