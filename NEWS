@@ -26,6 +26,7 @@ v0.4-5
 ------
 
 * Provide page range as option to `citep` and `citet` (see issue [#32](https://github.com/cboettig/knitcitations/issues/32))
+* Fixes a bug in which page numbers were not grabbed from the DOI look-up  ([#33](https://github.com/cboettig/knitcitations/issues/33))  
 
 
 v0.4-4
