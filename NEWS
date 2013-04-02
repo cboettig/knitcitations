@@ -27,13 +27,13 @@ v0.4-5
 
 * Provide page range as option to `citep` and `citet` (see issue [#32](https://github.com/cboettig/knitcitations/issues/32))
 * Fixes a bug in which page numbers were not grabbed from the DOI look-up  ([#33](https://github.com/cboettig/knitcitations/issues/33))  
-
+* Date added to Description file so that users can cite the development version properly ([#34](https://github.com/cboettig/knitcitations/issues/34))
 
 v0.4-4
 ------
 
 * Depends R (>= 2.15.0)
-* Released to CRAN
+* Released to CRAN (2013-03-18)
 * Minor changes: replace paste0 with paste, sep=""
 
 

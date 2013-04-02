@@ -4,6 +4,7 @@ Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
 Version: 0.4-5
+Date: 2013
 Description: knitcitations provides the ability to create dynamic citations
     in which the bibliographic information is pulled from the web rather
     than having to be entered into a local database such as bibtex ahead of
