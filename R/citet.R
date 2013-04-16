@@ -40,7 +40,6 @@ citet <- function(x, cito = NULL,
                   numerical = get("numerical", envir=knitcitations_options), 
                   format_inline_fn = format_authoryear_t,  
                   inline_format = authoryear_t, page = NULL){
-# FIXME 
   out <- cite(x, format_inline_fn = format_inline_fn)
   if(length(out) > 1) {
     output <- paste(sapply(out, citet, cito, tooltip, linked, format_inline_fn, inline_format), collapse="; ", sep="")
@@ -55,10 +54,12 @@ citet <- function(x, cito = NULL,
         link <- paste('href="', out$url, '"', sep='')
       output <- paste('<a ', link, citoproperty, '>', I(inline_format(out[[1]])), '</a>', sep='')
       if(tooltip){
-        bibinfo <- gsub('"', '', format(out)) # no quotes in text formatting please
-        bibinfo <- gsub('<URL:', '', bibinfo) # kill other stupid characters too
-        bibinfo <- gsub('>', '', bibinfo) 
-        output <- paste('<span class="showtooltip" title="', bibinfo, '">', output, '</span>', sep='')
+        bibinfo <- format(out, "html")
+        # Clean up silly default html formatting
+        bibinfo <- gsub('<p>', '', bibinfo) 
+        bibinfo <- gsub('B>', 'strong>', bibinfo) 
+        bibinfo <- gsub('EM>', 'em>', bibinfo) 
+        output <- paste('<span class="showtooltip" data-html="true" title="', bibinfo, '">', output, '</span>', sep='')
       }
     } else { # not linked 
       output <- inline_format(out)

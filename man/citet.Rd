@@ -7,7 +7,7 @@
     linked = get("linked", envir = knitcitations_options),
     numerical = get("numerical", envir = knitcitations_options),
     format_inline_fn = format_authoryear_t,
-    inline_format = authoryear_t)
+    inline_format = authoryear_t, page = NULL)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
@@ -37,6 +37,8 @@
   \item{inline_format}{a function for formating the inline
   citation, defaults to authoryear_t (designed for internal
   use only)}
+
+  \item{page}{optional page range added after citation}
 }
 \value{
   a text inline citation

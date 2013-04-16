@@ -3,7 +3,7 @@ Type: Package
 Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 0.4-5
+Version: 0.4-6
 Date: 2013
 Description: knitcitations provides the ability to create dynamic citations
     in which the bibliographic information is pulled from the web rather
@@ -47,3 +47,4 @@ Collate:
     'cite_options.R'
     'print_markdown.R'
     'bib_format.R'
+    'print_html.R'

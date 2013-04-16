@@ -34,13 +34,18 @@ bibliography <- function(style="markdown", .bibstyle = "JSS",
       out <- out[ordering]
     }
   }
-  if(style %in% c("html", "R", "text", "bibtex", "textVersion", "citation", "LaTeX")){
+  if(style %in% c("R", "text", "bibtex", "textVersion", "citation", "LaTeX")){
     output <- print(out, style, .bibstyle=.bibstyle, ...)
     # print(output)
   } else if(style == "rdfa"){
     output <- print_rdfa(out, ordering=ordering)
     names(output) = ""
     output <- paste(unlist(output), collapse="", sep="")
+    pretty_output <- cat(output)
+  } else if(style == "html"){
+    output <- print_html(out, ordering=ordering)
+    names(output) = ""
+    # output <- print(paste(unlist(output), collapse="", sep=""))
     pretty_output <- cat(output)
   } else if(style == "markdown"){
     output <- print_markdown(out, ordering=ordering)
