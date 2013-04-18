@@ -55,11 +55,18 @@ citet <- function(x, cito = NULL,
       output <- paste('<a ', link, citoproperty, '>', I(inline_format(out[[1]])), '</a>', sep='')
       if(tooltip){
         bibinfo <- format(out, "html")
-        # Clean up silly default html formatting
-        bibinfo <- gsub('<p>', '', bibinfo) 
-        bibinfo <- gsub('B>', 'strong>', bibinfo) 
-        bibinfo <- gsub('EM>', 'em>', bibinfo) 
-        output <- paste('<span class="showtooltip" data-html="true" title="', bibinfo, '">', output, '</span>', sep='')
+        # Clean up silly default html formatting -- nope, just have to strip the html.  
+#        bibinfo <- gsub('<p>', '', bibinfo) 
+#        bibinfo <- gsub('B>', 'strong>', bibinfo) 
+#        bibinfo <- gsub('EM>', 'em>', bibinfo) 
+         bibinfo <- gsub('<a .*</a>', '', bibinfo) 
+         bibinfo <- gsub('<B>', '', bibinfo) 
+         bibinfo <- gsub('<EM>', '', bibinfo) 
+         bibinfo <- gsub('</B>', '', bibinfo) 
+         bibinfo <- gsub('</EM>', '', bibinfo) 
+         bibinfo <- gsub('\\n', ' ', bibinfo) 
+         bibinfo <- gsub(', \\.', '.', bibinfo) 
+     output <- paste('<span class="showtooltip" title="', bibinfo, '">', output, '</span>', sep='')
       }
     } else { # not linked 
       output <- inline_format(out)

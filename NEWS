@@ -24,8 +24,9 @@ For more information on SemVer, please visit http://semver.org/.
 
 v0.4-6
 ------
-* Tooltip provides HTML formatting, with link (issue [#37](https://github.com/cboettig/knitcitations/issues/37))
 * html print method now handled directly in knitcitations just like the markdown print method, with ordering, etc, since default html printing method sucks
+* ~~Tooltip provides HTML formatting, with link (issue [#37](https://github.com/cboettig/knitcitations/issues/37))~~
+* HTML formatting inside tooltip (data-html="true") removed, since incompatible with Pandoc parser. [pandoc/#831](https://github.com/jgm/pandoc/issues/831) 
 
 v0.4-5
 ------
