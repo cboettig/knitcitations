@@ -56,7 +56,7 @@ citet <- function(x, cito = NULL,
       if(tooltip){
         bibinfo <- format(out, "html")
         # Clean up silly default html formatting -- nope, just have to strip the html.  
-#        bibinfo <- gsub('<p>', '', bibinfo) 
+        bibinfo <- gsub('<p>', '', bibinfo) 
 #        bibinfo <- gsub('B>', 'strong>', bibinfo) 
 #        bibinfo <- gsub('EM>', 'em>', bibinfo) 
          bibinfo <- gsub('<a .*</a>', '', bibinfo) 
