@@ -54,7 +54,7 @@ format_authoryear_p <- function(entry, char=""){
 #    else if(n==3)
 #      sprintf("%s, %s & %s, %s%s", entry$author[[1]]$family, entry$author[[2]]$family, entry$author[[3]]$family,  entry$year, char)
     else if(n>2)
-      sprintf("%s _et. al._ %s%s", entry$author[[1]]$family, entry$year, char)
+      sprintf("%s et al. %s%s", entry$author[[1]]$family, entry$year, char)
 }
 
 
@@ -75,7 +75,7 @@ format_authoryear_t <- function(entry, char=""){
     else if(n==2)
       sprintf("%s & %s (%s%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year, char)
     else if(n>2)
-      sprintf("%s _et. al._ (%s%s)", entry$author[[1]]$family, entry$year, char)
+      sprintf("%s et al. (%s%s)", entry$author[[1]]$family, entry$year, char)
 }
 
 
