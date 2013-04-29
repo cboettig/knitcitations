@@ -59,6 +59,9 @@ citet <- function(x, cito = NULL,
         bibinfo <- gsub('<p>', '', bibinfo) 
 #        bibinfo <- gsub('B>', 'strong>', bibinfo) 
 #        bibinfo <- gsub('EM>', 'em>', bibinfo) 
+         bibinfo <- gsub("&ldquo;", "'", bibinfo) # okay if data-html is on 
+         bibinfo <- gsub("&rdquo;", "'", bibinfo) # okay if data-html is on 
+         bibinfo <- gsub("&ndash;", "-", bibinfo)  # okay if data-html is on 
          bibinfo <- gsub('<a .*</a>', '', bibinfo) 
          bibinfo <- gsub('<B>', '', bibinfo) 
          bibinfo <- gsub('<EM>', '', bibinfo) 
