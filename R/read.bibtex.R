@@ -3,7 +3,7 @@
 #' @param bibfile a bibtex .bib file
 #' @return a list of citation information
 #' @details this differs from read.bib in that the list is named.
-#' this allows one to use citep(bib[c("key1", "key2")]
+#'  this allows one to use citep(bib[c("key1", "key2")]
 #' @import bibtex
 #' @export
 #' @seealso read.bib citep citet

@@ -1,9 +1,12 @@
 #' write knitcitations data to a cache object instead of a file
 #' 
 #' @param a_bibentry a bibentry object, possibly already named with a key
-#' @param bibtex logical, use a bibtex file for the cache of cited works rather than an environment?
-#' @return writes the bibentry to the environment 'knitcitationsCache', created by 
-write_cache <- function(a_bibentry, bibtex = get("bibtex_data", envir=knitcitations_options)){
+#' @param bibtex logical, use a bibtex file for the cache of cited works 
+#'  rather than an environment?
+#' @return writes the bibentry to the environment 'knitcitationsCache'
+write_cache <- function(a_bibentry, 
+                        bibtex = get("bibtex_data",
+                                     envir=knitcitations_options)){
   ## Create a bibkey for the entry if it doesn't have one.  
   if(is.null(names(a_bibentry))){
     a_bibentry <- create_bibkey(a_bibentry)

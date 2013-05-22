@@ -10,7 +10,7 @@
   objects, or a character vector of package names}
 
   \item{file}{output bibtex file. Will automatically append
-  '.bib' if not added.  if 'NULL' will use stdout.}
+  '.bib' if not added. if 'NULL' will use stdout.}
 
   \item{append}{a logical indicating that bibtex entries be
   added the the file.  If FALSE (default), the file is
@@ -35,7 +35,9 @@
   write a bibtex file
 }
 \examples{
-write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations"), "TempleLang2012"=citation("RCurl")))
+write.bibtex(c("Yihui2013" = citation("knitr"),
+                "Boettiger2013" = citation("knitcitations"),
+                "TempleLang2012"=citation("RCurl")))
  bib <- read.bibtex("knitcitations.bib")
 }
 \seealso{

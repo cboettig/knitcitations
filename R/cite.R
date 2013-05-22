@@ -1,11 +1,14 @@
 #' Add a citation (internal for citet and citep) 
 #'
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
-#' @param bibtex internal logical indicating if we use a cache or external bibtex file
-#' @param format_inline_fn a function which will create the inline citation format (stored with the entry to avoid non-unique citation styles, e.g. Boettiger 2012a, Boettiger 2012b.)
+#' @param bibtex internal logical indicating if we use a cache or 
+#'  external bibtex file
+#' @param format_inline_fn a function which will create the inline 
+#'  citation format (stored with the entry to avoid non-unique citation
+#'  styles, e.g. Boettiger 2012a, Boettiger 2012b.)
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
-#' which can be printed with \code{\link{bibliography}}
+#'  which can be printed with \code{\link{bibliography}}
 #' @import knitr
 #' @export
 #' @examples

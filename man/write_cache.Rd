@@ -14,7 +14,7 @@
 }
 \value{
   writes the bibentry to the environment
-  'knitcitationsCache', created by
+  'knitcitationsCache'
 }
 \description{
   write knitcitations data to a cache object instead of a

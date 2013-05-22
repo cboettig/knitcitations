@@ -3,10 +3,13 @@
 #' create_bibkey generates a key using a LastNameYear format or given key.
 #' @param bibentry a bibentry object without a bibkey
 #' @param key the key to use as the bibkey. Defaults to NULL, in which case
-#' the function constructs its own key using LastNameYear format (from first author).  
-#' @param current a list of currently existing citations, such as the output from 'bibliography()', which will force 'create_bibkey'
+#'  the function constructs its own key using LastNameYear format (from 
+#'  first author).  
+#' @param current a list of currently existing citations, such as the output
+#'  from 'bibliography()', which will force 'create_bibkey'
 #'  to generate a unique pattern. 
-#' @return an updated bibentry that now has a key value and is named using its key
+#' @return an updated bibentry that now has a key value and is named using
+#'  its key
 #' @examples
 #'  r <- ref("10.3998/3336451.0009.101")
 #'  print(r, "Bibtex")
@@ -23,7 +26,7 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
        key <- bibentry$key
     if(!is.null(names(bibentry)))
        key <- names(bibentry)
-    # If a key is not found and not specified in the fn call, please generated it
+    # If a key is not found and not specified in the fn call, please generate
     if(is.null(key)){
       key <- paste(bibentry$author$family[[1]], bibentry$year, sep="")
       # Checks if the the key is in use

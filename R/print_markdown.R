@@ -1,7 +1,8 @@
 #' print method for markdown format
 #' @param bib a bibentry object containing one or more citations
-#' @param ordering a character list of the order in which information should be printed 
-#' An internal method used by the \code{\link{bibliography}} function
+#' @param ordering a character list of the order in which information should
+#' be printed 
+#' @details An internal method used by the \code{\link{bibliography}} function
 #' @keywords internal
 print_markdown <- function(bib, ordering =  
                        c("authors", "year", "title", "journal",

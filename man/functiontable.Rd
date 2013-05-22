@@ -21,10 +21,10 @@
 \details{
   useful for Sweave/knit manuals specifying a table of
   functions Note that xtable format can also be set with
-  \code{options(xtable.type="latex")} \code{or
-  options(xtable.type="html")}. This function modified from
-  DWin's solution on StackOverflow.com,
-  http://stackoverflow.com/questions/7326808/getting-the-list-of-functions-in-an-r-package-to-be-used-in-latex
+  \code{options(xtable.type="latex")} or
+  \code{options(xtable.type="html")}.  This function
+  modified from DWin's solution on StackOverflow.com,
+  http://stackoverflow.com/questions/7326808/
 }
 \examples{
 functiontable("xtable")

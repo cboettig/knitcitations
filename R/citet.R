@@ -1,11 +1,18 @@
 #' Add a textual citation 
 #'
-#' Parameters listed here are the same for parenthetical citation, \code{\link{citep}}.  
+#' Parameters listed here are the same for parenthetical 
+#'  citation, \code{\link{citep}}.  
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param cito Semantic reason for the citation. Only active if linked=TRUE
-#' @param tooltip Show a citation information on mouseover. Requires the tooltip javascript from http://twitter.github.com/bootstrap Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
-#' @param linked link the inline citation text to the resource by doi (if available) or url? Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
-#' @param numerical use citation instead of author-year format? (Not functional yet!) Pass logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
+#' @param tooltip Show a citation information on mouseover. Requires the
+#'  tooltip javascript from http://twitter.github.com/bootstrap Pass 
+#'  logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
+#' @param linked link the inline citation text to the resource by doi 
+#'  (if available) or url? Pass logical TRUE/FALSE or set default behavior 
+#'  with \code{\link{cite_options}}
+#' @param numerical use citation instead of author-year format? (Not 
+#'  functional yet!) Pass logical TRUE/FALSE or set default behavior 
+#'  with \code{\link{cite_options}}
 #' @param format_inline_fn function to format a single inline citation
 #' @param inline_format a function for formating the inline citation, defaults to authoryear_t (designed for internal use only)
 #' @param page optional page range added after citation

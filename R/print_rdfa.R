@@ -2,7 +2,8 @@
 #' 
 #' An internal method used by the \code{\link{bibliography}} function
 #' @param bib a bibentry object containing one or more citations
-#' @param ordering a character list of the order in which information should be printed 
+#' @param ordering a character list of the order in which information should 
+#'  be printed 
 #' 
 #' @keywords internal 
 print_rdfa <- function(bib, ordering =  

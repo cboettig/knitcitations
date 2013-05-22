@@ -1,6 +1,6 @@
 \name{unique_inline}
 \alias{unique_inline}
-\title{Helper function to generate a unique inline citation format (called by cite)}
+\title{Helper function to generate a unique inline citation format}
 \usage{
   unique_inline(entry, format_inline_fn, i = 2)
 }

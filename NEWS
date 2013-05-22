@@ -15,25 +15,35 @@ Releases will be numbered with the following semantic versioning format:
 
 And constructed with the following guidelines:
 
-* Breaking backward compatibility bumps the major (and resets the minor and patch)
-* New additions without breaking backward compatibility bumps the minor (and resets the patch)
+* Breaking backward compatibility bumps the major (and resets the minor 
+  and patch)
+* New additions without breaking backward compatibility bumps the minor 
+  (and resets the patch)
 * Bug fixes and misc changes bumps the patch
 
 For more information on SemVer, please visit http://semver.org/.
 
+v0.4-7
+------
+* Hard-wrap roxygen documentation to avoid line overflows in pdf manual
 
 v0.4-6
 ------
-* html print method now handled directly in knitcitations just like the markdown print method, with ordering, etc, since default html printing method sucks
+* html print method now handled directly in knitcitations just like the
+  markdown print method, with ordering, etc, since default html printing 
+  method sucks
 * ~~Tooltip provides HTML formatting, with link (issue [#37](https://github.com/cboettig/knitcitations/issues/37))~~
-* HTML formatting inside tooltip (data-html="true") removed, since incompatible with Pandoc parser. [pandoc/#831](https://github.com/jgm/pandoc/issues/831) 
+* HTML formatting inside tooltip (data-html="true") removed, since incompatible
+  with Pandoc parser. [pandoc/#831](https://github.com/jgm/pandoc/issues/831) 
 
 v0.4-5
 ------
 
 * Provide page range as option to `citep` and `citet` (see issue [#32](https://github.com/cboettig/knitcitations/issues/32))
-* Fixes a bug in which page numbers were not grabbed from the DOI look-up  ([#33](https://github.com/cboettig/knitcitations/issues/33))  
-* Date added to Description file so that users can cite the development version properly ([#34](https://github.com/cboettig/knitcitations/issues/34))
+* Fixes a bug in which page numbers were not grabbed from the DOI look-up  
+  ([#33](https://github.com/cboettig/knitcitations/issues/33))  
+* Date added to Description file so that users can cite the development version
+  properly ([#34](https://github.com/cboettig/knitcitations/issues/34))
 
 v0.4-4
 ------
@@ -47,19 +57,23 @@ v0.4-3
 ------
 
 * Some bugfixes to bib_format method
-* tooltip javascript uses class 'showtooltip' rather than rel='tooltip' to avoid conflicting semantic meaning and styling and to avoid clashes with existing 'tooltip' class in twitter bootstrap
+* tooltip javascript uses class 'showtooltip' rather than rel='tooltip' to 
+  avoid conflicting semantic meaning and styling and to avoid clashes with  
+  existing 'tooltip' class in twitter bootstrap
 * cito links fix href and use rel instead of property
 
 
 v0.4-2
 ------
 
-* Testing out `bib_format` method to change order of citation elements in reference list
+* Testing out `bib_format` method to change order of citation elements in 
+  reference list
 
 v0.4-1
 ------
 
-* Fixes Issue [#27](https://github.com/cboettig/knitcitations/issues/27) in rdfa printing
+* Fixes Issue [#27](https://github.com/cboettig/knitcitations/issues/27) in 
+  rdfa printing
 * Nicer markdown printing
 * keep each function in separate file
 
@@ -82,13 +96,15 @@ v0.4-0
 ### Minor changes
 
 * in-line link will use URL if a DOI is not found
-* `cite` is now exported to the namespace.  Useful to return a bibentry object given a DOI or URL.  
+* `cite` is now exported to the namespace.  Useful to return a bibentry object 
+  given a DOI or URL.  
 
 
 v0.3-5
 ------
 
-* Fix formatting of parenthetical citations (bug introduced previously converted these to citet format)
+* Fix formatting of parenthetical citations (bug introduced previously 
+  converted these to citet format)
 * Additional documentation
 * Install instructions for development version added to README
 

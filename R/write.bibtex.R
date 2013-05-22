@@ -1,13 +1,15 @@
 #' write a bibtex file  
 #'
-#' @param entry a 'bibentry' object, list of bibentry objects, or a character vector of package names
-#' @param file output bibtex file. Will automatically append '.bib' if not added.
-#'   if 'NULL' will use stdout.  
-#' @param append a logical indicating that bibtex entries be added the the file.  
-#'  If FALSE (default), the file is overwritten.  
-#' @param verbose a logical to toggle verbosity. If 'file=NULL', verbosity is
-#'  forced off.
-#' @param create_key logical indicating whether function should create a bibtex citation key if the object doesn't have one.  
+#' @param entry a 'bibentry' object, list of bibentry objects, or a character
+#'  vector of package names
+#' @param file output bibtex file. Will automatically append '.bib' if not
+#'  added. if 'NULL' will use stdout.  
+#' @param append a logical indicating that bibtex entries be added the the
+#'  file.  If FALSE (default), the file is overwritten.  
+#' @param verbose a logical to toggle verbosity. If 'file=NULL', verbosity 
+#'  is forced off.
+#' @param create_key logical indicating whether function should create a 
+#'  bibtex citation key if the object doesn't have one.  
 #' @return a list of citation information, invisibly 
 #' 
 #' The 'knitcitations' package automatically extends the use of this function to
@@ -16,13 +18,16 @@
 #' 
 #' @import bibtex 
 #' @examples
-#'  write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations"), "TempleLang2012"=citation("RCurl")))
+#'  write.bibtex(c("Yihui2013" = citation("knitr"), 
+#'                 "Boettiger2013" = citation("knitcitations"), 
+#'                 "TempleLang2012"=citation("RCurl")))
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
 write.bibtex <- function(entry, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){
 
-  ## Handles the case of a list of bibentries separately.  The append is not necessary
+  ## Handles the case of a list of bibentries separately.  
+  ## The append is not necessary
   if(is(entry, "list") & is(entry[[1]], "bibentry")){
     if(create_key)
       entry[[1]] <- create_bibkey(entry[[1]])
@@ -34,7 +39,8 @@ write.bibtex <- function(entry, file="knitcitations.bib", append=FALSE, verbose=
         write.bib(entry[[i]], file=file, append=TRUE, verbose=verbose)
     }
 
-  ## Handle the standard cases.  Also expoints the fact that append is clever enough to work on a new file
+  ## Handle the standard cases.  
+  ## Also exploits the fact that append is clever enough to work on a new file
   } else {
     out <- sapply(entry, function(entry){
       if(create_key)

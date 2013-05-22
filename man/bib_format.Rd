@@ -2,7 +2,8 @@
 \alias{bib_format}
 \title{Specify the order in which citation elements should be returned}
 \usage{
-  bib_format(ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "url"),
+  bib_format(ordering = c("authors", "year", "title", "journal",
+                          "volume", "number", "pages", "doi", "url"),
     authors, year, title, journal, volume, number, pages,
     doi, uri, collapse = " ")
 }

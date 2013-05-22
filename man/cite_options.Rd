@@ -7,8 +7,8 @@
 }
 \arguments{
   \item{tooltip}{Provide a javascript tooltip over the
-  in-line citation? (requires twitter-bootstrap tooltip JS,
-  see details).}
+  in-line citation?  (requires twitter-bootstrap tooltip
+  JS, see details).}
 
   \item{linked}{Add an HTML link around the in-line
   citation?}
