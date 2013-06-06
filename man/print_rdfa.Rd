@@ -3,8 +3,7 @@
 \title{format for rdfa markup of references}
 \usage{
   print_rdfa(bib,
-    ordering = c("authors", "year", "title", "journal", 
-                 "volume", "number", "pages", "doi", "uri"))
+    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"))
 }
 \arguments{
   \item{bib}{a bibentry object containing one or more
