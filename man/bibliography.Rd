@@ -3,11 +3,10 @@
 \title{Generate the bibliography}
 \usage{
   bibliography(style = "markdown", .bibstyle = "JSS",
-    ordering = c("authors", "year", "title", "journal", "volume",
-                  "number", "pages", "doi", "url"),
+    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "url"),
     sort = FALSE,
     bibtex = get("bibtex_data", envir = knitcitations_options),
-    ...)
+    bulleted = TRUE, ...)
 }
 \arguments{
   \item{style}{formatting style to print bibliography
@@ -33,6 +32,10 @@
   \item{.bibstyle}{the bibstyle function call or string.
   Defaults to journal of statistical software (JSS).  See
   \code{\link{bibstyle}}.}
+
+  \item{bulleted}{logical.  If \code{TRUE}, for \code{style
+  = "html"}, the bibliography will print as a bulleted list
+  using the \code{li} HTML tags.}
 
   \item{...}{additional arguments passed to print.bibentry,
   see \code{\link{bibentry}}}
@@ -64,5 +67,7 @@ bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"),
          citation("bibtex"))
 citep(bib)
 bibliography()
+
+bibliography(style="html", bulleted = FALSE)
 }
 

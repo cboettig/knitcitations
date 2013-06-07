@@ -13,6 +13,8 @@
 #' (internal option only)
 #' @param .bibstyle the bibstyle function call or string. Defaults to 
 #' journal of statistical software (JSS).  See \code{\link{bibstyle}}.
+#' @param bulleted logical.  If \code{TRUE}, for \code{style = "html"}, the 
+#' bibliography will print as a bulleted list using the \code{li} HTML tags.  
 #' @param ... additional arguments passed to print.bibentry, 
 #' see \code{\link{bibentry}}
 #' @return a list of bibentries, providing a bibliography of what's been cited
@@ -34,40 +36,46 @@
 #' citep(bib)
 #' bibliography()
 #' 
+#' bibliography(style="html", bulleted = FALSE)
+#' 
 #' @export
-bibliography <- function(style="markdown", .bibstyle = "JSS", 
-                         ordering =  c("authors", "year", "title", 
-                                       "journal", "volume", "number",
-                                       "pages", "doi", "url"), 
-                         sort=FALSE, bibtex=get("bibtex_data", envir=knitcitations_options), ...){
-  out <- read_cache(bibtex=bibtex)
-  if(length(out)>0){
-    if(sort){   
-      ordering <- sort(names(out))
-      out <- out[ordering]
+bibliography <-
+function (style = "markdown", .bibstyle = "JSS", ordering = c("authors", 
+    "year", "title", "journal", "volume", "number", "pages", 
+    "doi", "url"), sort = FALSE, bibtex = get("bibtex_data", 
+    envir = knitcitations_options),  bulleted = TRUE, ...) 
+{
+    out <- read_cache(bibtex = bibtex)
+    if (length(out) > 0) {
+        if (sort) {
+            ordering <- sort(names(out))
+            out <- out[ordering]
+        }
     }
-  }
-  if(style %in% c("R", "text", "bibtex", "textVersion", "citation", "LaTeX")){
-    output <- print(out, style, .bibstyle=.bibstyle, ...)
-    # print(output)
-  } else if(style == "rdfa"){
-    output <- print_rdfa(out, ordering=ordering)
-    names(output) = ""
-    output <- paste(unlist(output), collapse="", sep="")
-    pretty_output <- cat(output)
-  } else if(style == "html"){
-    output <- print_html(out, ordering=ordering)
-    names(output) = ""
-    # output <- print(paste(unlist(output), collapse="", sep=""))
-    pretty_output <- cat(output)
-  } else if(style == "markdown"){
-    output <- print_markdown(out, ordering=ordering)
-    names(output) = ""
-    # output <- print(paste(unlist(output), collapse="", sep=""))
-    pretty_output <- cat(output)
-  } else {
-    stop("Style not recognized")
-  }
-  invisible(output)
+    if (style %in% c("R", "text", "bibtex", "textVersion", "citation", 
+        "LaTeX")) {
+        output <- print(out, style, .bibstyle = .bibstyle, ...)
+    }
+    else if (style == "rdfa") {
+        output <- print_rdfa(out, ordering = ordering)
+        names(output) = ""
+        output <- paste(unlist(output), collapse = "", sep = "")
+        pretty_output <- cat(output)
+    }
+    else if (style == "html") {
+        output <- print_html(out, ordering = ordering, bulleted = bulleted)
+        names(output) = ""
+        pretty_output <- cat(output)
+    }
+    else if (style == "markdown") {
+        output <- print_markdown(out, ordering = ordering)
+        names(output) = ""
+        pretty_output <- cat(output)
+    }
+    else {
+        stop("Style not recognized")
+    }
+    invisible(output)
 }
+
 
