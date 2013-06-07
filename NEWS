@@ -23,6 +23,13 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+
+
+v0.5-0
+------
+* html print method now provides support for bulleted lists, see [#41](https://github.com/cboettig/knitcitations/issues/41)
+
+
 v0.4-7
 ------
 * Hard-wrap roxygen documentation to avoid line overflows in pdf manual
