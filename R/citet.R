@@ -82,11 +82,16 @@ citet <- function(x, cito = NULL,
       output <- inline_format(out)
     }
   } 
+
   if(!is.null(page)){
     pgs <- ifelse(grepl("-", page), "pp.", "p.")
     page <- paste(",", pgs, page)
+    pageout <- strsplit(output, ")</a>;|)</a>")
+    pageout <- sapply(pageout, function(x) {
+      paste0(x, page, ")</a>")
+    })
+    output <- paste(pageout, collapse= ";")
   }
 
-  paste(output, page)
+  output
 }
-
