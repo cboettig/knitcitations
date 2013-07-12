@@ -42,7 +42,7 @@ cite <- function(x,
     ## Handle anything we haven't cited yet
     } else {
       ## Handle DOIs, http://stackoverflow.com/questions/27910/finding-a-doi-in-a-document-or-page
-      doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\\/\"&\'<>])\\S)+)\\b"
+      doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
       if(is.character(x[[i]]) && length(grep(doi_pattern, x[[i]], perl=TRUE)) == 1){  
         entry <- ref(x[[i]]) # look-up by DOI
 
