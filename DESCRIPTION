@@ -25,26 +25,3 @@ Imports:
 Suggests:
     testthat
 License: CC0
-Collate:
-    'functiontable.R'
-    'bibliography.R'
-    'formatref.R'
-    'ref.R'
-    'cite.R'
-    'create_bibkey.R'
-    'citep.R'
-    'citet.R'
-    'read.bibtex.R'
-    'write.bibtex.R'
-    'init_knitbib.R'
-    'print_rdfa.R'
-    'write_cache.R'
-    'newbib.R'
-    'zzz.R'
-    'inline_formats.R'
-    'greycite.R'
-    'url_regexpr.R'
-    'cite_options.R'
-    'print_markdown.R'
-    'bib_format.R'
-    'print_html.R'

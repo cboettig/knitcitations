@@ -2,7 +2,7 @@
 \alias{format_authoryear_p}
 \title{format the author and year parenthetically}
 \usage{
-  format_authoryear_p(entry, char = "")
+format_authoryear_p(entry, char = "")
 }
 \arguments{
   \item{entry}{a bibentry}

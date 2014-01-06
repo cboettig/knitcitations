@@ -2,7 +2,7 @@
 \alias{greycite}
 \title{greycite citation method}
 \usage{
-  greycite(url, format = c("bib", "json"))
+greycite(url, format = c("bib", "json"))
 }
 \arguments{
   \item{url}{the website URL}

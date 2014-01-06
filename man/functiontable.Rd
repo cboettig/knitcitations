@@ -2,7 +2,7 @@
 \alias{functiontable}
 \title{a table of functions in a package}
 \usage{
-  functiontable(pkg, ...)
+functiontable(pkg, ...)
 }
 \arguments{
   \item{pkg}{a string specifying the name of a package,}

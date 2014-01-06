@@ -2,10 +2,8 @@
 \alias{ref}
 \title{Lookup article info via CrossRef with DOI.}
 \usage{
-  ref(doi, title = FALSE,
-    url = "http://www.crossref.org/openurl/",
-    key = "cboettig@gmail.com", ...,
-    curl = getCurlHandle())
+ref(doi, title = FALSE, url = "http://www.crossref.org/openurl/",
+  key = "cboettig@gmail.com", ..., curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in

@@ -2,8 +2,8 @@
 \alias{write_cache}
 \title{write knitcitations data to a cache object instead of a file}
 \usage{
-  write_cache(a_bibentry,
-    bibtex = get("bibtex_data", envir = knitcitations_options))
+write_cache(a_bibentry, bibtex = get("bibtex_data", envir =
+  knitcitations_options))
 }
 \arguments{
   \item{a_bibentry}{a bibentry object, possibly already

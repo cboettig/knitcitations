@@ -2,7 +2,7 @@
 \alias{format_authoryear_t}
 \title{format the author and year}
 \usage{
-  format_authoryear_t(entry, char = "")
+format_authoryear_t(entry, char = "")
 }
 \arguments{
   \item{entry}{a bibentry}

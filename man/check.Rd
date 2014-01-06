@@ -2,7 +2,7 @@
 \alias{check}
 \title{check if the element is present before creating a RDFa span tag for it.}
 \usage{
-  check(tag, element)
+check(tag, element)
 }
 \arguments{
   \item{element}{the element of the bibentry whose

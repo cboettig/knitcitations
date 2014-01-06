@@ -2,9 +2,8 @@
 \alias{print_html}
 \title{print method for html format}
 \usage{
-  print_html(bib,
-    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"),
-    bulleted = TRUE)
+print_html(bib, ordering = c("authors", "year", "title", "journal", "volume",
+  "number", "pages", "doi", "uri"), bulleted = TRUE)
 }
 \arguments{
   \item{bib}{a bibentry object containing one or more

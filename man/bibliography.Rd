@@ -2,11 +2,10 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-  bibliography(style = "markdown", .bibstyle = "JSS",
-    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "url"),
-    sort = FALSE,
-    bibtex = get("bibtex_data", envir = knitcitations_options),
-    bulleted = TRUE, ...)
+bibliography(style = "markdown", .bibstyle = "JSS",
+  ordering = c("authors", "year", "title", "journal", "volume", "number",
+  "pages", "doi", "url"), sort = FALSE, bibtex = get("bibtex_data", envir =
+  knitcitations_options), bulleted = TRUE, ...)
 }
 \arguments{
   \item{style}{formatting style to print bibliography

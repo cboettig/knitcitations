@@ -2,8 +2,8 @@
 \alias{print_markdown}
 \title{print method for markdown format}
 \usage{
-  print_markdown(bib,
-    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"))
+print_markdown(bib, ordering = c("authors", "year", "title", "journal",
+  "volume", "number", "pages", "doi", "uri"))
 }
 \arguments{
   \item{bib}{a bibentry object containing one or more

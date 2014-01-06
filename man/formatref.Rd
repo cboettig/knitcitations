@@ -2,7 +2,7 @@
 \alias{formatref}
 \title{Convert crossref XML into a bibentry object}
 \usage{
-  formatref(a)
+formatref(a)
 }
 \arguments{
   \item{a}{crossref XML output}

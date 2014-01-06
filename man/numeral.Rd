@@ -2,7 +2,7 @@
 \alias{numeral}
 \title{Formatting for numeric inline citations.  Needs testing.}
 \usage{
-  numeral(entry)
+numeral(entry)
 }
 \arguments{
   \item{entry}{a bibentry object, e.g. from cite}

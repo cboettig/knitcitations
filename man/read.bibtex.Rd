@@ -2,7 +2,7 @@
 \alias{read.bibtex}
 \title{read in bibtex and use key as list names}
 \usage{
-  read.bibtex(bibfile)
+read.bibtex(bibfile)
 }
 \arguments{
   \item{bibfile}{a bibtex .bib file}

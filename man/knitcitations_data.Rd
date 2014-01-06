@@ -2,7 +2,7 @@
 \alias{knitcitations_data}
 \title{Helper function to get knit data}
 \usage{
-  knitcitations_data(bibtex = get("bibtex_data", envir = knitcitations_options))
+knitcitations_data(bibtex = get("bibtex_data", envir = knitcitations_options))
 }
 \arguments{
   \item{bibtex}{the option to use bibtex}

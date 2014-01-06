@@ -2,7 +2,7 @@
 \alias{create_bibkey}
 \title{generate bibkeys for unamed bibentry objects}
 \usage{
-  create_bibkey(bibentry, key = NULL, current = NULL)
+create_bibkey(bibentry, key = NULL, current = NULL)
 }
 \arguments{
   \item{bibentry}{a bibentry object without a bibkey}

@@ -2,8 +2,8 @@
 \alias{write.bibtex}
 \title{write a bibtex file}
 \usage{
-  write.bibtex(entry, file = "knitcitations.bib",
-    append = FALSE, verbose = TRUE, create_key = TRUE)
+write.bibtex(entry, file = "knitcitations.bib", append = FALSE,
+  verbose = TRUE, create_key = TRUE)
 }
 \arguments{
   \item{entry}{a 'bibentry' object, list of bibentry

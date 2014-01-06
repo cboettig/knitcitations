@@ -2,8 +2,8 @@
 \alias{cite_options}
 \title{Toggles for various citation options}
 \usage{
-  cite_options(tooltip = FALSE, linked = TRUE,
-    numerical = FALSE, bibtex_data = FALSE)
+cite_options(tooltip = FALSE, linked = TRUE, numerical = FALSE,
+  bibtex_data = FALSE)
 }
 \arguments{
   \item{tooltip}{Provide a javascript tooltip over the

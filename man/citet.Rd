@@ -2,12 +2,11 @@
 \alias{citet}
 \title{Add a textual citation}
 \usage{
-  citet(x, cito = NULL,
-    tooltip = get("tooltip", envir = knitcitations_options),
-    linked = get("linked", envir = knitcitations_options),
-    numerical = get("numerical", envir = knitcitations_options),
-    format_inline_fn = format_authoryear_t,
-    inline_format = authoryear_t, page = NULL)
+citet(x, cito = NULL, tooltip = get("tooltip", envir =
+  knitcitations_options), linked = get("linked", envir =
+  knitcitations_options), numerical = get("numerical", envir =
+  knitcitations_options), format_inline_fn = format_authoryear_t,
+  inline_format = authoryear_t, page = NULL)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of

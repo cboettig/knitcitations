@@ -2,8 +2,8 @@
 \alias{print_rdfa}
 \title{format for rdfa markup of references}
 \usage{
-  print_rdfa(bib,
-    ordering = c("authors", "year", "title", "journal", "volume", "number", "pages", "doi", "uri"))
+print_rdfa(bib, ordering = c("authors", "year", "title", "journal", "volume",
+  "number", "pages", "doi", "uri"))
 }
 \arguments{
   \item{bib}{a bibentry object containing one or more

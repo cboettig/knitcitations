@@ -2,9 +2,8 @@
 \alias{cite}
 \title{Add a citation (internal for citet and citep)}
 \usage{
-  cite(x,
-    bibtex = get("bibtex_data", envir = knitcitations_options),
-    format_inline_fn = format_authoryear_p)
+cite(x, bibtex = get("bibtex_data", envir = knitcitations_options),
+  format_inline_fn = format_authoryear_p)
 }
 \arguments{
   \item{x}{a doi or list of dois, or a bibentry (or list of
