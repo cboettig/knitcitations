@@ -16,7 +16,7 @@
 #' be able to write bibtex files from a string of DOIs, making it valuable for 
 #' purposes beyond the citation of packages.  
 #' 
-#' @import bibtex 
+#' @import bibtex RefManageR 
 #' @examples
 #'  write.bibtex(c("Yihui2013" = citation("knitr"), 
 #'                 "Boettiger2013" = citation("knitcitations"), 
@@ -27,8 +27,9 @@
 write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){
 
   if(is.null(entry)){
-    read_cache(bibtex=get("bibtex_data", envir=knitcitations_options))
-    write.bib(a, file=file)
+    bibs <- read_cache(bibtex=get("bibtex_data", envir=knitcitations_options))
+    WriteBib(as.BibEntry(bibs), file=file)
+
   } else { 
     ## Handles the case of a list of bibentries separately.  
     ## The append is not necessary
