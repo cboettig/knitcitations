@@ -19,7 +19,7 @@
 #'   
 #' @keywords internal
 
-create_bibkey <- function(bibentry, key=NULL, current=NULL){
+create_bibkey <- function(bibentry, key=NULL, current=NULL, add_numeral=FALSE){
     
     # If the citation has a key already, please just use it.
     if(!(is.null(bibentry$key)))
@@ -34,7 +34,8 @@ create_bibkey <- function(bibentry, key=NULL, current=NULL){
     }
     names(bibentry) <- key
     bibentry$key <- key
-    bibentry$numeral <- get_numeral(bibentry, current)
+    if(add_numeral)
+      bibentry$numeral <- get_numeral(bibentry, current)
 
   bibentry
 }

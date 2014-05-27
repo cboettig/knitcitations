@@ -1,6 +1,6 @@
 
 ## Helper functions for formatting inline citations
-
+ 
 
 ## helper functions
 #' format the author and year 

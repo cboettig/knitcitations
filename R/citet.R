@@ -4,18 +4,6 @@
 #'  citation, \code{\link{citep}}.  
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param cito Semantic reason for the citation. Only active if linked=TRUE
-#' @param tooltip Show a citation information on mouseover. Requires the
-#'  tooltip javascript from http://twitter.github.com/bootstrap Pass 
-#'  logical TRUE/FALSE or set default behavior with \code{\link{cite_options}}
-#' @param linked link the inline citation text to the resource by doi 
-#'  (if available) or url? Pass logical TRUE/FALSE or set default behavior 
-#'  with \code{\link{cite_options}}
-#' @param numerical use citation instead of author-year format? (Not 
-#'  functional yet!) Pass logical TRUE/FALSE or set default behavior 
-#'  with \code{\link{cite_options}}
-#' @param format_inline_fn function to format a single inline citation
-#' @param inline_format a function for formating the inline citation, defaults to authoryear_t (designed for internal use only)
-#' @param page optional page range added after citation
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}.
@@ -41,12 +29,36 @@
 #' citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citet("Halpern2006")
 #'
-citet <- function(x, cito = NULL, 
-                  tooltip = get("tooltip", envir=knitcitations_options), 
-                  linked = get("linked", envir=knitcitations_options), 
-                  numerical = get("numerical", envir=knitcitations_options), 
-                  format_inline_fn = format_authoryear_t,  
-                  inline_format = authoryear_t, page = NULL){
+citet <- function(x, 
+                  cito = NULL, 
+                  ..., 
+                  citation_format = 
+                    getOption("citation_format", "pandoc")
+                  ){
+
+if(citation_format != "pandoc")
+  legacy_citet(x, cito, ...)
+else {
+  bib <- knitcitations:::cite(x)
+  paste(sapply(bib, function(b) paste0("@", b$key)), sep = "", collapse="; ")
+  }
+}
+
+
+
+
+
+
+
+legacy_citet <- function(x, 
+                         cito, 
+                         tooltip = get("tooltip", envir=knitcitations_options), 
+                         linked = get("linked", envir=knitcitations_options), 
+                         numerical = get("numerical", envir=knitcitations_options), 
+                         format_inline_fn = format_authoryear_t,  
+                         inline_format = authoryear_t, 
+                         page = NULL){ 
+
   out <- cite(x, format_inline_fn = format_inline_fn)
   if(length(out) > 1) {
     output <- paste(sapply(out, citet, cito, tooltip, linked, format_inline_fn, inline_format), collapse="; ", sep="")

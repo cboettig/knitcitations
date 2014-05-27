@@ -1,7 +1,7 @@
 #' write a bibtex file  
 #'
 #' @param entry a 'bibentry' object, list of bibentry objects, or a character
-#'  vector of package names
+#'  vector of package names. If NULL, writes all that have currently been cited. 
 #' @param file output bibtex file. Will automatically append '.bib' if not
 #'  added. if 'NULL' will use stdout.  
 #' @param append a logical indicating that bibtex entries be added the the
@@ -24,31 +24,36 @@
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
-write.bibtex <- function(entry, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){
+write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){
 
-  ## Handles the case of a list of bibentries separately.  
-  ## The append is not necessary
-  if(is(entry, "list") & is(entry[[1]], "bibentry")){
-    if(create_key)
-      entry[[1]] <- create_bibkey(entry[[1]])
-
-    write.bib(entry[[1]], file=file, append=append, verbose=verbose)
-    for(i in 2:length(entry)){
-        if(create_key)
-          entry[[i]] <- create_bibkey(entry[[i]])
-        write.bib(entry[[i]], file=file, append=TRUE, verbose=verbose)
-    }
-
-  ## Handle the standard cases.  
-  ## Also exploits the fact that append is clever enough to work on a new file
-  } else {
-    out <- sapply(entry, function(entry){
+  if(is.null(entry)){
+    read_cache(bibtex=get("bibtex_data", envir=knitcitations_options))
+    write.bib(a, file=file)
+  } else { 
+    ## Handles the case of a list of bibentries separately.  
+    ## The append is not necessary
+    if(is(entry, "list") & is(entry[[1]], "bibentry")){
       if(create_key)
-        entry <- create_bibkey(entry)
-      write.bib(entry=entry, file=file, append=TRUE, verbose=verbose)
-    })
-    invisible(out)
-}
+        entry[[1]] <- create_bibkey(entry[[1]])
+
+      write.bib(entry[[1]], file=file, append=append, verbose=verbose)
+      for(i in 2:length(entry)){
+          if(create_key)
+            entry[[i]] <- create_bibkey(entry[[i]])
+          write.bib(entry[[i]], file=file, append=TRUE, verbose=verbose)
+      }
+
+    ## Handle the standard cases.  
+    ## Also exploits the fact that append is clever enough to work on a new file
+    } else {
+      out <- sapply(entry, function(entry){
+        if(create_key)
+          entry <- create_bibkey(entry)
+        write.bib(entry=entry, file=file, append=TRUE, verbose=verbose)
+      })
+      invisible(out)
+    }
+  }
 }
 
 
