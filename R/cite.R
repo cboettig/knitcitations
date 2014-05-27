@@ -11,8 +11,9 @@
 #'  which can be printed with \code{\link{bibliography}}
 #' @import knitr
 #' @export
-#' @examples
+#' @examples \donttest{
 #' citep("10.3998/3336451.0009.101")
+#' }
 cite <- function(x, 
                  bibtex = get("bibtex_data", envir=knitcitations_options), 
                  format_inline_fn = NULL){

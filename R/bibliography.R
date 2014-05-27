@@ -23,20 +23,6 @@
 #' should be returned.  Elements not specified are omitted from the return
 #' entirely.  Even if both DOI or URI (usually the URL) are given, method
 #' will return the URL only if the DOI is absent/unavailable.
-#' @examples
-#' citet(citation("knitr"))
-#' bibliography()
-#' ## use markdown formatting, show only author, year, and url
-#' bibliography("markdown", ordering = c("authors", "year", "url"))
-#'
-#' ## Repeat citations do not create duplicates:
-#' bib <- c(citation("knitr"), citation("knitr"), citation("bibtex"),
-#'          citation("bibtex"), citation("knitr"), citation("knitcitations"),
-#'          citation("bibtex"))
-#' citep(bib)
-#' bibliography()
-#'
-#' bibliography(style="html", bulleted = FALSE)
 #'
 #' @export
 bibliography <-
