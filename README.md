@@ -1,136 +1,55 @@
----
-title: An introduction to knitcitations
-author: Carl Boettiger
-date: 27 May 2014
-output: 
-  html_document:
-    pandoc_args: [
-      "--biblio", "references.bib",
-      "--csl", "ecology.csl"
-      ]
----
-
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{An introduction to knitcitations}
 -->
 
-[![Build Status](https://travis-ci.org/cboettig/knitcitations.svg)](https://travis-ci.org/cboettig/knitcitations)
-
-knitcitations
-=============
-
-
-
-- **Author**: [Carl Boettiger](http://www.carlboettiger.info/)
-- **License**: [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
-- [Package source code on Github](https://github.com/cboettig/knitcitations)
-- [**Submit Bugs and feature requests**](https://github.com/cboettig/knitcitations/issues)
-
-
-`knitcitations` is an R package designed to add dynamic citations to dynamic documents created with [Yihui's knitr package](https://github.com/yihui/knitr).
-
-
-
-Installation 
-------------
-
-Install the development version directly from Github 
-
-```r
-library(devtools)
-install_github("knitcitations", "cboettig")
-```
-
-Or install the current release from your CRAN mirror with `install.packages("knitcitations")`.  
-
-
-Quick start: rmarkdown (pandoc) mode
-------------------------------------
-
-Start by loading the library.  It is usually good to also clear the bibliographic environment after loading the library, in case any citations are already stored there:  
-
-
-```r
-library("knitcitations")
-```
-
-```
-## Loading required package: bibtex
-## Loading required package: RefManageR
-## 
-## Attaching package: 'knitcitations'
-## 
-## The following object is masked from 'package:utils':
-## 
-##     cite
-```
-
-```r
-cleanbib()
-```
-
-
-
-
-### Cite by DOI
-
-Cite an article by DOI and the full citation information is gathered automatically. By default this now generates a citation in pandoc-flavored-markdown format. We use the inline command `citep("10.1890/11-0011.1")` to create this citation [@Abrams2012].  
-
-An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013.1372")` creating the citation to @Boettiger2013.  
-
-
-### Cite by URL
-
-Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool [@greycite2739].  
-
-### Cite bibtex and bibentry objects directly 
-
-We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces [@Xie2013; @Xie2013_; @Xie2014].  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger2013` which will render as @Boettiger2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
-
-
-### Re-using Keys
-
-When the citation is called, a key in the format `FirstAuthorsLastNameYear` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams2012")` creates the citation [@Abrams2012] without mistaking it for a new article.  
-
-
-### Displaying the final bibliography
-
-At the end of the document, include a chunk containing the command:
-
-
-```r
-write.bibtex(file="references.bib")
-```
-
-Use the chunk option `echo=FALSE` to hide the chunk command.  This creates a Bibtex file with the name given.  [Pandoc](http://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](http://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used:
-
-```yaml
----
-output: 
-  html_document:
-    pandoc_args: [
-      "--biblio", "references.bib",
-      "--csl", "ecology.csl"
-      ]
----
-```
-
-
-Then calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
-
-# References
-
-
-
-
-
+<p><a href="https://travis-ci.org/cboettig/knitcitations"><img src="https://travis-ci.org/cboettig/knitcitations.svg" alt="Build Status" /></a></p>
+<h1 id="knitcitations">knitcitations</h1>
+<ul>
+<li><strong>Author</strong>: <a href="http://www.carlboettiger.info/">Carl Boettiger</a></li>
+<li><strong>License</strong>: <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+<li><a href="https://github.com/cboettig/knitcitations">Package source code on Github</a></li>
+<li><a href="https://github.com/cboettig/knitcitations/issues"><strong>Submit Bugs and feature requests</strong></a></li>
+</ul>
+<p><code>knitcitations</code> is an R package designed to add dynamic citations to dynamic documents created with <a href="https://github.com/yihui/knitr">Yihui's knitr package</a>.</p>
+<h2 id="installation">Installation</h2>
+<p>Install the development version directly from Github</p>
+<pre class="sourceCode coffee"><code class="sourceCode coffee">library<span class="kw">(</span>devtools<span class="kw">)</span>
+install_github<span class="kw">(</span><span class="st">&quot;knitcitations&quot;</span><span class="kw">,</span> <span class="st">&quot;cboettig&quot;</span><span class="kw">)</span></code></pre>
+<p>Or install the current release from your CRAN mirror with <code>install.packages(&quot;knitcitations&quot;)</code>.</p>
+<h2 id="quick-start-rmarkdown-pandoc-mode">Quick start: rmarkdown (pandoc) mode</h2>
+<p>Start by loading the library. It is usually good to also clear the bibliographic environment after loading the library, in case any citations are already stored there:</p>
+<pre class="sourceCode coffee"><code class="sourceCode coffee">library<span class="kw">(</span><span class="st">&quot;knitcitations&quot;</span><span class="kw">)</span>
+cleanbib<span class="kw">()</span></code></pre>
+<h3 id="cite-by-doi">Cite by DOI</h3>
+<p>Cite an article by DOI and the full citation information is gathered automatically. By default this now generates a citation in pandoc-flavored-markdown format. We use the inline command <code>citep(&quot;10.1890/11-0011.1&quot;)</code> to create this citation <span class="citation">(Abrams et al. 2012)</span>.</p>
+<p>An in-text citation is generated with <code>citet</code>, such as <code>citet(&quot;10.1098/rspb.2013.1372&quot;)</code> creating the citation to <span class="citation">Boettiger and Hastings (2013)</span>.</p>
+<h3 id="cite-by-url">Cite by URL</h3>
+<p>Not all the literature we may wish to cite includes DOIs, such as <a href="http://arxiv.org">arXiv</a> preprints, Wikipedia pages, or other academic blogs. Even when a DOI is present it is not always trivial to locate. With version 0.4-0, <code>knitcitations</code> can produce citations given any URL using the <a href="http://greycite.knowledgeblog.org">Greycite API</a>. For instance, we can use the call <code>citep(&quot;http://knowledgeblog.org/greycite&quot;)</code> to generate the citation to the Greycite tool <span class="citation">(Lord 2012)</span>.</p>
+<h3 id="cite-bibtex-and-bibentry-objects-directly">Cite bibtex and bibentry objects directly</h3>
+<p>We can also use <code>bibentry</code> objects such as R provides for citing packages (using R's <code>citation()</code> function): <code>citep(citation(&quot;knitr&quot;)</code> produces <span class="citation">(Xie 2013a, 2013b, 2014)</span>. Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names. In pandoc mode, we can still use traditional pandoc-markdown citations like <code>@Boettiger2013</code> which will render as <span class="citation">Boettiger and Hastings (2013)</span> without any R code, provided the citation is already in the <code>.bib</code> file we name (see below).</p>
+<h3 id="re-using-keys">Re-using Keys</h3>
+<p>When the citation is called, a key in the format <code>FirstAuthorsLastNameYear</code> is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command <code>citep(&quot;Abrams2012&quot;)</code> creates the citation <span class="citation">(Abrams et al. 2012)</span> without mistaking it for a new article.</p>
+<h3 id="displaying-the-final-bibliography">Displaying the final bibliography</h3>
+<p>At the end of the document, include a chunk containing the command:</p>
+<pre class="sourceCode coffee"><code class="sourceCode coffee">write<span class="kw">.</span>bibtex<span class="kw">(</span>file<span class="kw">=</span><span class="st">&quot;references.bib&quot;</span><span class="kw">)</span></code></pre>
+<p>Use the chunk option <code>echo=FALSE</code> to hide the chunk command. This creates a Bibtex file with the name given. <a href="http://johnmacfarlane.net/pandoc">Pandoc</a> can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with <a href="http://rstudio.com">RStudio</a> through the <a href="http://rmarkdown.rstudio.com">rmarkdown</a> package. Pandoc appends these references to the end of the markdown document automatically. In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used:</p>
+<pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
+<span class="fu">output:</span> 
+  <span class="fu">html_document:</span>
+    <span class="fu">pandoc_args:</span> <span class="kw">[</span>
+      <span class="st">&quot;--biblio&quot;</span><span class="kw">,</span> <span class="st">&quot;references.bib&quot;</span><span class="kw">,</span>
+      <span class="st">&quot;--csl&quot;</span><span class="kw">,</span> <span class="st">&quot;ecology.csl&quot;</span>
+      <span class="kw">]</span>
+<span class="ot">---</span></code></pre>
+<p>Then calling <code>rmarkdown::render(&quot;tutorial.Rmd&quot;)</code> from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.</p>
+<h1 id="references">References</h1>
 <!--
 
 At the end of our document we can generate the traditional "References" or "Works Cited" list in a knitr block using the chunk option `results='asis'` to display as text rather than code:  
 
 
-```r
+```coffee
 bibliography()
 ```
 
@@ -144,7 +63,7 @@ bibliography()
 Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.  For instance, we can specify the format as "markdown".  The custom formats "markdown" and "rdfa" take an additional argument, "ordering", which can specify what elements we want to print and what order they should be given in.  For instance, we can omit everything but the authors, year, and journal, given in that order:
 
 
-```r
+```coffee
 bibliography("markdown", ordering = c("authors", "year", "journal"))
 ```
 
@@ -179,3 +98,13 @@ More discussion on using `knitcitations` for CITO and semantic markup can be fou
 -->
 
 
+
+
+<div class="references">
+<p>Abrams, P. A., L. Ruokolainen, B. J. Shuter, and K. S. McCann. 2012. Harvesting creates ecological traps: consequences of invisible mortality risks in predator–prey metacommunities. Ecology 93:281–293.</p>
+<p>Boettiger, C., and A. Hastings. 2013. no early warning signals for stochastic transitions: insights from large deviation theory. Proceedings of The Royal Society B: Biological Sciences 280:20131372–20131372.</p>
+<p>Lord, P. 2012. Greycite. <a href="http://knowledgeblog.org/greycite">http://knowledgeblog.org/greycite</a>.</p>
+<p>Xie, Y. 2013a. knitr: a general-purpose package for dynamic report generation in r.</p>
+<p>Xie, Y. 2013b. Dynamic documents with R and knitr. Chapman; Hall/CRCBoca Raton, Florida.</p>
+<p>Xie, Y. 2014. knitr: a comprehensive tool for reproducible research in R. <em>in</em> V. Stodden, F. Leisch, and R. D. Peng, editors. Implementing reproducible computational research. Chapman; Hall/CRC.</p>
+</div>
