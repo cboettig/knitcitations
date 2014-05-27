@@ -32,7 +32,7 @@
 #' citep("Halpern2006")
 #' }
 citep <- function(x, ..., 
-                  citation_format = getOption("citation_format", "pandoc")){
+                  citation_format = getOption("citation_format", "compatibility")){
   if(citation_format != "pandoc"){
     text <- citet(x, ...) 
     paste("(", text, page, ")", sep="", collapse=";")

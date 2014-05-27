@@ -4,7 +4,7 @@
 \title{Add a textual citation}
 \usage{
 citet(x, cito = NULL, ..., citation_format = getOption("citation_format",
-  "pandoc"))
+  "compatibility"))
 }
 \arguments{
 \item{x}{a doi or list of dois, or a bibentry (or list of bibentries)}

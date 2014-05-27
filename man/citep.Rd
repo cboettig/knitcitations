@@ -3,7 +3,7 @@
 \alias{citep}
 \title{Add a paranthetical citation}
 \usage{
-citep(x, ..., citation_format = getOption("citation_format", "pandoc"))
+citep(x, ..., citation_format = getOption("citation_format", "compatibility"))
 }
 \arguments{
 \item{x}{a doi or list of dois, or a bibentry (or list of bibentries)}

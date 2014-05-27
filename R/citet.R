@@ -33,7 +33,7 @@ citet <- function(x,
                   cito = NULL, 
                   ..., 
                   citation_format = 
-                    getOption("citation_format", "pandoc")
+                    getOption("citation_format", "compatibility")
                   ){
 
 if(citation_format != "pandoc")
