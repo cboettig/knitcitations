@@ -1,0 +1,9 @@
+.git
+.gitignore
+.travis.yml
+manuscripts
+CONTRIBUTING.md
+LICENSE
+
+^.*\.Rproj$
+^\.Rproj\.user$

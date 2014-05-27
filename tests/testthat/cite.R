@@ -1,9 +1,3 @@
-test_that("Citation handles all types", {
-  a <- citep("10.1890/11-0011.1") 
-  expect_is(a, "AsIs")
-  expect_equivalent(a, I("(Abrams _et. al._ 2012)"))
-})
-
 
 
 test_that("knitcitations_data file initialized", {
