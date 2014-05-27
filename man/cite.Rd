@@ -27,6 +27,8 @@ Stores the full citation in a "works_cited" list,
  which can be printed with \code{\link{bibliography}}
 }
 \examples{
+\donttest{
 citep("10.3998/3336451.0009.101")
+}
 }
 

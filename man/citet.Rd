@@ -31,6 +31,7 @@ c("cites","citesAsAuthority", "citesAsMetadataDocument",
   "qualifies", "refutes", "discusses", "reviews")
 }
 \examples{
+\donttest{
 library(knitcitations)
  citet("10.3998/3336451.0009.101")
  ## Read in the bibtex information for some packages:
@@ -41,5 +42,6 @@ library(knitcitations)
 ## Assign a citation key to a doi and then use it later:
 citet(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 citet("Halpern2006")
+}
 }
 
