@@ -3,6 +3,8 @@
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param ... additional arguments passed to citet, see \code{\link{citet}} 
 #'  for details
+#' @param citation_format name of the citation format to use.  Currently
+#'  available options are "pandoc" or "compatibility".  
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}

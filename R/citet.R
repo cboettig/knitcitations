@@ -4,6 +4,9 @@
 #'  citation, \code{\link{citep}}.  
 #' @param x a doi or list of dois, or a bibentry (or list of bibentries)
 #' @param cito Semantic reason for the citation. Only active if linked=TRUE
+#' @param ... additional arguments (dependent on citation_format). 
+#' @param citation_format name of the citation format to use.  Currently
+#'  available options are "pandoc" or "compatibility".  
 #' @return a text inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}.
@@ -39,7 +42,7 @@ citet <- function(x,
 if(citation_format != "pandoc")
   legacy_citet(x, cito, ...)
 else {
-  bib <- knitcitations:::cite(x)
+  bib <- cite(x)
   paste(sapply(bib, function(b) paste0("@", b$key)), sep = "", collapse="; ")
   }
 }

@@ -10,6 +10,9 @@ citep(x, ..., citation_format = getOption("citation_format", "compatibility"))
 
 \item{...}{additional arguments passed to citet, see \code{\link{citet}}
 for details}
+
+\item{citation_format}{name of the citation format to use.  Currently
+available options are "pandoc" or "compatibility".}
 }
 \value{
 a parenthetical inline citation

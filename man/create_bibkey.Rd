@@ -27,7 +27,6 @@ create_bibkey generates a key using a LastNameYear format or given key.
 \donttest{
  r <- ref("10.3998/3336451.0009.101")
  print(r, "Bibtex")
- r <- knitcitations:::create_bibkey(r)
 ## Notice it now has a key entry
  print(r, "Bibtex")
   }

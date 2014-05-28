@@ -10,6 +10,11 @@ citet(x, cito = NULL, ..., citation_format = getOption("citation_format",
 \item{x}{a doi or list of dois, or a bibentry (or list of bibentries)}
 
 \item{cito}{Semantic reason for the citation. Only active if linked=TRUE}
+
+\item{...}{additional arguments (dependent on citation_format).}
+
+\item{citation_format}{name of the citation format to use.  Currently
+available options are "pandoc" or "compatibility".}
 }
 \value{
 a text inline citation

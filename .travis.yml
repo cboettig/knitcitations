@@ -19,11 +19,11 @@ on_failure:
   - ./travis-tool.sh dump_logs
 
 
-env:
- global:
-   - R_BUILD_ARGS="--no-manual"
-   - R_CHECK_ARGS="--as-cran --no-manual" # PDF Manual needs more recent tex, slow and unnecessary
-   - BOOTSTRAP_LATEX="" # set to 1 only if we need more recent tex envir (slow!)
+#env:
+#   global:
+#   - R_BUILD_ARGS="--no-manual"
+#   - R_CHECK_ARGS="--as-cran --no-manual" # PDF Manual needs more recent tex, slow and unnecessary
+#   - BOOTSTRAP_LATEX="" # set to 1 only if we need more recent tex envir (slow!)
 
 notifications:
   email:
