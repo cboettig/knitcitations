@@ -1,4 +1,4 @@
-library(testthat)
-library(template)
+library("testthat")
+library("knitcitations")
 
 test_check("knitcitations")
