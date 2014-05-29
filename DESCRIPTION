@@ -17,7 +17,7 @@ License: CC0
 VignetteBuilder: knitr
 Depends:
     R (>= 3.0),
-    knitr (>= 1.5),
+    knitr (>= 1.6),
     bibtex,
     RefManageR
 Imports:

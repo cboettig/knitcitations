@@ -10,6 +10,7 @@
 #'  is forced off.
 #' @param create_key logical indicating whether function should create a 
 #'  bibtex citation key if the object doesn't have one.  
+#' @param ... additional arguments to WriteBib
 #' @return a list of citation information, invisibly 
 #' 
 #' The 'knitcitations' package automatically extends the use of this function to
@@ -24,11 +25,11 @@
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
-write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=FALSE, verbose=TRUE, create_key=TRUE){
+write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=TRUE, verbose=TRUE, create_key=TRUE, ...){
 
   if(is.null(entry)){
     bibs <- read_cache(bibtex=get("bibtex_data", envir=knitcitations_options))
-    WriteBib(as.BibEntry(bibs), file=file)
+    WriteBib(as.BibEntry(bibs), file=file, append=append, ...)
 
   } else { 
     ## Handles the case of a list of bibentries separately.  

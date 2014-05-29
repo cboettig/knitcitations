@@ -2,20 +2,16 @@
 title: An introduction to knitcitations
 author: Carl Boettiger
 date: 27 May 2014
-output: 
-  html_document:
-    pandoc_args: [
-      "--biblio", "references.bib",
-      "--csl", "ecology.csl"
-      ]
+bibliography: references.bib
+output: pdf_document
 ---
 
 <!--
-%\VignetteEngine{knitr::knitr}
+%\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{An introduction to knitcitations}
 -->
 
-[![Build Status](https://travis-ci.org/cboettig/knitcitations.svg)](https://travis-ci.org/cboettig/knitcitations)
+[![Build Status](https://travis-ci.org/cboettig/knitcitations.png)](https://travis-ci.org/cboettig/knitcitations)
 
 knitcitations
 =============
