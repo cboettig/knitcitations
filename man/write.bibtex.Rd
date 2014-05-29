@@ -3,8 +3,8 @@
 \alias{write.bibtex}
 \title{write a bibtex file}
 \usage{
-write.bibtex(entry = NULL, file = "knitcitations.bib", append = FALSE,
-  verbose = TRUE, create_key = TRUE)
+write.bibtex(entry = NULL, file = "knitcitations.bib", append = TRUE,
+  verbose = TRUE, create_key = TRUE, ...)
 }
 \arguments{
 \item{entry}{a 'bibentry' object, list of bibentry objects, or a character
@@ -21,6 +21,8 @@ is forced off.}
 
 \item{create_key}{logical indicating whether function should create a
 bibtex citation key if the object doesn't have one.}
+
+\item{...}{additional arguments to WriteBib}
 }
 \value{
 a list of citation information, invisibly

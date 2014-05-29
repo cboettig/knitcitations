@@ -80,6 +80,14 @@ We can also use `bibentry` objects such as R provides for citing packages (using
 When the citation is called, a key in the format `FirstAuthorsLastNameYear` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams2012")` creates the citation `r citep("Abrams2012")` without mistaking it for a new article.  
 
 
+
+```{r echo=FALSE, include=FALSE, results="hide"}
+## Dummy block to stop R check failing when it tries to tangle and source the vignette
+citep(citation("knitr"))
+citet("10.1098/rspb.2013.1372")
+```
+
+
 ### Displaying the final bibliography
 
 At the end of the document, include a chunk containing the command:
@@ -105,6 +113,15 @@ output:
 Then calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
 
 # References
+
+
+
+
+
+
+
+
+
 
 
 
