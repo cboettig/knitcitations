@@ -25,7 +25,7 @@
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
-write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=TRUE, verbose=TRUE, create_key=TRUE, ...){
+write.bibtex <- function(entry=NULL, file="knitcitations.bib", append=exists(file), verbose=TRUE, create_key=TRUE, ...){
 
   if(is.null(entry)){
     bibs <- read_cache(bibtex=get("bibtex_data", envir=knitcitations_options))

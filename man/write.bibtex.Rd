@@ -3,8 +3,8 @@
 \alias{write.bibtex}
 \title{write a bibtex file}
 \usage{
-write.bibtex(entry = NULL, file = "knitcitations.bib", append = TRUE,
-  verbose = TRUE, create_key = TRUE, ...)
+write.bibtex(entry = NULL, file = "knitcitations.bib",
+  append = exists(file), verbose = TRUE, create_key = TRUE, ...)
 }
 \arguments{
 \item{entry}{a 'bibentry' object, list of bibentry objects, or a character
