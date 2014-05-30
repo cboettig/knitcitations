@@ -3,7 +3,8 @@
 \alias{citep}
 \title{Add a paranthetical citation}
 \usage{
-citep(x, ..., citation_format = getOption("citation_format", "compatibility"))
+citep(x, page = "", ..., citation_format = getOption("citation_format",
+  "compatibility"))
 }
 \arguments{
 \item{x}{a doi or list of dois, or a bibentry (or list of bibentries)}
@@ -13,6 +14,8 @@ for details}
 
 \item{citation_format}{name of the citation format to use.  Currently
 available options are "pandoc" or "compatibility".}
+
+\item{page}{a page number or other textual note}
 }
 \value{
 a parenthetical inline citation

@@ -24,6 +24,11 @@ And constructed with the following guidelines:
 For more information on SemVer, please visit http://semver.org/.
 
 
+v0.6-1
+------
+
+- Bugfix in default `citep` method (caused by missing `page` argument)
+
 v0.6-0
 ------
 

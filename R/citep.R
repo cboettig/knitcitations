@@ -4,7 +4,8 @@
 #' @param ... additional arguments passed to citet, see \code{\link{citet}} 
 #'  for details
 #' @param citation_format name of the citation format to use.  Currently
-#'  available options are "pandoc" or "compatibility".  
+#'  available options are "pandoc" or "compatibility". 
+#' @param page a page number or other textual note 
 #' @return a parenthetical inline citation
 #' @details Stores the full citation in a "works_cited" list,
 #' which can be printed with \code{\link{bibliography}}
@@ -33,7 +34,7 @@
 #' citep(c(Halpern2006="10.1111/j.1461-0248.2005.00827.x"))
 #' citep("Halpern2006")
 #' }
-citep <- function(x, ..., 
+citep <- function(x, page = "", ..., 
                   citation_format = getOption("citation_format", "compatibility")){
   if(citation_format != "pandoc"){
     text <- citet(x, ...) 
