@@ -1,43 +1,6 @@
 
-## Helper functions for formatting inline citations
- 
-
-## helper functions
-#' format the author and year 
-#' @param entry a bibentry
-#' @param format_inline_fn the function that actually creates the inline
-#'  format for a single entry
-#' @return the author-year citation
-authoryear_t <- function(entry, format_inline_fn = format_authoryear_t){
-
-  
-## FIXME Now that these checks are redundant, this entire function
-##   could be collapsed with format_authoryear_t, etc.  
-#    ## Check if we already have an inline citation format
-#    if(is.null(entry$inline)){
-#      entry$inline <- format_inline_fn(entry)
-#      entry <- unique_inline(entry, format_inline_fn)
-#    }
-#    assign(entry$key, entry, envir=knitcitationsCache)
-
-## Handle multiple entries
-    entry$inline
-}
-## helper functions
-#' format the author and year  
-#' 
-#' This is just a utility function that calls format_authoryear_p,
-#' which does the actual formating at the time the citation is added
-#' to the data.  This provides a separate API for the function that 
-#' simply returns the formatted text, from the function that does the
-#' formatting (which may change, or may have more flavors, etc).  
-#' @param entry a bibentry
-#' @param format_inline_fn the function that actually creates the inline
-#'  format for a single entry
-#' @return the author-year citation
-authoryear_p <- function(entry, format_inline_fn = format_authoryear_p){
-  authoryear_t(entry, format_inline_fn)
-}
+authoryear_t <- function(entry) entry$inline
+authoryear_p <- authoryear_t
 
 
 #' format the author and year parenthetically
@@ -52,15 +15,22 @@ authoryear_p <- function(entry, format_inline_fn = format_authoryear_p){
 format_authoryear_p <- function(entry, char=""){
     n <- length(entry$author)
     if(n==1)
-      sprintf("%s, %s%s", entry$author$family, entry$year, char)
+      sprintf("%s, %s%s", shortname(entry$author$family), entry$year, char)
     else if(n==2)
-      sprintf("%s & %s, %s%s", entry$author[[1]]$family, entry$author[[2]]$family, entry$year, char)
+      sprintf("%s & %s, %s%s", shortname(entry$author[[1]]), shortname(entry$author[[2]]), entry$year, char)
 #    else if(n==3)
 #      sprintf("%s, %s & %s, %s%s", entry$author[[1]]$family, entry$author[[2]]$family, entry$author[[3]]$family,  entry$year, char)
     else if(n>2)
-      sprintf("%s et al. %s%s", entry$author[[1]]$family, entry$year, char)
+      sprintf("%s et al. %s%s", shortname(entry$author[[1]]), entry$year, char)
 }
 
+
+shortname <- function(person){
+  if(person$family == "")
+    cleanupLatex(person$given)
+  else 
+    cleanupLatex(person$family)
+}
 
 
 #' format the author and year 
@@ -75,11 +45,11 @@ format_authoryear_p <- function(entry, char=""){
 format_authoryear_t <- function(entry, char=""){
     n <- length(entry$author)
     if(n==1)
-      sprintf("%s (%s%s)", entry$author$family, entry$year, char)
+      sprintf("%s (%s%s)", shortname(entry$author), entry$year, char)
     else if(n==2)
-      sprintf("%s & %s (%s%s)", entry$author[[1]]$family, entry$author[[2]]$family, entry$year, char)
+      sprintf("%s & %s (%s%s)", shortname(entry$author[[1]]), shortname(entry$author[[2]]), entry$year, char)
     else if(n>2)
-      sprintf("%s et al. (%s%s)", entry$author[[1]]$family, entry$year, char)
+      sprintf("%s et al. (%s%s)", shortname(entry$author[[1]]), entry$year, char)
 }
 
 
@@ -138,5 +108,39 @@ numeral <- function(entry){
   paste("[", as.character(entry$numeral), "]", sep="")
 }
 
+
+
+
+cleanupLatex <-
+function (x) 
+{
+    if (!length(x)) 
+        return(x)
+    if (any(grepl("mkbib", x))) {
+        x <- gsub("mkbibquote", "dQuote", x)
+        x <- gsub("mkbibemph", "emph", x)
+        x <- gsub("mkbibbold", "bold", x)
+    }
+    x <- gsub("\\\\hyphen", "-", x)
+    latex <- try(tools::parseLatex(x), silent = TRUE)
+    if (inherits(latex, "try-error")) {
+        x
+    }
+    else {
+        x <- tools::deparseLatex(tools::latexToUtf8(latex), dropBraces = TRUE)
+        if (grepl("\\\\[[:punct:]]", x)) {
+            x <- gsub("\\\\'I", "\303\215", x)
+            x <- gsub("\\\\'i", "\303\255", x)
+            x <- gsub("\\\\\"I", "\303\217", x)
+            x <- gsub("\\\\\"i", "\303\257", x)
+            x <- gsub("\\\\\\^I", "\303\216", x)
+            x <- gsub("\\\\\\^i", "\303\256", x)
+            x <- gsub("\\\\`I", "\303\214", x)
+            x <- gsub("\\\\`i", "\303\254", x)
+            Encoding(x) <- "UTF-8"
+        }
+        x
+    }
+}
 
 

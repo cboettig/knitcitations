@@ -39,11 +39,15 @@ citet <- function(x,
                     getOption("citation_format", "compatibility")
                   ){
 
-if(citation_format != "pandoc")
+if(citation_format== "compatibility")
   legacy_citet(x, cito, ...)
-else {
+else if(citation_format == "pandoc"){
   bib <- cite(x)
   paste(sapply(bib, function(b) paste0("@", b$key)), sep = "", collapse="; ")
+  }
+else if(citation_format == "text"){
+  bib <- cite(x)
+  Citet(as.BibEntry(bib), ...)
   }
 }
 
@@ -59,12 +63,11 @@ legacy_citet <- function(x,
                          linked = get("linked", envir=knitcitations_options), 
                          numerical = get("numerical", envir=knitcitations_options), 
                          format_inline_fn = format_authoryear_t,  
-                         inline_format = authoryear_t, 
                          page = NULL){ 
 
   out <- cite(x, format_inline_fn = format_inline_fn)
   if(length(out) > 1) {
-    output <- paste(sapply(out, citet, cito, tooltip, linked, format_inline_fn, inline_format), collapse="; ", sep="")
+    output <- paste(sapply(out, citet, cito, tooltip, linked, format_inline_fn), collapse="; ", sep="")
   } else {
     if(linked){
       citoproperty <- ""
@@ -74,27 +77,13 @@ legacy_citet <- function(x,
         link <- paste('href="http://dx.doi.org/', out[[1]]$doi, '"', sep='')
       else ## Attempt to link by bibtex URL field.  
         link <- paste('href="', out$url, '"', sep='')
-      output <- paste('<a ', link, citoproperty, '>', I(inline_format(out[[1]])), '</a>', sep='')
+      output <- paste('<a ', link, citoproperty, '>', I(out[[1]]$inline), '</a>', sep='')
       if(tooltip){
-        bibinfo <- format(out, "html")
-        # Clean up silly default html formatting -- nope, just have to strip the html.  
-        bibinfo <- gsub('<p>', '', bibinfo) 
-#        bibinfo <- gsub('B>', 'strong>', bibinfo) 
-#        bibinfo <- gsub('EM>', 'em>', bibinfo) 
-         bibinfo <- gsub("&ldquo;", "'", bibinfo) # okay if data-html is on 
-         bibinfo <- gsub("&rdquo;", "'", bibinfo) # okay if data-html is on 
-         bibinfo <- gsub("&ndash;", "-", bibinfo)  # okay if data-html is on 
-         bibinfo <- gsub('<a .*</a>', '', bibinfo) 
-         bibinfo <- gsub('<B>', '', bibinfo) 
-         bibinfo <- gsub('<EM>', '', bibinfo) 
-         bibinfo <- gsub('</B>', '', bibinfo) 
-         bibinfo <- gsub('</EM>', '', bibinfo) 
-         bibinfo <- gsub('\\n', ' ', bibinfo) 
-         bibinfo <- gsub(', \\.', '.', bibinfo) 
-     output <- paste('<span class="showtooltip" title="', bibinfo, '">', output, '</span>', sep='')
+        bibinfo <- clean_html(format(out, "html"))
+     output <- paste('<span title="', bibinfo, '">', output, '</span>', sep='')
       }
     } else { # not linked 
-      output <- inline_format(out)
+      output <- out$inline
     }
   } 
 
@@ -110,3 +99,20 @@ legacy_citet <- function(x,
 
   output
 }
+
+
+# Clean up (strip) the silly default html formatting 
+clean_html <- function(bibinfo){
+        bibinfo <- gsub('<p>', '', bibinfo) 
+         bibinfo <- gsub("&ldquo;", "'", bibinfo) # okay if data-html is on 
+         bibinfo <- gsub("&rdquo;", "'", bibinfo) # okay if data-html is on 
+         bibinfo <- gsub("&ndash;", "-", bibinfo)  # okay if data-html is on 
+         bibinfo <- gsub('<a .*</a>', '', bibinfo) 
+         bibinfo <- gsub('<B>', '', bibinfo) 
+         bibinfo <- gsub('<EM>', '', bibinfo) 
+         bibinfo <- gsub('</B>', '', bibinfo) 
+         bibinfo <- gsub('</EM>', '', bibinfo) 
+         bibinfo <- gsub('\\n', ' ', bibinfo) 
+         bibinfo <- gsub(', \\.', '.', bibinfo) 
+}
+

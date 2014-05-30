@@ -36,15 +36,17 @@
 #' }
 citep <- function(x, page = "", ..., 
                   citation_format = getOption("citation_format", "compatibility")){
-  if(citation_format != "pandoc"){
+
+  if(citation_format == "compatibility"){
     text <- citet(x, ...) 
     paste("(", text, page, ")", sep="", collapse=";")
-  } else {
 
-## Pandoc format 
-
+  } else if(citation_format == "pandoc"){
     paste0("[",citet(x, ..., citation_format = citation_format),"]")
 
+  } else if(citation_format == "text"){
+    bib <- cite(x)
+    Citep(as.BibEntry(bib), ...)
   }
 
 }

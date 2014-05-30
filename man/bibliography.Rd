@@ -32,7 +32,7 @@ journal of statistical software (JSS).  See \code{\link{bibstyle}}.}
 bibliography will print as a bulleted list using the \code{li} HTML tags.}
 
 \item{...}{additional arguments passed to print.bibentry,
-see \code{\link{bibentry}}}
+see \code{\link{bibentry}} or to PrintBibliography (for text, textVersion formats)}
 }
 \value{
 a list of bibentries, providing a bibliography of what's been cited

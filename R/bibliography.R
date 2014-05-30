@@ -16,7 +16,7 @@
 #' @param bulleted logical.  If \code{TRUE}, for \code{style = "html"}, the
 #' bibliography will print as a bulleted list using the \code{li} HTML tags.
 #' @param ... additional arguments passed to print.bibentry,
-#' see \code{\link{bibentry}}
+#' see \code{\link{bibentry}} or to PrintBibliography (for text, textVersion formats)
 #' @return a list of bibentries, providing a bibliography of what's been cited
 #' @details The markdown and rdfa print formats can take the argument
 #' `ordering`. A character string provides the order in which elements
@@ -26,11 +26,26 @@
 #'
 #' @export
 bibliography <-
-function (style = "markdown", .bibstyle = "JSS", ordering = c("authors",
-    "year", "title", "journal", "volume", "number", "pages",
-    "doi", "url"), sort = FALSE, bibtex = get("bibtex_data",
-    envir = knitcitations_options),  bulleted = TRUE, ...)
+function (style = "markdown",
+
+          .bibstyle = "JSS", 
+          ordering = c("authors", "year", "title", 
+                       "journal", "volume", "number",
+                       "pages", "doi", "url"), 
+          sort = FALSE, 
+          bibtex = get("bibtex_data", envir = knitcitations_options),  
+          bulleted = TRUE, 
+          ...)
 {
+
+  bibs <- as.BibEntry(read_cache(bibtex=bibtex))
+
+  if(style %in% c("text", "textVersion")){
+
+    PrintBibliography(bibs, ...)
+    
+  } else {
+
     out <- read_cache(bibtex = bibtex)
     if (length(out) > 0) {
         if (sort) {
@@ -38,8 +53,8 @@ function (style = "markdown", .bibstyle = "JSS", ordering = c("authors",
             out <- out[ordering]
         }
     }
-    if (style %in% c("R", "text", "bibtex", "textVersion", "citation",
-        "LaTeX")) {
+
+    if (style %in% c("R", "bibtex", "citation", "LaTeX")) {
         output <- print(out, style, .bibstyle = .bibstyle, ...)
     }
     else if (style == "rdfa") {
@@ -61,7 +76,8 @@ function (style = "markdown", .bibstyle = "JSS", ordering = c("authors",
     else {
         stop("Style not recognized")
     }
-    invisible(output)
+  }
+  invisible(bibs)
 }
 
 
