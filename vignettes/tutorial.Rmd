@@ -77,7 +77,7 @@ We can also use `bibentry` objects such as R provides for citing packages (using
 
 ### Re-using Keys
 
-When the citation is called, a key in the format `FirstAuthorsLastNameYear` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams2012")` creates the citation `r citep("Abrams2012")` without mistaking it for a new article.  
+When the citation is called, a key in the format `FirstAuthorsLastName_Year` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams_2012")` creates the citation `r citep("Abrams_2012")` without mistaking it for a new article.  
 
 
 
@@ -124,60 +124,5 @@ Then calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles
 
 
 
-
-
-
-<!--
-
-At the end of our document we can generate the traditional "References" or "Works Cited" list in a knitr block using the chunk option `results='asis'` to display as text rather than code:  
-
-
-```r
-bibliography()
-```
-
-
-- Peter A. Abrams, Lasse Ruokolainen, Brian J. Shuter, Kevin S. McCann,   (2012) Harvesting Creates Ecological Traps: Consequences of Invisible Mortality Risks in Predator-Prey Metacommunities.  *Ecology*  **93**  [10.1890/11-0011.1](http://dx.doi.org/10.1890/11-0011.1)
-- Carl Boettiger,   (2012) knitcitations: Citations for knitr markdown files.  [https://github.com/cboettig/knitcitations](https://github.com/cboettig/knitcitations)
-- Yihui Xie,   (2013) knitr: A general-purpose package for dynamic report generation in R.  [http://yihui.name/knitr/](http://yihui.name/knitr/)
-- Phillip Lord,   (2012) Greycite.  *Knowledge Blog*  [http://knowledgeblog.org/greycite](http://knowledgeblog.org/greycite)
-
-
-Other formats can be given as options to `bibliography`, as described in the help documentation, `?bibliography`.  For instance, we can specify the format as "markdown".  The custom formats "markdown" and "rdfa" take an additional argument, "ordering", which can specify what elements we want to print and what order they should be given in.  For instance, we can omit everything but the authors, year, and journal, given in that order:
-
-
-```r
-bibliography("markdown", ordering = c("authors", "year", "journal"))
-```
-
-
-- Peter A. Abrams, Lasse Ruokolainen, Brian J. Shuter, Kevin S. McCann,   (2012)  *Ecology*
-- Carl Boettiger,   (2012)
-- Yihui Xie,   (2013)
-- Phillip Lord,   (2012)  *Knowledge Blog*
-
-
-(Note that since version 0.5, "markdown" is the default and can be omitted)
-
-### Links and tooltips
-
-In-text citations are now linked by default to the article.  We can turn this on or off in a single citation like so: `citep("Abrams2012", linked=TRUE)`, creating the citation (<a href="http://dx.doi.org/10.1890/11-0011.1">Abrams _et. al._ 2012</a>).  We can toggle this behavior on or off globally using `cite_options(linked=TRUE)` at the beginning of our document.  
-
-
-Using the popular javascript library from [bootstrap](http://twitter.github.com/bootstrap), we can tell `knitcitations` to include a javascript tooltip on mouseover.  (This effect will not work inside a github repo due the the lack of the javascript library, but can easily be deployed on a website, see Boettiger (2013). This function is off by default can be toggled on or off in the same way, `cite_options(tooltip=TRUE)`.  
-
-![Screenshot of citation produced with a tooltip.](http://farm9.staticflickr.com/8233/8499745634_04a13fe93e_o.png)
-
-## Semantics 
-
-### CiTO  
-
-Additional semantic markup can be added the the citations themselves, such as the reason for the citation.  For instance, we can identify that we have used the method from Shotton (2010) with the inline command `citet("10.1186/2041-1480-1-S1-S6", cito = "usesMethodIn")`.  
-
-More discussion on using `knitcitations` for CITO and semantic markup can be found in Boettiger (2013).  
-
-
-
--->
 
 

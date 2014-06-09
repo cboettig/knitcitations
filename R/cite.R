@@ -1,3 +1,5 @@
+
+
 cite <- function(x, 
                  bibtex = get("bibtex_data", envir=knitcitations_options), 
                  format_inline_fn = NULL){
@@ -30,7 +32,9 @@ cite <- function(x,
       ##  Modified by https://github.com/cboettig/knitcitations/commit/7ba14c7bf2ba3cd008157617d64f62f94e7a18b4#commitcomment-4353812
       doi_pattern = "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'])\\S)+)\\b"
       if(is.character(x[[i]]) && length(grep(doi_pattern, x[[i]], perl=TRUE)) == 1){  
-        entry <- ref(x[[i]]) # look-up by DOI
+     #   entry <- cr_cn(x[[i]]) # look-up by DOI
+        entry <- ReadCrossRef(x[[i]])[[1]]
+        class(entry) = "bibentry" 
 
       ## Handle URLs
       } else if(is.character(x[[i]]) && length(grep(url_regexp, x[[i]], perl=TRUE)) == 1){
@@ -39,13 +43,18 @@ cite <- function(x,
       ## Handle bibentry types 
       } else if(is(x[[i]], "bibentry")) {
         entry <- x[[i]] # Already a bibentry object?
-      ## Handle exceptions
+      ## Handle exceptions. Guess from crossref
       } else {
-        warning("citation not found")
-        entry <- I("?")
-        entry$key <- "not_found"
+
+        entry <- ReadCrossRef(x[[i]])[[1]]
+        class(entry) = "bibentry" 
+
+#        warning("citation not found")
+#        entry <- I("?")
+#        entry$key <- "not_found"
       }
-      entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
+      if(is.null(entry$key))
+        entry <- create_bibkey(entry, key=key, current=current) # Create a bibkey for it
 
       ## Generate the inline citation  
       if(!is.null(format_inline_fn)){
@@ -61,7 +70,7 @@ cite <- function(x,
       } else {
          ## Check if we already have this key entered
          m <- match(names(entry), existing)  
-         if(is.na(m))
+         if(is.na(m) | length(m) == 0)
           write_cache(entry, bibtex = bibtex)
         else
           message("citation already in database")
