@@ -45,7 +45,7 @@ record_as_cited <- function(entry){
 
 
 get_bib <- function() 
-  do.call("c", mget(ls(env=knitcitations), envir=knitcitations))
+  do.call("c", mget(ls(envir = knitcitations), envir=knitcitations))
 
 
 is.bibkey <- function(x){
@@ -104,7 +104,7 @@ is.url <- function(x){
 
 
 entry_exists <- function(hash) 
-  hash %in% ls(env=knitcitations)
+  hash %in% ls(envir = knitcitations)
 
 
 update_biblio <- function(hash, entry) 
@@ -117,7 +117,7 @@ inline_format <- function(entry, ...)
 
 get_matching_key <- function(entry){
   hash <- check_unique(entry)
-  matching_entry <- get(hash, env=knitcitations) 
+  matching_entry <- get(hash, envir = knitcitations) 
   entry$key <- matching_entry$key
   entry
 }

@@ -6,15 +6,13 @@
 #'  added. if 'NULL' will use stdout.  
 #' @param append a logical indicating that bibtex entries be added the the
 #'  file.  If FALSE (default), the file is overwritten.  
-#' @param verbose a logical to toggle verbosity. If 'file=NULL', verbosity 
-#'  is forced off.
 #' @param ... additional arguments to WriteBib
 #' @return a list of citation information, invisibly 
-#' @import bibtex RefManageR 
+#' @import RefManageR 
 #' @examples
-#'  write.bibtex(c("Yihui2013" = citation("knitr"), 
-#'                 "Boettiger2013" = citation("knitcitations"), 
-#'                 "TempleLang2012"=citation("RCurl")))
+#'  write.bibtex(c(citation("knitr"), 
+#'                 citation("knitcitations"), 
+#'                 citation("RCurl")))
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet
@@ -39,6 +37,14 @@ write.bibtex <- function(entry = NULL,
 
 
 #' read.bibtex
+#' @param file string; bib file to parse.
+#' @param  .Encoding encoding
+#' @param check error, warn, or logical FALSE.  What action should be
+#'        taken if an entry is missing required fields?  FALSE means
+#'        no checking is done, warn means entry is added with an
+#'        error. error means the entry will not be added.  See
+#'        BibOptions.
 #' @import RefManageR
 #' @export
-read.bibtex <- ReadBib
+read.bibtex <- function(file, .Encoding = "UTF-8", check=FALSE) 
+  ReadBib(file, .Encoding=.Encoding, header=NULL, footer = NULL, check=check)

@@ -16,9 +16,6 @@ added. if 'NULL' will use stdout.}
 \item{append}{a logical indicating that bibtex entries be added the the
 file.  If FALSE (default), the file is overwritten.}
 
-\item{verbose}{a logical to toggle verbosity. If 'file=NULL', verbosity
-is forced off.}
-
 \item{...}{additional arguments to WriteBib}
 }
 \value{
@@ -28,9 +25,9 @@ a list of citation information, invisibly
 write a bibtex file
 }
 \examples{
-write.bibtex(c("Yihui2013" = citation("knitr"),
-                "Boettiger2013" = citation("knitcitations"),
-                "TempleLang2012"=citation("RCurl")))
+write.bibtex(c(citation("knitr"),
+                citation("knitcitations"),
+                citation("RCurl")))
  bib <- read.bibtex("knitcitations.bib")
 }
 \seealso{

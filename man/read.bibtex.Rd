@@ -3,9 +3,18 @@
 \alias{read.bibtex}
 \title{read.bibtex}
 \usage{
-read.bibtex(file, .Encoding = "UTF-8", header = if (length(preamble))
-  paste(preamble, sep = "\\n") else "", footer = "",
-  check = BibOptions()$check.entries)
+read.bibtex(file, .Encoding = "UTF-8", check = FALSE)
+}
+\arguments{
+\item{file}{string; bib file to parse.}
+
+\item{.Encoding}{encoding}
+
+\item{check}{error, warn, or logical FALSE.  What action should be
+taken if an entry is missing required fields?  FALSE means
+no checking is done, warn means entry is added with an
+error. error means the entry will not be added.  See
+BibOptions.}
 }
 \description{
 read.bibtex
