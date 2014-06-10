@@ -3,8 +3,8 @@
 \alias{write.bibtex}
 \title{write a bibtex file}
 \usage{
-write.bibtex(entry = NULL, file = "knitcitations.bib",
-  append = exists(file), verbose = TRUE, create_key = TRUE, ...)
+write.bibtex(entry = NULL, file = "knitcitations.bib", append = FALSE,
+  ...)
 }
 \arguments{
 \item{entry}{a 'bibentry' object, list of bibentry objects, or a character
@@ -19,17 +19,10 @@ file.  If FALSE (default), the file is overwritten.}
 \item{verbose}{a logical to toggle verbosity. If 'file=NULL', verbosity
 is forced off.}
 
-\item{create_key}{logical indicating whether function should create a
-bibtex citation key if the object doesn't have one.}
-
 \item{...}{additional arguments to WriteBib}
 }
 \value{
 a list of citation information, invisibly
-
-The 'knitcitations' package automatically extends the use of this function to
-be able to write bibtex files from a string of DOIs, making it valuable for
-purposes beyond the citation of packages.
 }
 \description{
 write a bibtex file

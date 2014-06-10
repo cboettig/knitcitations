@@ -1,29 +1,13 @@
-library("RefManageR")
-library("digest")
+# This file contains internal functions which handle 
+# getting citation metadata and tracking what has
+# already been cited.  
+
 
 knitcitations <- new.env(hash=TRUE)
 BibOptions(check.entries = FALSE)
 
-citet <- function(x, ...){
-  bib <- do.call(c, lapply(x, knit_cite, ...))
-  if(citation_format == "pandoc")
-    paste0("@", sapply(out, function(b) b$key), collapse=", ")
-  else 
-    Citet(bib, ...)
-}
 
-citep <- function(x, ...){
-  bib <- do.call(c, lapply(x, knit_cite, ...))
-
-  if(citation_format == "pandoc")
-    paste0("[", paste0("@", sapply(bib, function(b) b$key), collapse="; "), "]")
-  else 
-    Citep(bib, ...)
-}
-
-
-
-
+#' @import RefManageR digest
 knit_cite <- function(x, ...){
   entry <- biblio_metadata(x, ...)
   record_as_cited(entry)
@@ -38,7 +22,7 @@ biblio_metadata <- function(x, ...){
     if(is.bibkey(x))
       entry <- get_by_bibkey(x)
     else if(is.url(x))
-      entry <- greycite(entry)
+      entry <- greycite(x)
     else if(is.pdf(x))
       entry <- ReadPDFs(x)
     else
@@ -47,16 +31,34 @@ biblio_metadata <- function(x, ...){
   tweak(entry)
 }
 
+record_as_cited <- function(entry){
+  hash <- check_unique(entry)
+
+  if(entry_exists(hash)){
+    entry <- get_matching_key(entry)
+  } else { 
+    entry <- get_unique_key(entry)
+    update_biblio(hash, entry)
+  }
+  entry
+}
+
+
+get_bib <- function() 
+  do.call("c", mget(ls(env=knitcitations), envir=knitcitations))
+
 
 is.bibkey <- function(x){
-  bib <- mget(ls(env=knitcitations), env=knitcitations)
-  if(length(bib) > 0)
+  bib <- get_bib()
+  if(length(bib) > 0){
     keys <- sapply(bib, function(b) b$key)
-  x %in% keys
+    x %in% keys
+  } else
+    FALSE
 }
 
 get_by_bibkey <- function(key){
-  bib <- mget(ls(env=knitcitations), env=knitcitations)
+  bib <- get_bib() 
   keys <- sapply(bib, function(b) b$key)
   bib[keys %in% key][[1]]
 }
@@ -76,6 +78,7 @@ tweak <- function(entry){
   as.BibEntry(entry)
 }
 
+
 make_key <- function(entry){
   n <- entry$author[[1]]$family
   if(is.null(n))
@@ -84,20 +87,6 @@ make_key <- function(entry){
   entry$key  <- paste(n, entry$year, sep="_")
   entry <- get_unique_key(entry)
 }
-
-record_as_cited <- function(entry){
-  hash <- check_unique_citation(entry)
-
-  if(entry_exists(hash)){
-    entry <- get_matching_key(entry)
-  } else { 
-    entry <- get_unique_key(entry)
-    update_biblio(hash, entry)
-  }
-  entry
-}
-
-
 
 
 is.pdf <- function(x){
@@ -127,8 +116,7 @@ inline_format <- function(entry, ...)
  
 
 get_matching_key <- function(entry){
-  entry$key <- "common" # Not unique if only keys are different 
-  hash <- digest(entry)
+  hash <- check_unique(entry)
   matching_entry <- get(hash, env=knitcitations) 
   entry$key <- matching_entry$key
   entry
@@ -136,7 +124,7 @@ get_matching_key <- function(entry){
 
 
 get_unique_key <- function(entry){
-  bib <- mget(ls(env=knitcitations), env=knitcitations)
+  bib <- get_bib() 
   if(length(bib) > 0){
     keys <- sapply(bib, function(x) x$key)
     recursive_key_update(entry, keys, 1)
@@ -157,9 +145,8 @@ recursive_key_update <- function(entry, keys, i){
 }
 
 
-check_unique_citation <- function(entry){  
+check_unique <- function(entry){  
   entry$key <- "common" # Not unique if only keys are different 
-  hash <- digest(entry)
-  hash 
+  digest(unlist(entry))
 }
 
