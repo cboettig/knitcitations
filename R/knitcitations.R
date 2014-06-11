@@ -8,45 +8,14 @@ BibOptions(check.entries = FALSE)
 
 
 #' @import RefManageR digest
-knit_cite <- function(x, ...){
-  entry <- biblio_metadata(x, ...)
+knit_cite <- function(x, ...){   # the method that citet/p loop over
+  entry <- bib_metadata(x, ...)
   record_as_cited(entry)
   entry
 }
 
-biblio_metadata <- function(x, ...){
-
-  if(is(x, "bibentry"))
-    entry <- x
-  else if(is(x, "character")){
-    if(is.bibkey(x))
-      entry <- get_by_bibkey(x)
-    else if(is.url(x))
-      entry <- greycite(x)
-    else if(is.pdf(x))
-      entry <- ReadPDFs(x)
-    else
-      entry <- ReadCrossRef(x, limit = 1, ...)
-  }
-  tweak(entry)
-}
-
-record_as_cited <- function(entry){
-  hash <- check_unique(entry)
-
-  if(entry_exists(hash)){
-    entry <- get_matching_key(entry)
-  } else { 
-    entry <- get_unique_key(entry)
-    update_biblio(hash, entry)
-  }
-  entry
-}
-
-
 get_bib <- function() 
   do.call("c", mget(ls(envir = knitcitations), envir=knitcitations))
-
 
 is.bibkey <- function(x){
   bib <- get_bib()
@@ -64,18 +33,28 @@ get_by_bibkey <- function(key){
 }
 
 
-tweak <- function(entry){
-    for(a in entry$author){
-      if(a$given == c("Duncan", "Temple") && a$family == "Lang"){ 
-        entry$author$given  <- "Duncan"
-        entry$author$family <- "Temple Lang"
-      }
+fix_duncan <- function(entry){
+  if(!is.null(entry$author) || length(entry$author) < 1){
+    i <- which(sapply(entry$author, function(x) x$given ==  c("Duncan", "Temple") && x$family == "Lang"))
+    if(length(i) > 0){
+      class(entry) = "bibentry" # Strip BibEntry class so that this works
+      entry$author[i] <- person("Duncan", "Temple Lang")
     }
+  }
+  entry
+}
+
+tweak <- function(entry, BibEntry = TRUE){
+    # Make sure every entry has a year and a key.
+    entry <- fix_duncan(entry) 
     if (is.null(entry$year))
       entry$year <- format(Sys.time(), "%Y")
     if(is.null(entry$key))
       entry <- make_key(entry)
-  as.BibEntry(entry)
+  if(BibEntry)
+    as.BibEntry(entry)
+  else 
+    entry
 }
 
 
