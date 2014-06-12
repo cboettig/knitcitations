@@ -35,7 +35,7 @@ get_by_bibkey <- function(key){
 
 fix_duncan <- function(entry){
   if(!is.null(entry$author) || length(entry$author) < 1){
-    i <- which(sapply(entry$author, function(x) x$given ==  c("Duncan", "Temple") && x$family == "Lang"))
+    i <- suppressWarnings(which(sapply(entry$author, function(x) identical(x$given, c("Duncan", "Temple")) && x$family == "Lang")))
     if(length(i) > 0){
       class(entry) = "bibentry" # Strip BibEntry class so that this works
       entry$author[i] <- person("Duncan", "Temple Lang")
