@@ -35,9 +35,12 @@
 citep <- function(x, ...){
   bib <- do.call(c, lapply(x, knit_cite, ...)) # do.call(c turns list into BibEntry)
 
-  citation_format = getOption("citation_format", "text")
+  citation_format <- getOption("citation_format", "text")
   if(citation_format == "pandoc")
-    paste0("[", paste0("@", sapply(bib, function(b) b$key), collapse="; "), "]")
+    paste0("[", paste0("@", 
+                       sapply(bib, function(b) b$key), 
+                       collapse="; "),
+           "]")
   else 
     Citep(bib, ...)
 }

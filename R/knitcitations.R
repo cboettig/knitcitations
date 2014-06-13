@@ -11,14 +11,16 @@ BibOptions(check.entries = FALSE)
 knit_cite <- function(x, ...){   # the method that citet/p loop over
   entry <- bib_metadata(x, ...)
   record_as_cited(entry)
-  entry
 }
 
+get_bib_list <- function() 
+  mget(ls(envir = knitcitations), envir=knitcitations)
+
 get_bib <- function() 
-  do.call("c", mget(ls(envir = knitcitations), envir=knitcitations))
+  do.call("c", get_bib_list())
 
 is.bibkey <- function(x){
-  bib <- get_bib()
+  bib <- get_bib_list()
   if(length(bib) > 0){
     keys <- sapply(bib, function(b) b$key)
     x %in% keys
@@ -27,7 +29,7 @@ is.bibkey <- function(x){
 }
 
 get_by_bibkey <- function(key){
-  bib <- get_bib() 
+  bib <- get_bib_list() 
   keys <- sapply(bib, function(b) b$key)
   bib[keys %in% key][[1]]
 }
@@ -103,7 +105,7 @@ get_matching_key <- function(entry){
 
 
 get_unique_key <- function(entry){
-  bib <- get_bib() 
+  bib <- get_bib_list() 
   if(length(bib) > 0){
     keys <- sapply(bib, function(x) x$key)
     recursive_key_update(entry, keys, 1)

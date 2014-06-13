@@ -5,6 +5,7 @@
 bibliography <- function(...)
 {
   bibs <- get_bib()
+  NoCite(bibs) 
   PrintBibliography(bibs, ...)
   invisible(bibs)
 }
