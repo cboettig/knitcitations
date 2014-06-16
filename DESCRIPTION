@@ -18,8 +18,8 @@ Depends:
     R (>= 3.0)
 Imports:
     digest,
-    RefManageR,
-    httr
+    RefManageR (>= 0.8.2),
+    httr (>= 0.3)
 Suggests:
     testthat,
     knitr (>= 1.6)

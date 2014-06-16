@@ -36,7 +36,7 @@ get_by_bibkey <- function(key){
 
 
 fix_duncan <- function(entry){
-  if(!is.null(entry$author) || length(entry$author) < 1){
+  if(!is.null(entry$author) && length(entry$author) > 0){
     i <- suppressWarnings(which(sapply(entry$author, function(x) identical(x$given, c("Duncan", "Temple")) && x$family == "Lang")))
     if(length(i) > 0){
       class(entry) = "bibentry" # Strip BibEntry class so that this works

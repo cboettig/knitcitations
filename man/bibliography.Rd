@@ -3,7 +3,7 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-bibliography(...)
+bibliography(..., style = NULL)
 }
 \arguments{
 \item{...}{additional arguments passed to PrintBibliography,}
