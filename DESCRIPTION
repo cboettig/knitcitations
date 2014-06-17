@@ -3,7 +3,7 @@ Type: Package
 Title: Citations for knitr markdown files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com")
-Version: 1.0-1
+Version: 1.0-2
 Description: knitcitations provides the ability to create dynamic citations
     in which the bibliographic information is pulled from the web rather
     than having to be entered into a local database such as bibtex ahead of
@@ -17,8 +17,8 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.0)
 Imports:
-    digest,
     RefManageR (>= 0.8.2),
+    digest,
     httr (>= 0.3)
 Suggests:
     testthat,
