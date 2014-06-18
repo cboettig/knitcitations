@@ -24,6 +24,27 @@ And constructed with the following guidelines:
 For more information on SemVer, please visit http://semver.org/.
 
 
+v1.0-1
+------
+
+This version is a ground-up rewrite of knitcitations, providing a more powerful interface while also streamlining the back end, mostly by relying more on external libraries for knitty gritty. While an effort has been made to preserve the most common uses, some lesser-used functions or function arguments have been significantly altered or removed. Bug reports greatly appreciated.  
+
+- `citet`/`citep` now accept more options.  In addition to the four previously supported options (DOI, URL, bibentry or bibkey (of a previously cited work)), these now accept a plain text query (used in a CrossRef Search), or a path to a PDF file (which attempts metadata extraction).  
+
+- Citation key generation is now handled internally, and cannot be configured just by providing a named argument to `citet`/`citep`.  
+
+- The `cite` function is replaced by `bib_metadata`.  This function takes any argument to `citet`/`citep` as before (including the new arguments), see docs.  
+
+- Linked inline citations now use the configuration: cite_options(style="markdown", hyperlink="to.doc") provides a link to the DOI or URL of the document, using markdown format.  
+
+- Support for cito and tooltip have been removed.  These may be restored at a later date.  (The earlier implementation did not appropriately abstract the use of these features from the style/formatting of printing the citation, making generalization hard.  
+
+- `bibliography` now includes CSL support directly for entries with a DOI using the `style=` argument.  No need to provide a CSL file itself, just the name of the journal (or rather, the name of the corresponding csl file: full journal name, all lower case, spaces as dashes). See https://github.com/cboettig/knitcitations/issues/38 
+
+- `bibliography` formatting has otherwise been completely rewritten, and no longer uses print_markdown, print_html, and print_rdfa methods.  rdfa is no longer available, and other formats are controlled through cite_options.  For formal publication pandoc mode is recommended instead of `bibliography`.  
+
+
+
 v0.6-2
 ------
 
