@@ -23,6 +23,14 @@ cite_options <- function(citation_format = "compatibility",
                          check.entries = FALSE, 
                          ...){
   options(citation_format = citation_format)
-  invisible(BibOptions(check.entries = check.entries, ...))
+  invisible(BibOptions(check.entries = check.entries, 
+                       style = style, 
+                       hyperlink = hyperlink, 
+                       cite.style = cite.style, 
+                       super = super, 
+                       max.names = max.names,
+                       longnamesfirst = longnamesfirst, 
+                       check.entries = check.entries, 
+                       ...))
 }
 

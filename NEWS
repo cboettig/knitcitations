@@ -20,8 +20,19 @@ And constructed with the following guidelines:
 * New additions without breaking backward compatibility bumps the minor 
   (and resets the patch)
 * Bug fixes and misc changes bumps the patch
+* Following the RStudio convention, a .99 is appended after the patch
+  number to indicate the development version on Github.  Any version
+  Coming from Github will now use the .99 extension, which will never
+  appear in a version number for the package on CRAN. 
+
 
 For more information on SemVer, please visit http://semver.org/.
+
+
+v1.0.1.99
+---------
+
+- Fix passing of arguments to `cite_options` that was causing many options to be ignored. (See [#63](https://github.com/cboettig/knitcitations/issues/63))
 
 
 v1.0-1
