@@ -19,7 +19,7 @@ knitcitations
 
 
 - **Author**: [Carl Boettiger](http://www.carlboettiger.info/)
-- **License**: [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
+- **License**: [MIT](http://opensource.org/licenses/MIT)
 - [Package source code on Github](https://github.com/cboettig/knitcitations)
 - [**Submit Bugs and feature requests**](https://github.com/cboettig/knitcitations/issues)
 
