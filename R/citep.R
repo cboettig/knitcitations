@@ -27,8 +27,10 @@
 #' # Cite an R package using the 'bibentry' object
 #' citep(citation("RCurl"))
 #' 
+#' \donttest{
 #' # Cite using a search query and an optional argument
 #' citep("Chamberlain taxize", year="2013")
+#' }
 #' 
 #' @import RefManageR digest
 #' @export

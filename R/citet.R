@@ -23,13 +23,14 @@
 #'  the arguments to Citet for details. knitcitations will automatically track
 #'  what has been cited during the active R session until the citation log is reset 
 #'
-#' @examples
+#' @examples 
 #' # Cite an R package using the 'bibentry' object
 #' citet(citation("RCurl"))
 #' 
+#' \donttest{
 #' # Cite using a search query and an optional argument
 #' citet("Chamberlain taxize", year="2013")
-#' 
+#' }
 #' @import RefManageR digest
 #' @export
 citet <- function(x, ...){
