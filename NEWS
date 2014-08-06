@@ -29,11 +29,12 @@ And constructed with the following guidelines:
 For more information on SemVer, please visit http://semver.org/.
 
 
-v1.0.1.99
+v1.0.2
 ---------
 
 - Fix passing of arguments to `cite_options` that was causing many options to be ignored. (See [#63](https://github.com/cboettig/knitcitations/issues/63))
-
+- Added \donttest on examples needing internet connection (resource may not be available)
+- Licence migrated to MIT
 
 v1.0-1
 ------
