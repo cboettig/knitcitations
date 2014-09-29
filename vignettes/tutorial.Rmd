@@ -11,7 +11,10 @@ output: pdf_document
 %\VignetteIndexEntry{An introduction to knitcitations}
 -->
 
+<!--
 [![Build Status](https://travis-ci.org/cboettig/knitcitations.png)](https://travis-ci.org/cboettig/knitcitations)
+-->
+
 
 knitcitations
 =============
