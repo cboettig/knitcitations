@@ -28,6 +28,11 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.3
+--------
+
+- Update vignette to reflect changes to `rmarkdown` and pandoc (see [#67](https://github.com/cboettig/knitcitations/issues/67))
+- Fixed missing citation in vignette building (knitcitations default format for bibtex keys now has an underscore, `LastName_Year`)
 
 v1.0.2
 ---------
