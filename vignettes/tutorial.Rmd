@@ -75,7 +75,7 @@ Not all the literature we may wish to cite includes DOIs, such as [arXiv](http:/
 
 ### Cite bibtex and bibentry objects directly 
 
-We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces `r citep(citation("knitr"))`.  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger2013` which will render as @Boettiger2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
+We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces `r citep(citation("knitr"))`.  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger_2013` which will render as @Boettiger_2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
 
 
 ### Re-using Keys
@@ -99,21 +99,23 @@ At the end of the document, include a chunk containing the command:
 write.bibtex(file="references.bib")
 ```
 
-Use the chunk option `echo=FALSE` to hide the chunk command.  This creates a Bibtex file with the name given.  [Pandoc](http://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](http://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used:
+Use the chunk options `echo=FALSE` and `message=FALSE` to hide the chunk command and output.  
+
+This creates a Bibtex file with the name given.  [Pandoc](http://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](http://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used, and the optional link to a [CSL](https://github.com/citation-style-language/styles) stylesheet which formats the output for the ESA journals:
 
 ```yaml
 ---
-output: 
-  html_document:
-    pandoc_args: [
-      "--biblio", "references.bib",
-      "--csl", "ecology.csl"
-      ]
+bibliography: "references.bib"
+csl: "ecology.csl"
+output:
+  html_document
 ---
 ```
 
 
-Then calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
+# Example file for RStudio / rmarkdown
+
+This vignette itself is written as an `.Rmd` file with the `yaml` header discussed above for working with RStudio's `knit` buttons or the rmarkdown R package.  You can see the [tutorial source file here](https://raw.githubusercontent.com/cboettig/knitcitations/master/vignettes/tutorial.Rmd). Calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
 
 # References
 
