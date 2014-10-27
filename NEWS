@@ -28,6 +28,12 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+
+v1.0.4
+------
+
+- Add error handling when Greycite API cannot be reached
+
 v1.0.3
 --------
 
