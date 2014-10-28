@@ -7,7 +7,7 @@ knitcitations <- new.env(hash=TRUE)
 BibOptions(check.entries = FALSE)
 
 
-#' @import RefManageR digest
+#' @import RefManageR digest methods
 knit_cite <- function(x, ...){   # the method that citet/p loop over
   entry <- bib_metadata(x, ...)
   record_as_cited(entry)
