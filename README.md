@@ -38,7 +38,7 @@ Install the development version directly from Github
 
 ```r
 library(devtools)
-install_github("knitcitations", "cboettig")
+install_github("cboettig/knitcitations")
 ```
 
 Or install the current release from your CRAN mirror with `install.packages("knitcitations")`.  
