@@ -28,6 +28,11 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.5
+------
+
+- Add template file for the MIT license, as requested from CRAN. We include the entire MIT License
+
 
 v1.0.4
 ------

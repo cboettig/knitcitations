@@ -3,7 +3,6 @@
 .travis.yml
 manuscripts
 CONTRIBUTING.md
-LICENSE
-
+cran-comments.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
