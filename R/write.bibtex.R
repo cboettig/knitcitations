@@ -1,7 +1,7 @@
 #' write a bibtex file  
 #'
-#' @param entry a 'bibentry' object, list of bibentry objects, or a character
-#'  vector of package names. If NULL, writes all that have currently been cited. 
+#' @param entry a 'bibentry' object or list of bibentry objects. 
+#'        If NULL, writes all that have currently been cited. 
 #' @param file output bibtex file. Will automatically append '.bib' if not
 #'  added. if 'NULL' will use stdout.  
 #' @param append a logical indicating that bibtex entries be added the the
