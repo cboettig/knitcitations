@@ -1,5 +1,6 @@
-content("citations")
+context("citations")
 
+library("knitcitations")
 cleanbib()
 
 test_that("we can cite by doi", {
