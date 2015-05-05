@@ -12,6 +12,7 @@ Description: knitcitations provides the ability to create dynamic citations
     text and tooltips over inline citations.  Cite using a DOI, URL, or
     bibtex file key.  See the package URL for details.
 URL: https://github.com/cboettig/knitcitations
+BugReports: https://github.com/cboettig/knitcitations/issues
 License: MIT + file LICENSE
 VignetteBuilder: knitr
 Depends:
