@@ -28,6 +28,12 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+
+v1.0.6
+------
+
+- Update tests for compatibility with newly released testthat (v0.10.0)
+
 v1.0.5
 ------
 
