@@ -1,7 +1,8 @@
 #' cleanbib 
 #'
-#' @aliases reset_bib
 #' Clean the log of works cited so far.
+#'
+#' @aliases reset_bib
 #' @export
 cleanbib <- function(){
   rm(list = ls(envir = knitcitations),
