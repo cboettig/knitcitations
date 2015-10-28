@@ -28,6 +28,12 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.6
+------
+
+- Avoid failures in CRAN tests do to network connectivity issues.
+- Update importFrom directive for previously-considered-base package, `utils`
+
 v1.0.5
 ------
 

@@ -4,12 +4,16 @@ library("knitcitations")
 cleanbib()
 
 test_that("we can cite by doi", {
+   testthat::skip_on_cran()
+  
    a <-  citep("10.1093/sysbio/sys025")
    expect_match(a, "Vos")
    cleanbib()
 })
 
 test_that("we can cite with a crossref search", {
+   testthat::skip_on_cran()
+  
    a <-  citep("Vos NeXML 2012")
    expect_match(a, "Vos")
   
@@ -20,6 +24,8 @@ test_that("we can cite with a crossref search", {
 
 
 test_that("We can cite by R package / bibentry", {
+  testthat::skip_on_cran()
+  
           a <- citet(citation("testthat"))
           expect_match(a, "Wickham")
 
@@ -30,6 +36,8 @@ test_that("We can cite by R package / bibentry", {
 })
 
 test_that("We create unique keys when necessary", {
+  testthat::skip_on_cran()
+  
   cite_options(citation_format = "pandoc")
   a <- citet("10.1098/rspb.2012.2085")
   b <- citet("10.1098/rsif.2012.0125")
@@ -42,6 +50,8 @@ test_that("We create unique keys when necessary", {
 
 
 test_that("We create textual citations when necessary in text format", {
+  testthat::skip_on_cran()
+  
   cite_options(citation_format = "text")
   a <- citet("10.1098/rspb.2012.2085")
   b <- citet("10.1098/rsif.2012.0125")
@@ -49,7 +59,9 @@ test_that("We create textual citations when necessary in text format", {
 
 })
 
-
+test_that("We can do trivial things", {
+  expect_equal(1+1, 2)
+})
 
 
 # entry entered as doi, later as doi again, later as bibentry, later as bibkey.  Does this avoid duplicates?  

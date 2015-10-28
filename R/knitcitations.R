@@ -8,6 +8,7 @@ BibOptions(check.entries = FALSE)
 
 
 #' @import RefManageR digest methods
+#' @importFrom utils bibentry person
 knit_cite <- function(x, ...){   # the method that citet/p loop over
   entry <- bib_metadata(x, ...)
   record_as_cited(entry)
