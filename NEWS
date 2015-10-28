@@ -28,7 +28,7 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
-v1.0.6
+v1.0.7
 ------
 
 - Avoid failures in CRAN tests do to network connectivity issues.
