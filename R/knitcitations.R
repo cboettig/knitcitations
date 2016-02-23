@@ -66,8 +66,10 @@ make_key <- function(entry){
   if(is.null(n))
     n <- entry$author[[1]]$given
   n <- gsub(" ", "_", n)
-  entry$key  <- paste(n, entry$year, sep="_")
-  entry <- get_unique_key(entry)
+  n <- paste(n, entry$year, sep="_")
+
+  entry$key  <- iconv(n, to = "ASCII//TRANSLIT")
+  get_unique_key(entry)
 }
 
 
