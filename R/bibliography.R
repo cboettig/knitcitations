@@ -39,7 +39,7 @@ bibliography <- function(..., style=NULL)
     refs <- sapply(sort(bibs), csl_formatting)
     cat(refs, sep="\n")
   } else {
-    PrintBibliography(bibs, style=style, .opts=list(...))
+    PrintBibliography(bibs, .opts=list(style=style,...))
   }
   invisible(bibs)
 }
