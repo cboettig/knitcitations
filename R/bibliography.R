@@ -29,12 +29,12 @@
 #' bibliography(style="nature")
 #' bibliography(style="nature", sorting = 'ynt') # obeys sorting rule 
 #' }
-bibliography <- function(..., style=NULL)
+bibliography <- function(..., style2=NULL)
 {
   bibs <- get_bib()
-  NoCite(bibs) 
+  NoCite(bibs)
 
-  if(!is.null(style)){
+  if(!is.null(style2)){
     BibOptions(...)
     refs <- sapply(sort(bibs), csl_formatting)
     cat(refs, sep="\n")
@@ -42,7 +42,6 @@ bibliography <- function(..., style=NULL)
     PrintBibliography(bibs, .opts=list(...))
   }
   invisible(bibs)
-
 }
 
 
