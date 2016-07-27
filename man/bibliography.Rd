@@ -4,7 +4,7 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-bibliography(..., style = NULL)
+bibliography(style = NULL, ...)
 }
 \arguments{
 \item{...}{additional arguments passed to PrintBibliography,}
