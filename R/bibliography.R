@@ -37,7 +37,7 @@ bibliography <- function(style=NULL, ...)
   if(is.null(style)){
     BibOptions(...)
     refs <- sapply(sort(bibs), csl_formatting)
-    cat(refs, sep="\n")
+    #cat(refs, sep="\n")
   } else {
     PrintBibliography(bibs, .opts=list(style=style,...))
   }
