@@ -1,6 +1,6 @@
-#' citet - inline parenthetical citation
+#' citet - inline text citation
 #' 
-#' Generate an inline parenthetical citation
+#' Generate an inline text citation
 #' @param x a citation query, or list of queries for multiple citations. See details and examples 
 #' @param ... additional arguments for the search or formatting. See details.  
 #' @details the citation query can be any of: 
@@ -18,10 +18,16 @@
 #'  many not be uniquely determined by the string. The most relevant search
 #'  result is returned, so consider refining search terms as necessary.
 #'  See examples.
-#' @return Format of tine parenthetical citation will depend on configuration.
-#'  Unless citation_format = "pandoc", formatting is handled by Citet. See
-#'  the arguments to Citet for details. knitcitations will automatically track
-#'  what has been cited during the active R session until the citation log is reset 
+#'
+#' @return Format of the text citation will depend on configuration. Unless 
+#'   citation_format = "pandoc", formatting is handled by
+#'   \code{\link[RefManageR]{Citet}}. See the arguments to Citet for details.
+#'   knitcitations will automatically track what has been cited during the
+#'   active R session until the citation log is reset.
+#'
+#' @seealso \code{\link[RefManageR]{Citep}} for more details on the inline text
+#'   citation generation.  \code{\link{citep}} for generating parenthetical
+#'   citations.
 #'
 #' @examples 
 #' # Cite an R package using the 'bibentry' object
@@ -31,6 +37,7 @@
 #' # Cite using a search query and an optional argument
 #' citet("Chamberlain taxize", year="2013")
 #' }
+#'
 #' @import RefManageR digest
 #' @export
 citet <- function(x, ...){

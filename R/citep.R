@@ -1,4 +1,3 @@
-
 #' citep - inline parenthetical citation
 #' 
 #' Generate an inline parenthetical citation
@@ -19,9 +18,16 @@
 #'  many not be uniquely determined by the string. The most relevant search
 #'  result is returned, so consider refining search terms as necessary.
 #'  See examples.
-#' @return Format of tine parenthetical citation will depend on configuration.
-#'  Unless citation_format = "pandoc", formatting is handled by Citep. See
-#'  the arguments to Citep for details.  
+#'
+#' @return Format of the parenthetical citation will depend on configuration. 
+#'   Unless citation_format = "pandoc", formatting is handled by 
+#'   \code{\link[RefManageR]{Citep}}. See the arguments to Citep for details.
+#'   knitcitations will automatically track what has been cited during the
+#'   active R session until the citation log is reset.
+#'
+#' @seealso \code{\link[RefManageR]{Citep}} for more details on the
+#'   parenthetical citation generation.  \code{\link{citet}} for generating
+#'   inline text citations.
 #'
 #' @examples
 #' # Cite an R package using the 'bibentry' object
