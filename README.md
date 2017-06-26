@@ -3,8 +3,11 @@ title: An introduction to knitcitations
 author: Carl Boettiger
 date: 27 May 2014
 bibliography: references.bib
-output: pdf_document
 ---
+
+[![Build Status](https://travis-ci.org/cboettig/knitcitations.svg?branch=master)](https://travis-ci.org/cboettig/knitcitations)
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/knitcitations)](https://cran.r-project.org/package=knitcitations)
 
 <!--
 %\VignetteEngine{knitr::rmarkdown}

@@ -53,4 +53,3 @@ citep("Chamberlain taxize", year="2013")
   parenthetical citation generation.  \code{\link{citet}} for generating
   inline text citations.
 }
-

@@ -1,6 +1,6 @@
-Dear Kurt, CRAN Maintainers,
+Dear CRAN Maintainers,
 
-This fixes the issues Kurt recently observed in some of the unit test suite.  I've also taken this opportunity to update the suggested importFrom directive for functions coming from `utils`.  
+This updates an example to be consistent with pending changes in the dependency, RefManageR.
 
 Sincerely,
 

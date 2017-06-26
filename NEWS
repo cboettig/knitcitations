@@ -28,6 +28,15 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.8
+------
+
+2017-06-24
+
+- Avoid example that depends on XML (no longer inherited dependency from RefManageR)
+- add badges to README
+
+
 v1.0.7
 ------
 

@@ -15,7 +15,7 @@
 #' @return a list of works cited 
 #' @export
 #' @examples
-#' citet(citation("XML"))
+#' citet(citation("httr"))
 #' citet(citation("digest"))
 #' bibliography()
 #' bibliography(sorting = 'ynt') # sort by year, then name, title
