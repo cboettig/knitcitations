@@ -12,7 +12,7 @@
 #' @examples
 #'  write.bibtex(c(citation("knitr"), 
 #'                 citation("knitcitations"), 
-#'                 citation("RCurl")))
+#'                 citation("httr")))
 #'  bib <- read.bibtex("knitcitations.bib")
 #' @export
 #' @seealso read.bib citep citet

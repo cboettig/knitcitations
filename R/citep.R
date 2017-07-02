@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' # Cite an R package using the 'bibentry' object
-#' citep(citation("RCurl"))
+#' citep(citation("httr"))
 #' 
 #' \donttest{
 #' # Cite using a search query and an optional argument

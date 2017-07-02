@@ -63,7 +63,7 @@ to generate the citation to the Greycite tool.
 If we have a bibtex file, we can cite such articles by those keys as well.  To demonstrate, let's first create a bibtex file with the citation information for some R packages, using the `bibtex` package utilities (a dependency of `knitcitations`):
 
 ```{r message=FALSE}
-write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations"), "TempleLang2012"=citation("RCurl")))
+write.bibtex(c("Yihui2013" = citation("knitr"), "Boettiger2013" = citation("knitcitations")))
 bib <- read.bibtex("knitcitations.bib")
 ```
 

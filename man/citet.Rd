@@ -40,7 +40,7 @@ the citation query can be any of:
 }
 \examples{
 # Cite an R package using the 'bibentry' object
-citet(citation("RCurl"))
+citet(citation("httr"))
 
 \donttest{
 # Cite using a search query and an optional argument
