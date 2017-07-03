@@ -60,6 +60,9 @@ Set pandoc as the default format:
 options("citation_format" = "pandoc")
 ```
 
+
+
+
 (Note: The old method will eventually be depricated.  For documents using `knitcitations <= 0.5` it will become necessary to set this as `"compatibility"`).  
 
 ### Cite by DOI
@@ -71,7 +74,11 @@ An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013
 
 ### Cite by URL
 
-Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool `r citep("http://knowledgeblog.org/greycite")`.  
+Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool:
+
+```{eval = FALSE} 
+citep("http://knowledgeblog.org/greycite")
+```
 
 ### Cite bibtex and bibentry objects directly 
 
