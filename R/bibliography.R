@@ -1,13 +1,10 @@
 #' Generate the bibliography
 #' @param ... additional arguments passed to PrintBibliography,
-#' @param style the name of the journal style, e.g. "mla", "nature", 
-#' "methods-in-ecology-and-evolution", etc. See details.
-#' @details Not that style will use the ordering rule set in BibOptions,
-#' but not the other formatting options (which will come from the CSL sheet instead).  
-#' NOTE that csl formatting works only if reference has a DOI. 
+#' @param style see RefManageR::PrintBibliography
+#' @details 
 #' 
 #' For non-trivial bibliographies, knitcitations recommends authors use 
-#' pandoc format, see cite_options(cite_format="pandoc"), and allow pandoc 
+#' pandoc format, and allow pandoc 
 #' to generate the references list rather than rely on the bibliography() function. 
 #' Pandoc has rich CSL support using any provided CSL file (see Pandoc documentation
 #' for details) and is integrated into recent version of RStudio.  
@@ -26,25 +23,25 @@
 #' # these examples require an internet connection 
 #' citet("Vos NeXML 2012")
 #' citet("Boettiger Ross Hastings 2013")
-#' bibliography(style="nature")
-#' bibliography(style="nature", sorting = 'ynt') # obeys sorting rule 
+#' bibliography(sorting = 'ynt') # obeys sorting rule 
 #' }
 bibliography <- function(style="text", ...)
 {
   bibs <- get_bib()
   NoCite(bibs)
 
-  if(is.null(style)){
-    BibOptions(...)
-    refs <- sapply(sort(bibs), csl_formatting)
-    #cat(refs, sep="\n")
-  } else {
+#  if(is.null(style)){
+#    BibOptions(...)
+#    refs <- sapply(sort(bibs), csl_formatting)
+#    #cat(refs, sep="\n")
+#  } else {
     PrintBibliography(bibs, .opts=list(style=style,...))
-  }
+ # }
   invisible(bibs)
 }
 
 
+## Deprecated
 csl_formatting <- function(bib, style = "ecology"){
     if(!is.null(bib$doi)){
       resp <- GET(paste("http://data.crossref.org", bib$doi, sep="/"), 

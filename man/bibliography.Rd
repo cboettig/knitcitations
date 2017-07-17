@@ -4,11 +4,10 @@
 \alias{bibliography}
 \title{Generate the bibliography}
 \usage{
-bibliography(style = NULL, ...)
+bibliography(style = "text", ...)
 }
 \arguments{
-\item{style}{the name of the journal style, e.g. "mla", "nature", 
-"methods-in-ecology-and-evolution", etc. See details.}
+\item{style}{see RefManageR::PrintBibliography}
 
 \item{...}{additional arguments passed to PrintBibliography,}
 }
@@ -19,12 +18,8 @@ a list of works cited
 Generate the bibliography
 }
 \details{
-Not that style will use the ordering rule set in BibOptions,
-but not the other formatting options (which will come from the CSL sheet instead).  
-NOTE that csl formatting works only if reference has a DOI. 
-
 For non-trivial bibliographies, knitcitations recommends authors use 
-pandoc format, see cite_options(cite_format="pandoc"), and allow pandoc 
+pandoc format, and allow pandoc 
 to generate the references list rather than rely on the bibliography() function. 
 Pandoc has rich CSL support using any provided CSL file (see Pandoc documentation
 for details) and is integrated into recent version of RStudio.
@@ -41,7 +36,6 @@ cleanbib()
 # these examples require an internet connection 
 citet("Vos NeXML 2012")
 citet("Boettiger Ross Hastings 2013")
-bibliography(style="nature")
-bibliography(style="nature", sorting = 'ynt') # obeys sorting rule 
+bibliography(sorting = 'ynt') # obeys sorting rule 
 }
 }
