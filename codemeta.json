@@ -1,0 +1,124 @@
+{
+  "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "knitcitations",
+  "description": "Provides the ability to create dynamic citations\n    in which the bibliographic information is pulled from the web rather\n    than having to be entered into a local database such as 'bibtex' ahead of\n    time. The package is primarily aimed at authoring in the R 'markdown'\n    format, and can provide outputs for web-based authoring such as linked\n    text for inline citations.  Cite using a 'DOI', URL, or\n    'bibtex' file key.  See the package URL for details.",
+  "name": "knitcitations: Citations for 'Knitr' Markdown Files",
+  "codeRepository": "https://github.com/cboettig/knitcitations",
+  "issueTracker": "https://github.com/cboettig/knitcitations/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "1.0.8",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.4.0",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Carl",
+      "familyName": "Boettiger",
+      "email": "cboettig@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1642-628X"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Carl",
+    "familyName": "Boettiger",
+    "email": "cboettig@gmail.com",
+    "@id": "https://orcid.org/0000-0002-1642-628X"
+  },
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "version": "1.6",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RefManageR",
+      "name": "RefManageR",
+      "version": "0.8.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "digest",
+      "name": "digest",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "httr",
+      "name": "httr",
+      "version": "0.3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": "3.0"
+    }
+  ],
+  "keywords": ["citations", "'DOI'", "'knitr'"],
+  "contIntegration": "https://travis-ci.org/cboettig/knitcitations",
+  "developmentStatus": "inactive",
+  "releaseNotes": "https://github.com/cboettig/knitcitations/blob/master/NEWS.md",
+  "readme": "https://github.com/cboettig/knitcitations/blob/master/README.md",
+  "fileSize": "28.094KB"
+}

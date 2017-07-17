@@ -65,4 +65,15 @@ test_that("We can do trivial things", {
 })
 
 
+
+test_that("we can cite by doi and call bibliography with no default style", {
+  testthat::skip_on_cran()
+  
+  a <-  citep("10.1093/sysbio/sys025")
+  testthat::expect_match(a, "Vos")
+  bibliography() 
+  cleanbib()
+})
+
+
 # entry entered as doi, later as doi again, later as bibentry, later as bibkey.  Does this avoid duplicates?  

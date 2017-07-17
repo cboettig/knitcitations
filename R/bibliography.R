@@ -29,7 +29,7 @@
 #' bibliography(style="nature")
 #' bibliography(style="nature", sorting = 'ynt') # obeys sorting rule 
 #' }
-bibliography <- function(style=NULL, ...)
+bibliography <- function(style="text", ...)
 {
   bibs <- get_bib()
   NoCite(bibs)

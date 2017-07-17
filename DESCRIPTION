@@ -2,7 +2,7 @@ Package: knitcitations
 Type: Package
 Title: Citations for 'Knitr' Markdown Files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
-    email="cboettig@gmail.com")
+    email="cboettig@gmail.com", comment = "https://orcid.org/0000-0002-1642-628X")
 Version: 1.0.8
 Description: Provides the ability to create dynamic citations
     in which the bibliographic information is pulled from the web rather
@@ -27,3 +27,4 @@ Suggests:
     testthat,
     knitr (>= 1.6)
 RoxygenNote: 6.0.1
+keywords: citations, 'DOI', 'knitr'

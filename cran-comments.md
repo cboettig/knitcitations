@@ -1,6 +1,7 @@
 Dear CRAN Maintainers,
 
-This updates an example to be consistent with pending changes in the dependency, RefManageR. (A submission to this effect last week had omitted one of the examples)
+Minor bugfix to address changes from upstream dependency (RefManageR).  This issue was not
+covered by a test, so a unit test has also been introduced for this case along with the bugfix.
 
 Sincerely,
 

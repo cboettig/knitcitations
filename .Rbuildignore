@@ -7,3 +7,4 @@ cran-comments.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^codemeta\.json$

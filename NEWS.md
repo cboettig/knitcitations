@@ -28,6 +28,11 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.9
+------
+
+- Minor bugfix for issue #102
+
 v1.0.8
 ------
 
