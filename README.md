@@ -65,7 +65,7 @@ Set pandoc as the default format:
 options("citation_format" = "pandoc")
 ```
 
-(Note: The old method will eventually be depricated.  For documents using `knitcitations <= 0.5` it will become necessary to set this as `"compatibility"`).  
+(Note: The old method will eventually be deprecated.  For documents using `knitcitations <= 0.5` it will become necessary to set this as `"compatibility"`).  
 
 ### Cite by DOI
 
