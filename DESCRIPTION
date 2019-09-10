@@ -3,7 +3,7 @@ Type: Package
 Title: Citations for 'Knitr' Markdown Files
 Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"),
     email="cboettig@gmail.com", comment = "https://orcid.org/0000-0002-1642-628X")
-Version: 1.0.9
+Version: 1.0.10
 Description: Provides the ability to create dynamic citations
     in which the bibliographic information is pulled from the web rather
     than having to be entered into a local database such as 'bibtex' ahead of
