@@ -27,4 +27,3 @@ Suggests:
     testthat,
     knitr (>= 1.6)
 RoxygenNote: 6.1.1
-keywords: citations, 'DOI', 'knitr'

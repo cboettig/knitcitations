@@ -8,3 +8,4 @@ cran-comments.md
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^codemeta\.json$
+^CRAN-RELEASE$
