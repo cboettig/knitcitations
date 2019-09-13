@@ -8,7 +8,7 @@ write.bibtex(entry = NULL, file = "knitcitations.bib",
   append = FALSE, ...)
 }
 \arguments{
-\item{entry}{a 'bibentry' object or list of bibentry objects. 
+\item{entry}{a 'bibentry' object or list of bibentry objects.
 If NULL, writes all that have currently been cited.}
 
 \item{file}{output bibtex file. Will automatically append '.bib' if not
@@ -26,10 +26,12 @@ a list of citation information, invisibly
 write a bibtex file
 }
 \examples{
- write.bibtex(c(citation("knitr"), 
-                citation("knitcitations"), 
-                citation("httr")))
- bib <- read.bibtex("knitcitations.bib")
+ tmp <- tempfile(fileext=".bib")
+ write.bibtex(c(citation("knitr"),
+                citation("knitcitations"),
+                citation("httr")),
+               file = tmp)
+ bib <- read.bibtex(tmp)
 }
 \seealso{
 read.bib citep citet
