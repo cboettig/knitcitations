@@ -19,7 +19,11 @@ greycite <- function(url, format=c("bib","json")){
     }
   } else {
     warning("cannot reach Greycite API")
-    bib <- bibentry(bibtype = "misc", author="Unknown", title="Unknown", url = url, howpublished=paste0("\\url{", url, "}"), year=format(Sys.Date(), "%Y"), note = paste("Accessed", Sys.Date()))
+    bib <- bibentry(bibtype = "misc", author="Unknown", 
+                    title="Unknown", url = url, 
+                    howpublished=paste0("\\url{", url, "}"),
+                    year=format(Sys.Date(), "%Y"),
+                    note = paste("Accessed", Sys.Date()))
   }
   bib
 }

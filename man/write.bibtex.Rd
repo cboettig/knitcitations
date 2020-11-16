@@ -4,8 +4,7 @@
 \alias{write.bibtex}
 \title{write a bibtex file}
 \usage{
-write.bibtex(entry = NULL, file = "knitcitations.bib",
-  append = FALSE, ...)
+write.bibtex(entry = NULL, file = "knitcitations.bib", append = FALSE, ...)
 }
 \arguments{
 \item{entry}{a 'bibentry' object or list of bibentry objects.

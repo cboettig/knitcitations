@@ -6,7 +6,7 @@ bibliography: references.bib
 ---
 
 [![Build Status](https://travis-ci.org/cboettig/knitcitations.svg?branch=master)](https://travis-ci.org/cboettig/knitcitations)
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/knitcitations)](https://cran.r-project.org/package=knitcitations)
 
 <!--
@@ -25,7 +25,7 @@ knitcitations
 
 
 - **Author**: [Carl Boettiger](http://www.carlboettiger.info/)
-- **License**: [MIT](http://opensource.org/licenses/MIT)
+- **License**: [MIT](https://opensource.org/licenses/MIT)
 - [Package source code on Github](https://github.com/cboettig/knitcitations)
 - [**Submit Bugs and feature requests**](https://github.com/cboettig/knitcitations/issues)
 
@@ -76,7 +76,7 @@ An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013
 
 ### Cite by URL
 
-Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool [@greycite2739].  
+Not all the literature we may wish to cite includes DOIs, such as [arXiv](https://arxiv.org/) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool [@greycite2739].  
 
 ### Cite bibtex and bibentry objects directly 
 
@@ -103,7 +103,7 @@ write.bibtex(file="references.bib")
 
 Use the chunk options `echo=FALSE` and `message=FALSE` to hide the chunk command and output.  
 
-This creates a Bibtex file with the name given.  [Pandoc](http://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](http://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used, and the optional link to a [CSL](https://github.com/citation-style-language/styles) stylesheet which formats the output for the ESA journals:
+This creates a Bibtex file with the name given.  [Pandoc](https://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](https://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used, and the optional link to a [CSL](https://github.com/citation-style-language/styles) stylesheet which formats the output for the ESA journals:
 
 ```yaml
 ---

@@ -4,9 +4,17 @@
 \alias{cite_options}
 \title{Toggles for various citation options}
 \usage{
-cite_options(citation_format = "compatibility", style = "text",
-  hyperlink = FALSE, cite.style = "authoryear", super = FALSE,
-  max.names = 4, longnamesfirst = FALSE, check.entries = FALSE, ...)
+cite_options(
+  citation_format = "compatibility",
+  style = "text",
+  hyperlink = FALSE,
+  cite.style = "authoryear",
+  super = FALSE,
+  max.names = 4,
+  longnamesfirst = FALSE,
+  check.entries = FALSE,
+  ...
+)
 }
 \arguments{
 \item{citation_format}{'pandoc', 'compatibility' (with version 0.5 or earlier), or 'text'}

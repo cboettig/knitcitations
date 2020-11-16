@@ -28,6 +28,10 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v1.0.11
+-------
+
+- Return to CRAN now that `bibtex` and `RefManageR` are back
 
 v1.0.10
 ------
