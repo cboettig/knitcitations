@@ -115,7 +115,7 @@ output:
 ```
 
 
-Then calling `rmarkdown::render("tutorial.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
+Then calling `rmarkdown::render("intro.Rmd")` from R on the tutorial compiles the output markdown, with references in the format of the ESA journals.  
 
 # References
 
