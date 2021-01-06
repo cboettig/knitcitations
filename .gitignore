@@ -6,3 +6,4 @@ vignettes/*.pdf
 *.Rproj
 */*.Rhistory
 .Rhistory
+inst/doc

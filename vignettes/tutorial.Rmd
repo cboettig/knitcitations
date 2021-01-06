@@ -3,7 +3,11 @@ title: An introduction to knitcitations
 author: Carl Boettiger
 date: 27 May 2014
 bibliography: references.bib
-output: pdf_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 <!--
@@ -79,8 +83,16 @@ An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013
 Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool:
 
 
-```eval
+```r
 citep("http://knowledgeblog.org/greycite")
+```
+
+```
+## No encoding supplied: defaulting to UTF-8.
+```
+
+```
+## [1] "[@greycite32194]"
 ```
 
 ### Cite bibtex and bibentry objects directly 
