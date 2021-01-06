@@ -14,7 +14,7 @@ Description: Provides the ability to create dynamic citations
 URL: https://github.com/cboettig/knitcitations
 BugReports: https://github.com/cboettig/knitcitations/issues
 License: MIT + file LICENSE
-VignetteBuilder: knitr
+VignetteBuilder: rmarkdown
 Depends:
     R (>= 3.0)
 Imports:
@@ -26,6 +26,5 @@ Imports:
 Suggests:
     testthat,
     knitr (>= 1.6),
-    bibtex,
     rmarkdown
 RoxygenNote: 7.1.1

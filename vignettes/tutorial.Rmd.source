@@ -3,7 +3,7 @@ title: An introduction to knitcitations
 author: Carl Boettiger
 date: 27 May 2014
 bibliography: references.bib
-output: pdf_document
+output: html_document
 ---
 
 <!--
