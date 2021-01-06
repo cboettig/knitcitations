@@ -32,10 +32,4 @@ bibliography(sorting = 'ynt') # sort by year, then name, title
 bibliography(sorting = 'ydnt') # sort by year, descending, then name, title
 cleanbib()
 
-\donttest{
-# these examples require an internet connection 
-citet("Vos NeXML 2012")
-citet("Boettiger Ross Hastings 2013")
-bibliography(sorting = 'ynt') # obeys sorting rule 
-}
 }

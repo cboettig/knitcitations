@@ -5,6 +5,7 @@ cleanbib()
 
 test_that("we can cite by doi", {
    testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
    a <-  citep("10.1093/sysbio/sys025")
    testthat::expect_match(a, "Vos")
@@ -12,7 +13,8 @@ test_that("we can cite by doi", {
 })
 
 test_that("we can cite with a crossref search", {
-   testthat::skip_on_cran()
+  testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
    a <-  citep("Vos NeXML 2012")
    expect_match(a, "Vos")
@@ -26,6 +28,7 @@ test_that("we can cite with a crossref search", {
 
 test_that("We can cite by R package / bibentry", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
           a <- citet(citation("testthat"))
           expect_match(a, "Wickham")
@@ -38,6 +41,7 @@ test_that("We can cite by R package / bibentry", {
 
 test_that("We create unique keys when necessary", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
   cite_options(citation_format = "pandoc")
   a <- citet("10.1098/rspb.2012.2085")
@@ -52,6 +56,7 @@ test_that("We create unique keys when necessary", {
 
 test_that("We create textual citations when necessary in text format", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
   cite_options(citation_format = "text")
   a <- citet("10.1098/rspb.2012.2085")
@@ -68,6 +73,7 @@ test_that("We can do trivial things", {
 
 test_that("we can cite by doi and call bibliography with no default style", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("bibtex")
   
   a <-  citep("10.1093/sysbio/sys025")
   testthat::expect_true(grepl("Vos", a))

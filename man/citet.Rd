@@ -42,11 +42,6 @@ the citation query can be any of:
 # Cite an R package using the 'bibentry' object
 citet(citation("httr"))
 
-\donttest{
-# Cite using a search query and an optional argument
-citet("Chamberlain taxize", year="2013")
-}
-
 }
 \seealso{
 \code{\link[RefManageR]{Citep}} for more details on the inline text

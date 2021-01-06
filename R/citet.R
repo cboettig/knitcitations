@@ -33,11 +33,6 @@
 #' # Cite an R package using the 'bibentry' object
 #' citet(citation("httr"))
 #' 
-#' \donttest{
-#' # Cite using a search query and an optional argument
-#' citet("Chamberlain taxize", year="2013")
-#' }
-#'
 #' @import RefManageR digest
 #' @export
 citet <- function(x, ...){
