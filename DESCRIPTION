@@ -26,5 +26,6 @@ Imports:
 Suggests:
     testthat,
     knitr (>= 1.6),
-    rmarkdown
+    rmarkdown,
+    bibtex
 RoxygenNote: 7.1.1
