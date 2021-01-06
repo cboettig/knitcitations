@@ -118,7 +118,7 @@ v0.6-1
 v0.6-0
 ------
 
-- Pandoc formatting is introduced as the prefered way to handle citations.  The `.Rmd` files remain as before, importing citation data on the fly with `citep()` and `citet` taking DOIs, URLs, or bibentries as arguments, but render in pandoc's markdown. The citations used are written to a bibtex file and the user must use pandoc (either directly or through RStudio's [rmarkdown](http://rmarkdown.rstudio.com)) to format the citations appropriately.  See the updated vignette & README. This method has to be enabled with `options(citation_format = "pandoc")` at present, otherwise compatibility mode is enabled by default.  (see [#57](https://github.com/cboettig/knitcitations/issues/57)) 
+- Pandoc formatting is introduced as the prefered way to handle citations.  The `.Rmd` files remain as before, importing citation data on the fly with `citep()` and `citet` taking DOIs, URLs, or bibentries as arguments, but render in pandoc's markdown. The citations used are written to a bibtex file and the user must use pandoc (either directly or through RStudio's [rmarkdown](https://rmarkdown.rstudio.com/)) to format the citations appropriately.  See the updated vignette & README. This method has to be enabled with `options(citation_format = "pandoc")` at present, otherwise compatibility mode is enabled by default.  (see [#57](https://github.com/cboettig/knitcitations/issues/57)) 
 
 
 v0.5-0

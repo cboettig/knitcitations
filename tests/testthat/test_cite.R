@@ -70,7 +70,7 @@ test_that("we can cite by doi and call bibliography with no default style", {
   testthat::skip_on_cran()
   
   a <-  citep("10.1093/sysbio/sys025")
-  testthat::expect_match(a, "Vos")
+  testthat::expect_true(grepl("Vos", a))
   bibliography() 
   cleanbib()
 })

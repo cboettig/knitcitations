@@ -24,7 +24,7 @@ knitcitations
 
 
 
-- **Author**: [Carl Boettiger](http://www.carlboettiger.info/)
+- **Author**: [Carl Boettiger](https://www.carlboettiger.info/)
 - **License**: [MIT](https://opensource.org/licenses/MIT)
 - [Package source code on Github](https://github.com/cboettig/knitcitations)
 - [**Submit Bugs and feature requests**](https://github.com/cboettig/knitcitations/issues)
@@ -103,7 +103,7 @@ write.bibtex(file="references.bib")
 
 Use the chunk options `echo=FALSE` and `message=FALSE` to hide the chunk command and output.  
 
-This creates a Bibtex file with the name given.  [Pandoc](https://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](https://rstudio.com) through the [rmarkdown](http://rmarkdown.rstudio.com) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used, and the optional link to a [CSL](https://github.com/citation-style-language/styles) stylesheet which formats the output for the ESA journals:
+This creates a Bibtex file with the name given.  [Pandoc](https://johnmacfarlane.net/pandoc) can then be used to compile the markdown into HTML, MS Word, LaTeX, PDF, or many other formats, each with the desired journal styling. Pandoc is now integrated with [RStudio](https://rstudio.com) through the [rmarkdown](https://rmarkdown.rstudio.com/) package.  Pandoc appends these references to the end of the markdown document automatically.  In this example, we have added a yaml header to our Rmd file which indicates the name of the bib file being used, and the optional link to a [CSL](https://github.com/citation-style-language/styles) stylesheet which formats the output for the ESA journals:
 
 ```yaml
 ---

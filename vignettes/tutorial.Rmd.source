@@ -49,16 +49,14 @@ Quick start: rmarkdown (pandoc) mode
 
 Start by loading the library.  It is usually good to also clear the bibliographic environment after loading the library, in case any citations are already stored there:  
 
-
-```r
+```{r}
 library("knitcitations")
 cleanbib()
 ```
 
 Set pandoc as the default format:
 
-
-```r
+```{r}
 options("citation_format" = "pandoc")
 ```
 
@@ -69,40 +67,42 @@ options("citation_format" = "pandoc")
 
 ### Cite by DOI
 
-Cite an article by DOI and the full citation information is gathered automatically. By default this now generates a citation in pandoc-flavored-markdown format. We use the inline command `citep("10.1890/11-0011.1")` to create this citation [@Abrams_2012].  
+Cite an article by DOI and the full citation information is gathered automatically. By default this now generates a citation in pandoc-flavored-markdown format. We use the inline command `citep("10.1890/11-0011.1")` to create this citation `r citep("10.1890/11-0011.1")`.  
 
-An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013.1372")` creating the citation to @Boettiger_2013.  
+An in-text citation is generated with `citet`, such as `citet("10.1098/rspb.2013.1372")` creating the citation to `r citet("10.1098/rspb.2013.1372")`.  
 
 
 ### Cite by URL
 
 Not all the literature we may wish to cite includes DOIs, such as [arXiv](http://arxiv.org) preprints, Wikipedia pages, or other academic blogs.  Even when a DOI is present it is not always trivial to locate.  With version 0.4-0, `knitcitations` can produce citations given any URL using the [Greycite API](http://greycite.knowledgeblog.org). For instance, we can use the call `citep("http://knowledgeblog.org/greycite")` to generate the citation to the Greycite tool:
 
-
-```eval
+```{eval = FALSE} 
 citep("http://knowledgeblog.org/greycite")
 ```
 
 ### Cite bibtex and bibentry objects directly 
 
-We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces [@Xie_2020; @Xie_2015; @Xie_2014].  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger_2013` which will render as @Boettiger_2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
+We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces `r citep(citation("knitr"))`.  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger_2013` which will render as @Boettiger_2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
 
 
 ### Re-using Keys
 
-When the citation is called, a key in the format `FirstAuthorsLastName_Year` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams_2012")` creates the citation [@Abrams_2012] without mistaking it for a new article.  
+When the citation is called, a key in the format `FirstAuthorsLastName_Year` is automatically created for this citation, so we can now continue to cite this article without remembering the DOI, using the command `citep("Abrams_2012")` creates the citation `r citep("Abrams_2012")` without mistaking it for a new article.  
 
 
 
-
+```{r echo=FALSE, include=FALSE, results="hide"}
+## Dummy block to stop R check failing when it tries to tangle and source the vignette
+citep(citation("knitr"))
+citet("10.1098/rspb.2013.1372")
+```
 
 
 ### Displaying the final bibliography
 
 At the end of the document, include a chunk containing the command:
 
-
-```r
+```{r, message=FALSE}
 write.bibtex(file="references.bib")
 ```
 
