@@ -7,6 +7,9 @@
 \usage{
 cleanbib()
 }
+\value{
+Removes log cache, returns invisible `NULL`
+}
 \description{
 Clean the log of works cited so far.
 }

@@ -17,6 +17,9 @@ no checking is done, warn means entry is added with an
 error. error means the entry will not be added.  See
 BibOptions.}
 }
+\value{
+Returns the bib object
+}
 \description{
 read.bibtex
 }

@@ -1,7 +1,8 @@
 #' cleanbib 
 #'
 #' Clean the log of works cited so far.
-#'
+#' 
+#' @return Removes log cache, returns invisible `NULL`
 #' @aliases reset_bib
 #' @export
 cleanbib <- function(){

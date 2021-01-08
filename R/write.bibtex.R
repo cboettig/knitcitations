@@ -58,6 +58,7 @@ write.bibtex <- function(entry = NULL,
 #'        error. error means the entry will not be added.  See
 #'        BibOptions.
 #' @import RefManageR
+#' @return Returns the bib object
 #' @export
 read.bibtex <- function(file, .Encoding = "UTF-8", check=FALSE)
   ReadBib(file, .Encoding=.Encoding, header=NULL, footer = NULL, check=check)
