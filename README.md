@@ -80,7 +80,7 @@ Not all the literature we may wish to cite includes DOIs, such as [arXiv](https:
 
 ### Cite bibtex and bibentry objects directly 
 
-We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr")` produces [@Xie_2014; @Xie_2013; @Xie_2014a].  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger2013` which will render as @Boettiger2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
+We can also use `bibentry` objects such as R provides for citing packages (using R's `citation()` function): `citep(citation("knitr"))` produces [@Xie_2014; @Xie_2013; @Xie_2014a].  Note that this package includes citations to three objects, and pandoc correctly avoids duplicating the author names.  In pandoc mode, we can still use traditional pandoc-markdown citations like `@Boettiger2013` which will render as @Boettiger2013 without any R code, provided the citation is already in the `.bib` file we name (see below).
 
 
 ### Re-using Keys
